@@ -5,8 +5,7 @@
       "ChainId": "Slashes",
       "ChainingAllowance": 15,
       "Next": [
-        "ZX_Fire_Golem_Swing_Left",
-        "ZX_Fire_Golem_Swing_Right"
+        "NPC_Attack_Melee_Simple"
       ]
     }
   ],

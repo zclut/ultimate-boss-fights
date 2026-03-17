@@ -23,18 +23,12 @@
     "MinRunUtility": 0.5,
     "MinActionUtility": 0.01,
     "AvailableActions": {
-      "Splash": "CAO_ZX_Fire_Golem_Splash",
-      "Projectile": "CAO_ZX_Fire_Golem_Projectile",
-      "SwingLeft": "CAO_ZX_Fire_Golem_Swing_Left",
-      "SwingRight": "CAO_ZX_Fire_Golem_Swing_Right"
+      "Example": "CAO_Mikaela_Example"
     },
     "ActionSets": {
       "Default": {
         "Actions": [
-          "Splash",
-          "Projectile",
-          "SwingLeft",
-          "SwingRight"
+          "Example"
         ]
       }
     }

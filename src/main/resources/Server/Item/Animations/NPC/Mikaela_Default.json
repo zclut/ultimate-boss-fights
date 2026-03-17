@@ -1,10 +1,5 @@
 {
   "Animations": {
-    "Splash": {
-      "Speed": 0.4,
-      "Looping": false,
-      "ThirdPerson": "NPC/ZX_Fire_Golem/Animations/Damage/splash.blockyanim"
-    }
   },
   "Camera": {
     "Pitch": {
