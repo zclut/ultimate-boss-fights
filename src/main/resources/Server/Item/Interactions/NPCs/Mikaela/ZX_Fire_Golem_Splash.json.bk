@@ -1,0 +1,69 @@
+{
+  "Type": "Simple",
+  "$Comment": "Prepare Delay before damage is applied via selector",
+  "Effects": {
+    "ItemPlayerAnimationsId": "ZX_Fire_Golem_Default",
+    "ItemAnimationId": "Splash",
+    "MovementEffects": {
+      "DisableAll": true
+    }
+  },
+  "RunTime": 4,
+  "Next": {
+    "Type": "Parallel",
+    "$Comment": "This is a paraller interaction to allow for extra FX during attack, where possible try to use the Simple one",
+    "Interactions": [
+      {
+        "Interactions": [
+          {
+            "Type": "Selector",
+            "RunTime": 0.5,
+            "Selector": {
+              "Id": "AOECylinder",
+              "Height": 2.3,
+              "Range": 5,
+              "Offset": {
+                "Y": -1
+              }
+            },
+            "HitEntity": {
+              "Interactions": [
+                "ZX_Fire_Golem_Splash_Damage"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "Interactions": [
+          {
+            "Type": "Simple",
+            "RunTime": 0.5,
+            "Next": {
+              "Type": "Simple",
+              "Effects": {
+                "Particles": [
+                  {
+                    "TargetEntityPart": "Entity",
+                    "SystemId": "Fire_AoE_Spawn",
+                    "Scale": 10
+                  },
+                  {
+                    "SystemId": "Fire_Spirit_Pit",
+                    "TargetEntityPart": "Entity",
+                    "Scale": 15,
+                    "PositionOffset": {
+                      "Y": -9
+                    }
+                  }
+                ],
+                "WorldSoundEventId": "SFX_Effect_Burn_World",
+                "LocalSoundEventId": "SFX_Effect_Burn_Local"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "Model": "NPC/ZX_Fire_Golem/Models/fire_golem.blockymodel",
+  "Texture": "NPC/ZX_Fire_Golem/Models/fire_golem_texture.png",
+  "EyeHeight": 7,
+  "HitBox": {
+    "Max": {
+      "X": 3,
+      "Y": 8,
+      "Z": 2
+    },
+    "Min": {
+      "X": -3,
+      "Y": 0,
+      "Z": -2
+    }
+  },
+  "MinScale": 1,
+  "MaxScale": 1,
+  "AnimationSets": {
+    "Idle": {
+      "Animations": [
+        {
+          "Animation": "NPC/ZX_Fire_Golem/Animations/Default/idle.blockyanim"
+        }
+      ]
+    },
+    "Walk": {
+      "Animations": [
+        {
+          "Animation": "NPC/ZX_Fire_Golem/Animations/Default/walk.blockyanim"
+        }
+      ]
+    },
+    "WalkBackward": {
+      "Animations": [
+        {
+          "Animation": "NPC/ZX_Fire_Golem/Animations/Default/walk.blockyanim"
+        }
+      ]
+    },
+    "Run": {
+      "Animations": [
+        {
+          "Animation": "NPC/ZX_Fire_Golem/Animations/Default/walk.blockyanim",
+          "Speed": 1
+        }
+      ]
+    }
+  }
+}

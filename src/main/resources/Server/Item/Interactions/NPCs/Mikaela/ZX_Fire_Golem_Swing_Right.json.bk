@@ -1,0 +1,35 @@
+{
+  "Type": "Simple",
+  "$Comment": "Prepare Delay before damage is applied via selector",
+  "Effects": {
+    "Particles": [
+      {
+        "TargetEntityPart": "Entity",
+        "SystemId": "Explosion_Small",
+        "Scale": 10
+      }
+    ],
+    "WorldSoundEventId": "SFX_Goblin_Lobber_Bomb_Death",
+    "LocalSoundEventId": "SFX_Goblin_Lobber_Bomb_Death"
+  },
+  "RunTime": 0.2,
+  "Next": {
+    "Type": "Selector",
+    "RunTime": 0.5,
+    "Selector": {
+      "Id": "Horizontal",
+      "Direction": "ToRight",
+      "TestLineOfSight": true,
+      "StartDistance": 0.1,
+      "EndDistance": 6,
+      "ExtendTop": 0.5,
+      "ExtendBottom": 13,
+      "Length": 135
+    },
+    "HitEntity": {
+      "Interactions": [
+        "ZX_Fire_Golem_Swing_Right_Damage"
+      ]
+    }
+  }
+}

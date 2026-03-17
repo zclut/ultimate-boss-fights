@@ -1,0 +1,14 @@
+{
+  "ApplicationEffects": {
+    "MovementEffects": {
+      "DisableAll": true
+    },
+    "KnockbackMultiplier": 0
+  },
+  "StatModifiers": {
+    "Health": 100000
+  },
+  "Invulnerable": true,
+  "RemovalBehavior": "Duration",
+  "Duration": 2
+}
