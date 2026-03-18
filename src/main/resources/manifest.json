@@ -1,14 +1,17 @@
 {
-    "Group": "Example",
-    "Name": "ExamplePlugin",
-    "Version": "0.0.2",
-    "Description": "An example plugin for HyTale!",
+    "Group": "HytaleZX",
+    "Name": "MikaelaPlugin",
+    "Version": "1.0.0",
+    "Description": "A plugin that adds a new NPC Boss named Mikaela to the game.",
     "Authors": [
         {
-            "Name": "It's you!"
+            "Name": "zClut"
+        },
+        {
+            "Name": "T_X"
         }
     ],
-    "Website": "example.org",
+    "Website": "https://patreon.com/hytalezx",
     "ServerVersion": "2026.02.19-1a311a592",
     "Dependencies": {
         
@@ -17,6 +20,6 @@
         
     },
     "DisabledByDefault": false,
-    "Main": "org.example.plugin.ExamplePlugin",
+    "Main": "com.hytalezx.mikaela.MikaelaPlugin",
     "IncludesAssetPack": true
 }
