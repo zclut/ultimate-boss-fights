@@ -458,16 +458,13 @@
       ],
       "Actions": [
         {
-          "Type": "DisplayName",
-          "DisplayName": "ANIMACIÓN DE MUERTE"
+          "Type": "PlayAnimation",
+          "Slot": "Status",
+          "Animation": "Death"
         },
         {
           "Type": "Timeout",
           "Delay": { "Compute": "DeathTimeout" }
-        },
-        {
-          "Type": "DisplayName",
-          "DisplayName": ""
         },
         {
           "Type": "Role",
@@ -485,16 +482,13 @@
       ],
       "Actions": [
         {
-          "Type": "DisplayName",
-          "DisplayName": "ANIMACIÓN DE SPAWN2"
+          "Type": "PlayAnimation",
+          "Slot": "Status",
+          "Animation": "Spawn"
         },
         {
           "Type": "Timeout",
           "Delay": { "Compute": "SpawnTimeout" }
-        },
-        {
-          "Type": "DisplayName",
-          "DisplayName": ""
         },
         {
           "Type": "SetFlag",
@@ -589,7 +583,7 @@
                     "RelativeTo": "Health",
                     "Stat": "Health",
                     "RelativeToTarget": "Max",
-                    "ValueRange": [ 0, 0.8 ]
+                    "ValueRange": [ 0, 0.3 ]
                   }
                 ]
               },

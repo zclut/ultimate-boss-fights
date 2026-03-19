@@ -23,12 +23,11 @@
     "_CombatConfig": "CAE_Mikaela",
     "IsMemory": true,
     "MemoriesCategory": "Boss",
-    "MemoriesNameOverride": "Mikaela",
+    "MemoriesNameOverride": "MikaelaPhase",
     "BreathesInWater": true,
-    "NameTranslationKey": "server.npcRoles.Mikaela.name",
+    "NameTranslationKey": "server.npcRoles.MikaelaPhase.name",
 
-    "SpawnSecondPhase": true,
-    "SecondPhaseRole": "MikaelaPhase",
-    "DeathTimeout": [ 2, 2 ]
+    "StartSpawnAnimation": true,
+    "SpawnTimeout": [ 2, 2 ]
   }
 }
