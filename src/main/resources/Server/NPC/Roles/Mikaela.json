@@ -3,7 +3,7 @@
   "$Comment": "DisplayState",
   "Reference": "Template_Phase",
   "Modify": {
-    "MaxHealth": 750,
+    "MaxHealth": 150,
     "MaxSpeed": 2,
     "RunThreshold": 1,
     "HearingRange": 40,

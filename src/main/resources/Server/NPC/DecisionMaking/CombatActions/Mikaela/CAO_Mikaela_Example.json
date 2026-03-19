@@ -5,7 +5,7 @@
   "WeightCoefficient": 2,
   "AttackDistanceRange": [0, 5],
   "Ability": {
-    "Interactions": ["NPC_Attack_Melee_Simple"]
+    "Interactions": ["ZX_Fire_Golem_Splash"]
   },
   "Conditions": [
     {

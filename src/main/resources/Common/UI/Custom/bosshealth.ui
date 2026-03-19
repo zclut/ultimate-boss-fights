@@ -9,13 +9,13 @@ Group {
     Style: (FontSize: 25, RenderBold: true, VerticalAlignment: Center, Alignment: Center, TextColor: #ffffff, HorizontalAlignment: Center);
   }
   Group  {
-    Anchor: (Width: 700, Height: 12);
-    Background: "ProgressBarBackground.png";
+    Anchor: (Width: 1000, Height: 70);
+    Background: "bar.png";
 
     ProgressBar #BossHealthBar {
-      Anchor: (Width: 700, Height: 12);
+      Anchor: (Width: 1000, Height: 70);
       Value: 0.75;
-      BarTexturePath: "ProgressBarFill.png";
+      BarTexturePath: "fill.png";
     }
   }
 }
