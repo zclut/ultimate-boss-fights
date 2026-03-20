@@ -86,7 +86,7 @@ public class BossTickingSystem extends EntityTickingSystem<EntityStore> {
                 if (alreadyShowingThisBoss) {
                     // Mismo boss → update incremental de salud
                     BossHealthHud currentBossHud = (BossHealthHud) current;
-                    currentBossHud.updateHealth(healthPct);
+                    currentBossHud.updateHealth(playerRef, healthPct, hud);
                     currentBossHud.currentDistanceSq = distSq;
                 } else if (current instanceof BossHealthHud) {
                     // Hay otro boss en pantalla → solo reemplazar si este está más cerca

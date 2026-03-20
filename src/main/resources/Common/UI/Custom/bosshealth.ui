@@ -8,14 +8,27 @@ Group {
     Text: "Nom Boss";
     Style: (FontSize: 25, RenderBold: true, VerticalAlignment: Center, Alignment: Center, TextColor: #ffffff, HorizontalAlignment: Center);
   }
-  Group  {
+  Group {
     Anchor: (Width: 1000, Height: 70);
     Background: "bar.png";
 
-    ProgressBar #BossHealthBar {
+    ProgressBar #BossHealthBarYellow {
       Anchor: (Width: 1000, Height: 70);
-      Value: 0.75;
-      BarTexturePath: "fill.png";
+      Value: 1.0;
+      BarTexturePath: "fill_yellow.png";
+      Visible: true;
+    }
+    ProgressBar #BossHealthBarOrange {
+      Anchor: (Width: 1000, Height: 70);
+      Value: 1.0;
+      BarTexturePath: "fill_orange.png";
+      Visible: false;
+    }
+    ProgressBar #BossHealthBarRed {
+      Anchor: (Width: 1000, Height: 70);
+      Value: 1.0;
+      BarTexturePath: "fill_red.png";
+      Visible: false;
     }
   }
 }

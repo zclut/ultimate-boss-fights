@@ -553,10 +553,6 @@
           },
           "Actions": [
             {
-              "Type": "DisplayName",
-              "DisplayName": "COMBATEEEEEE"
-            },
-            {
               "Type": "ApplyEntityEffect",
               "UseTarget": false,
               "EntityEffect": "Vulnerable"
