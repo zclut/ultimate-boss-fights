@@ -13,6 +13,7 @@ import com.hytalezx.mikaela.Config.BossRegistry;
 import com.hytalezx.mikaela.Interactions.GrabInteraction;
 import com.hytalezx.mikaela.Systems.BossTickingSystem;
 import com.hytalezx.mikaela.Systems.GrabbedTickSystem;
+import com.hytalezx.mikaela.Systems.NpcDeathRespawnSystem;
 
 import javax.annotation.Nonnull;
 
@@ -39,25 +40,29 @@ public class MikaelaPlugin extends JavaPlugin {
         BossRegistry.register(new BossConfig("Mikaela", "Mikaela",50.0));
 
         // ── COMPONENTS ──────────────────────────────────────────────────────
-        LOGGER.atInfo().log("Registering components...");
-        ComponentType<EntityStore, GrabbedComponent> grabbedType =
-                this.getEntityStoreRegistry().registerComponent(
-                        GrabbedComponent.class,
-                        GrabbedComponent::new
-                );
+//        LOGGER.atInfo().log("Registering components...");
+//        ComponentType<EntityStore, GrabbedComponent> grabbedType =
+//                this.getEntityStoreRegistry().registerComponent(
+//                        GrabbedComponent.class,
+//                        GrabbedComponent::new
+//                );
 
         // ── INTERACTIONS ────────────────────────────────────────────────────
-        LOGGER.atInfo().log("Registering interactions...");
-        GrabInteraction.grabbedType = grabbedType;
-        getCodecRegistry(Interaction.CODEC).register(
-                "HytaleZX:Grab",
-                GrabInteraction.class,
-                GrabInteraction.CODEC
-        );
+//        LOGGER.atInfo().log("Registering interactions...");
+//        GrabInteraction.grabbedType = grabbedType;
+//        getCodecRegistry(Interaction.CODEC).register(
+//                "HytaleZX:Grab",
+//                GrabInteraction.class,
+//                GrabInteraction.CODEC
+//        );
 
         // SYSTEMS
         LOGGER.atInfo().log("Registering systems...");
         this.getEntityStoreRegistry().registerSystem(new BossTickingSystem());
-        this.getEntityStoreRegistry().registerSystem(new GrabbedTickSystem(grabbedType));
+//        this.getEntityStoreRegistry().registerSystem(new GrabbedTickSystem(grabbedType));
+
+        // NEW PHASE SYSTEM
+        EntityStore.REGISTRY.registerSystem(new NpcDeathRespawnSystem());
+        NpcDeathRespawnSystem.register("Mikaela", "MikaelaPhase", 5.0f);
     }
 }

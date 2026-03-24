@@ -26,6 +26,15 @@
         }
       ]
     },
+    "Walk": {
+      "Animations": [
+        {
+          "Animation": "NPC/Mikaela/Animations/Default/walk.blockyanim",
+          "Speed": 1,
+          "Looping": true
+        }
+      ]
+    },
     "Spawn": {
       "Animations": [
         {

@@ -23,12 +23,13 @@
     "MinRunUtility": 0.5,
     "MinActionUtility": 0.01,
     "AvailableActions": {
-      "Example": "CAO_Mikaela_Example"
+      "Example": "CAO_Mikaela_Example",
+      "SwingDown": "CAO_Mikaela_Swing_Down"
     },
     "ActionSets": {
       "Default": {
         "Actions": [
-          "Example"
+          "SwingDown"
         ]
       }
     }

@@ -1,5 +1,12 @@
 {
   "Animations": {
+    "SwingDown": {
+      "Speed": 1,
+      "Looping": false,
+      "ThirdPerson": "NPC/Mikaela/Animations/Damage/swing_down.blockyanim",
+      "KeepPreviousFirstPersonAnimation": true,
+      "ClipsGeometry": true
+    }
   },
   "Camera": {
     "Pitch": {

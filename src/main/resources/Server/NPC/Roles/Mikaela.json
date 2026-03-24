@@ -25,10 +25,6 @@
     "MemoriesCategory": "Boss",
     "MemoriesNameOverride": "Mikaela",
     "BreathesInWater": true,
-    "NameTranslationKey": "server.npcRoles.Mikaela.name",
-
-    "SpawnSecondPhase": true,
-    "SecondPhaseRole": "MikaelaPhase",
-    "DeathTimeout": [ 2, 2 ]
+    "NameTranslationKey": "server.npcRoles.Mikaela.name"
   }
 }

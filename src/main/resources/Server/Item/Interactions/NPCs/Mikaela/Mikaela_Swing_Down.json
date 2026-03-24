@@ -2,34 +2,17 @@
   "Type": "Simple",
   "$Comment": "Prepare Delay before damage is applied via selector",
   "Effects": {
-    "MovementEffects": {
-      "DisableAll": true
-    }
+    "ItemPlayerAnimationsId": "Mikaela_Default",
+    "ItemAnimationId": "SwingDown"
   },
-  "RunTime": 4,
+  "RunTime": 1,
   "Next": {
     "Type": "Parallel",
     "$Comment": "This is a paraller interaction to allow for extra FX during attack, where possible try to use the Simple one",
     "Interactions": [
       {
         "Interactions": [
-          {
-            "Type": "Selector",
-            "RunTime": 0.5,
-            "Selector": {
-              "Id": "AOECylinder",
-              "Height": 2.3,
-              "Range": 5,
-              "Offset": {
-                "Y": -1
-              }
-            },
-            "HitEntity": {
-              "Interactions": [
-                "Mikaela_Swing_Down_Damage"
-              ]
-            }
-          }
+          "Mikaela_Swing_Down_Selector"
         ]
       },
       {
