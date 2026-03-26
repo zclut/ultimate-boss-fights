@@ -3,7 +3,21 @@
     "SwingDown": {
       "Speed": 1,
       "Looping": false,
-      "ThirdPerson": "NPC/Mikaela/Animations/Damage/swing_down.blockyanim",
+      "ThirdPerson": "NPC/Mikaela/Animations/Damage/SwingDown.blockyanim",
+      "KeepPreviousFirstPersonAnimation": true,
+      "ClipsGeometry": true
+    },
+    "SwingDownCombo": {
+      "Speed": 1,
+      "Looping": false,
+      "ThirdPerson": "NPC/Mikaela/Animations/Damage/SwingDownCombo.blockyanim",
+      "KeepPreviousFirstPersonAnimation": true,
+      "ClipsGeometry": true
+    },
+    "SwingLeft": {
+      "Speed": 1,
+      "Looping": false,
+      "ThirdPerson": "NPC/Mikaela/Animations/Damage/SwingLeft.blockyanim",
       "KeepPreviousFirstPersonAnimation": true,
       "ClipsGeometry": true
     }

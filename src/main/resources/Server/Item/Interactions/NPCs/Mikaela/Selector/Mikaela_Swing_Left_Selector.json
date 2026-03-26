@@ -1,0 +1,20 @@
+{
+  "Type": "Selector",
+  "$Comment": "Length of Combat",
+  "RunTime": 0.16,
+  "Selector": {
+    "Id": "Horizontal",
+    "Length": 20,
+    "Direction": "ToLeft",
+    "StartDistance": 0.002,
+    "EndDistance": 7,
+    "ExtendTop": 2,
+    "ExtendBottom": 2,
+    "TestLineOfSight": true
+  },
+  "HitEntity": {
+    "Interactions": [
+      "Mikaela_Swing_Left_Damage"
+    ]
+  }
+}

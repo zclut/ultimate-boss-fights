@@ -4,7 +4,7 @@
   "Reference": "Template_Phase",
   "Modify": {
     "MaxHealth": 150,
-    "MaxSpeed": 2,
+    "MaxSpeed": 4,
     "RunThreshold": 1,
     "HearingRange": 40,
     "ViewSector": 270,
