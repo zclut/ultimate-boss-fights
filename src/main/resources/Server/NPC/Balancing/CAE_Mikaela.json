@@ -26,12 +26,13 @@
       "Example": "CAO_Mikaela_Example",
       "SwingDown": "CAO_Mikaela_Swing_Down",
       "SwingDownCombo": "CAO_Mikaela_Swing_Down_Combo",
-      "SwingLeft": "CAO_Mikaela_Swing_Left"
+      "SwingLeft": "CAO_Mikaela_Swing_Left",
+      "AOEJump": "CAO_Mikaela_AOE_Jump"
     },
     "ActionSets": {
       "Default": {
         "Actions": [
-          "SwingLeft"
+          "AOEJump"
         ]
       }
     }

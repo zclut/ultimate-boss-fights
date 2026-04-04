@@ -8,11 +8,14 @@ import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hytalezx.mikaela.Command.MikaelaCommand;
 import com.hytalezx.mikaela.Components.GrabbedComponent;
+import com.hytalezx.mikaela.Components.HitboxOffsetComponent;
 import com.hytalezx.mikaela.Config.BossConfig;
 import com.hytalezx.mikaela.Config.BossRegistry;
+import com.hytalezx.mikaela.Interactions.ApplyHitboxInteraction;
 import com.hytalezx.mikaela.Interactions.GrabInteraction;
 import com.hytalezx.mikaela.Systems.BossTickingSystem;
 import com.hytalezx.mikaela.Systems.GrabbedTickSystem;
+import com.hytalezx.mikaela.Systems.HitboxOffsetTickSystem;
 import com.hytalezx.mikaela.Systems.NpcDeathRespawnSystem;
 
 import javax.annotation.Nonnull;
@@ -56,9 +59,26 @@ public class MikaelaPlugin extends JavaPlugin {
 //                GrabInteraction.CODEC
 //        );
 
+        // ── HITBOX OFFSET (ApplyHitbox interaction) ────────────────────────
+        LOGGER.atInfo().log("Registering HitboxOffset components...");
+        ComponentType<EntityStore, HitboxOffsetComponent> hitboxOffsetType =
+                this.getEntityStoreRegistry().registerComponent(
+                        HitboxOffsetComponent.class,
+                        HitboxOffsetComponent::new
+                );
+
+        LOGGER.atInfo().log("Registering HitboxOffset interaction...");
+        ApplyHitboxInteraction.hitboxOffsetType = hitboxOffsetType;
+        getCodecRegistry(Interaction.CODEC).register(
+                "HytaleZX:ApplyHitbox",
+                ApplyHitboxInteraction.class,
+                ApplyHitboxInteraction.CODEC
+        );
+
         // SYSTEMS
         LOGGER.atInfo().log("Registering systems...");
         this.getEntityStoreRegistry().registerSystem(new BossTickingSystem());
+        this.getEntityStoreRegistry().registerSystem(new HitboxOffsetTickSystem(hitboxOffsetType));
 //        this.getEntityStoreRegistry().registerSystem(new GrabbedTickSystem(grabbedType));
 
         // NEW PHASE SYSTEM

@@ -1,0 +1,29 @@
+{
+  "Type": "Ability",
+  "Description": "Swing to the left",
+  "Target": "Hostile",
+  "WeightCoefficient": 2,
+  "AttackDistanceRange": [0, 5],
+  "Ability": {
+    "Interactions": ["Mikaela_AOE_Jump"]
+  },
+  "Conditions": [
+    {
+      "Type": "TimeSinceLastUsed",
+      "Curve": {
+        "Type": "Switch",
+        "SwitchPoint": 5
+      }
+    },
+    {
+      "Type": "TargetDistance",
+      "Curve": {
+        "ResponseCurve": "SimpleDescendingLogistic",
+        "XRange": [
+          0,
+          5
+        ]
+      }
+    }
+  ]
+}
