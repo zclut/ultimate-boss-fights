@@ -1,0 +1,46 @@
+{
+  "Type": "Parallel",
+  "Interactions": [
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "$Comment": "Add delay to sync hitbox with animation",
+          "RunTime": 0.5,
+          "Next": {
+            "Type": "HytaleZX:ApplyHitbox",
+            "OffsetY": 5.0,
+            "Speed": 0.1,
+            "Duration": 2
+          }
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Selector",
+          "$Comment": "Length of Combat",
+          "RunTime": 2.6,
+          "Selector": {
+            "Id": "Stab",
+            "TestLineOfSight": true,
+            "ExtendTop": 0.0,
+            "ExtendLeft": 0.75,
+            "ExtendRight": 0.75,
+            "ExtendBottom": 4.0,
+            "StartDistance": 0.1,
+            "EndDistance": 7.0
+          },
+          "HitEntity": {
+            "Interactions": [
+              "Mikaela_AOEJump_Second_Damage"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
+
+

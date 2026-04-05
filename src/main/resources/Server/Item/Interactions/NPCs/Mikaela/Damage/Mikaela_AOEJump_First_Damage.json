@@ -1,0 +1,28 @@
+{
+  "Parent": "DamageEntityParent",
+  "DamageCalculator": {
+    "BaseDamage": {
+      "Physical": 10
+    }
+  },
+  "DamageEffects": {
+    "WorldSoundEventId": "SFX_Unarmed_Impact",
+    "LocalSoundEventId": "SFX_Unarmed_Impact",
+    "Knockback": {
+      "Force": 1,
+      "RelativeX": 0,
+      "RelativeZ": -1,
+      "VelocityY": 2
+    },
+    "WorldParticles": [
+      {
+        "SystemId": "Impact_Sword_Basic"
+      }
+    ]
+  },
+  "Next": {
+    "Type": "ApplyEffect",
+    "EffectId": "Stun",
+    "Entity": "Target"
+  }
+}
