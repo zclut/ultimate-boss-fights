@@ -1,0 +1,45 @@
+{
+  "Type": "Simple",
+  "$Comment": "Prepare Delay before damage is applied via selector",
+  "Effects": {
+    "ItemPlayerAnimationsId": "Mikaela_Default",
+    "ItemAnimationId": "Punch",
+    "MovementEffects": {
+      "DisableAll": true
+    }
+  },
+  "RunTime": 0.50,
+  "Next": {
+    "Type": "Parallel",
+    "$Comment": "This is a paraller interaction to allow for extra FX during attack, where possible try to use the Simple one",
+    "Interactions": [
+      {
+        "Interactions": [
+          "Mikaela_Sky_Strike_Selector"
+        ]
+      },
+      {
+        "Interactions": [
+          {
+            "Type": "Simple",
+            "RunTime": 0.5,
+            "Next": {
+              "Type": "Simple",
+              "Effects": {
+                "Particles": [
+                  {
+                    "TargetEntityPart": "Entity",
+                    "SystemId": "Fire_AoE_Spawn",
+                    "Scale": 10
+                  }
+                ],
+                "WorldSoundEventId": "SFX_Effect_Burn_World",
+                "LocalSoundEventId": "SFX_Effect_Burn_Local"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

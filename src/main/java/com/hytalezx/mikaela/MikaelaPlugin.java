@@ -7,14 +7,12 @@ import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hytalezx.mikaela.Command.MikaelaCommand;
-import com.hytalezx.mikaela.Components.GrabbedComponent;
 import com.hytalezx.mikaela.Components.HitboxOffsetComponent;
 import com.hytalezx.mikaela.Config.BossConfig;
 import com.hytalezx.mikaela.Config.BossRegistry;
 import com.hytalezx.mikaela.Interactions.ApplyHitboxInteraction;
-import com.hytalezx.mikaela.Interactions.GrabInteraction;
+import com.hytalezx.mikaela.Interactions.FallingProjectile;
 import com.hytalezx.mikaela.Systems.BossTickingSystem;
-import com.hytalezx.mikaela.Systems.GrabbedTickSystem;
 import com.hytalezx.mikaela.Systems.HitboxOffsetTickSystem;
 import com.hytalezx.mikaela.Systems.NpcDeathRespawnSystem;
 
@@ -38,28 +36,13 @@ public class MikaelaPlugin extends JavaPlugin {
         LOGGER.atInfo().log("Setting up plugin " + this.getName());
         this.getCommandRegistry().registerCommand(new MikaelaCommand(this.getName(), this.getManifest().getVersion().toString()));
 
-        // BOSS REGISTRY
+
+        // BOSS REGISTRY HEALTH BARS
         LOGGER.atInfo().log("Registering bosses...");
         BossRegistry.register(new BossConfig("Mikaela", "Mikaela",50.0));
 
+
         // ── COMPONENTS ──────────────────────────────────────────────────────
-//        LOGGER.atInfo().log("Registering components...");
-//        ComponentType<EntityStore, GrabbedComponent> grabbedType =
-//                this.getEntityStoreRegistry().registerComponent(
-//                        GrabbedComponent.class,
-//                        GrabbedComponent::new
-//                );
-
-        // ── INTERACTIONS ────────────────────────────────────────────────────
-//        LOGGER.atInfo().log("Registering interactions...");
-//        GrabInteraction.grabbedType = grabbedType;
-//        getCodecRegistry(Interaction.CODEC).register(
-//                "HytaleZX:Grab",
-//                GrabInteraction.class,
-//                GrabInteraction.CODEC
-//        );
-
-        // ── HITBOX OFFSET (ApplyHitbox interaction) ────────────────────────
         LOGGER.atInfo().log("Registering HitboxOffset components...");
         ComponentType<EntityStore, HitboxOffsetComponent> hitboxOffsetType =
                 this.getEntityStoreRegistry().registerComponent(
@@ -67,6 +50,9 @@ public class MikaelaPlugin extends JavaPlugin {
                         HitboxOffsetComponent::new
                 );
 
+
+        // ── INTERACTIONS ────────────────────────────────────────────────────
+        // ── HITBOX OFFSET (ApplyHitbox interaction) ────────────────────────
         LOGGER.atInfo().log("Registering HitboxOffset interaction...");
         ApplyHitboxInteraction.hitboxOffsetType = hitboxOffsetType;
         getCodecRegistry(Interaction.CODEC).register(
@@ -74,14 +60,22 @@ public class MikaelaPlugin extends JavaPlugin {
                 ApplyHitboxInteraction.class,
                 ApplyHitboxInteraction.CODEC
         );
+        // ── FallingProjectile (FallingProjectile interaction) ──────────────────────────
+        LOGGER.atInfo().log("Registering FallingProjectile interaction...");
+        getCodecRegistry(Interaction.CODEC).register(
+                "HytaleZX:FallingProjectile",
+                FallingProjectile.class,
+                FallingProjectile.CODEC
+        );
 
-        // SYSTEMS
+
+        // ── SYSTEMS ────────────────────────────────────────────────────────
         LOGGER.atInfo().log("Registering systems...");
         this.getEntityStoreRegistry().registerSystem(new BossTickingSystem());
         this.getEntityStoreRegistry().registerSystem(new HitboxOffsetTickSystem(hitboxOffsetType));
-//        this.getEntityStoreRegistry().registerSystem(new GrabbedTickSystem(grabbedType));
 
-        // NEW PHASE SYSTEM
+
+        // ── NEW PHASE SYSTEM ────────────────────────────────────────────────
         EntityStore.REGISTRY.registerSystem(new NpcDeathRespawnSystem());
         NpcDeathRespawnSystem.register("Mikaela", "MikaelaPhase", 5.0f);
     }

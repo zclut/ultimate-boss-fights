@@ -1,0 +1,19 @@
+{
+  "Type": "Selector",
+  "$Comment": "Find target player in range to spawn sky projectile above them",
+  "RunTime": 0.16,
+  "Selector": {
+    "Id": "AOECircle",
+    "Range": 20
+  },
+  "HitEntity": {
+    "Interactions": [
+      {
+        "Type": "HytaleZX:FallingProjectile",
+        "ProjectileId": "Mikaela_Sky_Projectile",
+        "Height": 15.0,
+        "WarningParticle": "Fire_AoE_Spawn"
+      }
+    ]
+  }
+}

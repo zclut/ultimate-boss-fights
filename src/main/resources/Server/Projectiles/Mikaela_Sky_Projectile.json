@@ -1,0 +1,39 @@
+{
+  "Appearance": "Fireball",
+  "MuzzleVelocity": 5,
+  "TerminalVelocity": 30,
+  "Gravity": 5,
+  "ImpactSlowdown": 1,
+  "Damage": 15,
+  "DeathEffectsOnHit": true,
+  "HitParticles": {
+    "SystemId": "Fire_AoE_Spawn",
+    "Scale": 2.0
+  },
+  "HitSoundEventId": "SFX_Effect_Burn_World",
+  "MissSoundEventId": "SFX_Rubble_Bounce",
+  "MissParticles": {
+    "SystemId": "Fire_AoE_Spawn",
+    "Scale": 1.5
+  },
+  "ExplosionConfig": {
+    "DamageBlocks": false,
+    "DamageEntities": true,
+    "EntityDamageRadius": 4,
+    "EntityDamage": 12,
+    "Knockback": {
+      "Type": "Point",
+      "VelocityConfig": {
+        "AirResistance": 0.97,
+        "AirResistanceMax": 0.96,
+        "GroundResistance": 0.94,
+        "GroundResistanceMax": 0.3,
+        "Threshold": 2.0
+      },
+      "Force": 5,
+      "VelocityY": 8,
+      "VelocityType": "Set"
+    }
+  },
+  "DeadTimeMiss": 0
+}
