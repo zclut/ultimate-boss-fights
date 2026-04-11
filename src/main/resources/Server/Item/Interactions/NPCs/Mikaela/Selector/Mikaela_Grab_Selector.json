@@ -1,0 +1,25 @@
+{
+  "Type": "Selector",
+  "$Comment": "Narrow forward reach for grab — mid range",
+  "RunTime": 0.1,
+  "Selector": {
+    "Id": "Stab",
+    "TestLineOfSight": true,
+    "ExtendTop": 0.0,
+    "ExtendLeft": 0.75,
+    "ExtendRight": 0.75,
+    "ExtendBottom": 4.0,
+    "StartDistance": 0.1,
+    "EndDistance": 10.0
+  },
+  "HitEntity": {
+    "Interactions": [
+      "Mikaela_Grab_Damage"
+    ]
+  },
+  "Next": {
+    "Type": "Simple",
+    "$Comment": "Pad interaction length after grab lands",
+    "RunTime": 0.8
+  }
+}

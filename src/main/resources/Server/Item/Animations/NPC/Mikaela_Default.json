@@ -34,6 +34,13 @@
       "ThirdPerson": "NPC/Mikaela/Animations/Damage/Punch.blockyanim",
       "KeepPreviousFirstPersonAnimation": true,
       "ClipsGeometry": true
+    },
+    "Grab": {
+      "Speed": 1,
+      "Looping": false,
+      "ThirdPerson": "NPC/Mikaela/Animations/Damage/Grab.blockyanim",
+      "KeepPreviousFirstPersonAnimation": true,
+      "ClipsGeometry": true
     }
   },
   "Camera": {
