@@ -11,8 +11,9 @@ import com.hytalezx.mikaela.Components.HitboxOffsetComponent;
 import com.hytalezx.mikaela.Config.BossConfig;
 import com.hytalezx.mikaela.Config.BossRegistry;
 import com.hytalezx.mikaela.Interactions.ApplyHitboxInteraction;
-import com.hytalezx.mikaela.Interactions.FallingProjectile;
+import com.hytalezx.mikaela.Interactions.FallingProjectileInteraction;
 import com.hytalezx.mikaela.Systems.BossTickingSystem;
+import com.hytalezx.mikaela.Systems.FallingProjectileTickSystem;
 import com.hytalezx.mikaela.Systems.HitboxOffsetTickSystem;
 import com.hytalezx.mikaela.Systems.NpcDeathRespawnSystem;
 
@@ -64,8 +65,8 @@ public class MikaelaPlugin extends JavaPlugin {
         LOGGER.atInfo().log("Registering FallingProjectile interaction...");
         getCodecRegistry(Interaction.CODEC).register(
                 "HytaleZX:FallingProjectile",
-                FallingProjectile.class,
-                FallingProjectile.CODEC
+                FallingProjectileInteraction.class,
+                FallingProjectileInteraction.CODEC
         );
 
 
@@ -73,6 +74,7 @@ public class MikaelaPlugin extends JavaPlugin {
         LOGGER.atInfo().log("Registering systems...");
         this.getEntityStoreRegistry().registerSystem(new BossTickingSystem());
         this.getEntityStoreRegistry().registerSystem(new HitboxOffsetTickSystem(hitboxOffsetType));
+        this.getEntityStoreRegistry().registerSystem(new FallingProjectileTickSystem());
 
 
         // ── NEW PHASE SYSTEM ────────────────────────────────────────────────

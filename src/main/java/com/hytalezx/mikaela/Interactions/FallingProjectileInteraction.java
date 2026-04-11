@@ -3,79 +3,80 @@ package com.hytalezx.mikaela.Interactions;
 import com.hypixel.hytale.codec.Codec;
 import com.hypixel.hytale.codec.KeyedCodec;
 import com.hypixel.hytale.codec.builder.BuilderCodec;
-import com.hypixel.hytale.component.AddReason;
 import com.hypixel.hytale.component.CommandBuffer;
-import com.hypixel.hytale.component.Holder;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.math.vector.Vector3d;
-import com.hypixel.hytale.math.vector.Vector3f;
 import com.hypixel.hytale.protocol.InteractionState;
 import com.hypixel.hytale.protocol.InteractionType;
 import com.hypixel.hytale.server.core.entity.InteractionContext;
 import com.hypixel.hytale.server.core.entity.UUIDComponent;
 import com.hypixel.hytale.server.core.entity.entities.Player;
-import com.hypixel.hytale.server.core.entity.entities.ProjectileComponent;
-import com.hypixel.hytale.server.core.modules.entity.component.Intangible;
 import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
 import com.hypixel.hytale.server.core.modules.interaction.interaction.CooldownHandler;
 import com.hypixel.hytale.server.core.modules.interaction.interaction.config.SimpleInstantInteraction;
-import com.hypixel.hytale.server.core.modules.time.TimeResource;
-import com.hypixel.hytale.server.core.universe.world.ParticleUtil;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Custom interaction that spawns a projectile from the sky above the target entity.
- * Used inside a Selector's HitEntity chain.
+ * Rains projectiles from the sky at random positions within a radius around the target.
  *
- * Velocity, Gravity, EntityDamageRadius etc. are configured in the Projectile JSON config.
+ * Every DelayBetweenProjectile seconds a warning particle is shown and a projectile
+ * is spawned at a random position within Range. This repeats for Duration seconds.
  *
  * JSON usage:
  * {
  *   "Type": "HytaleZX:FallingProjectile",
  *   "ProjectileId": "Mikaela_Sky_Projectile",
- *   "Height": 20.0,
- *   "OffsetX": 0.0,
- *   "OffsetY": 0.0,
- *   "OffsetZ": 0.0,
+ *   "Height": 40.0,
+ *   "Range": 20.0,
+ *   "Duration": 3.0,
+ *   "DelayBetweenProjectile": 0.3,
  *   "WarningParticle": "Fire_AoE_Spawn",
  *   "WarningParticleScale": 5.0
  * }
  */
-public class FallingProjectile extends SimpleInstantInteraction {
+public class FallingProjectileInteraction extends SimpleInstantInteraction {
 
     private static final HytaleLogger LOGGER = HytaleLogger.forEnclosingClass();
 
-    private String projectileId = "Mikaela_Sky_Projectile";
-    private float height = 20.0f;
-    private float offsetX = 0f;
-    private float offsetY = 0f;
-    private float offsetZ = 0f;
-    private String warningParticle = "";
-    private float warningParticleScale = 1.0f;
+    /** Active rain tasks keyed by NPC UUID, consumed by FallingProjectileTickSystem. */
+    public static final Map<UUID, List<Task>> ACTIVE_TASKS = new ConcurrentHashMap<>();
 
-    public static final BuilderCodec<FallingProjectile> CODEC =
-            BuilderCodec.builder(FallingProjectile.class, FallingProjectile::new, SimpleInstantInteraction.CODEC)
+    // ── Config ──────────────────────────────────────────────────────────────
+    private String projectileId           = "Mikaela_Sky_Projectile";
+    private float  height                 = 20.0f;
+    private float  range                  = 8.0f;
+    private float  duration               = 3.0f;
+    private float  delayBetweenProjectile = 0.3f;
+    private String warningParticle        = "";
+    private float  warningParticleScale   = 1.0f;
+
+    public static final BuilderCodec<FallingProjectileInteraction> CODEC =
+            BuilderCodec.builder(FallingProjectileInteraction.class, FallingProjectileInteraction::new, SimpleInstantInteraction.CODEC)
                     .append(new KeyedCodec<>("ProjectileId", Codec.STRING),
                             (i, v) -> i.projectileId = v, i -> i.projectileId).add()
                     .append(new KeyedCodec<>("Height", Codec.FLOAT),
                             (i, v) -> i.height = v, i -> i.height).add()
-                    .append(new KeyedCodec<>("OffsetX", Codec.FLOAT),
-                            (i, v) -> i.offsetX = v, i -> i.offsetX).add()
-                    .append(new KeyedCodec<>("OffsetY", Codec.FLOAT),
-                            (i, v) -> i.offsetY = v, i -> i.offsetY).add()
-                    .append(new KeyedCodec<>("OffsetZ", Codec.FLOAT),
-                            (i, v) -> i.offsetZ = v, i -> i.offsetZ).add()
+                    .append(new KeyedCodec<>("Range", Codec.FLOAT),
+                            (i, v) -> i.range = v, i -> i.range).add()
+                    .append(new KeyedCodec<>("Duration", Codec.FLOAT),
+                            (i, v) -> i.duration = v, i -> i.duration).add()
+                    .append(new KeyedCodec<>("DelayBetweenProjectile", Codec.FLOAT),
+                            (i, v) -> i.delayBetweenProjectile = v, i -> i.delayBetweenProjectile).add()
                     .append(new KeyedCodec<>("WarningParticle", Codec.STRING),
                             (i, v) -> i.warningParticle = v, i -> i.warningParticle).add()
                     .append(new KeyedCodec<>("WarningParticleScale", Codec.FLOAT),
                             (i, v) -> i.warningParticleScale = v, i -> i.warningParticleScale).add()
                     .build();
 
-    public FallingProjectile() {}
+    public FallingProjectileInteraction() {}
 
     @Override
     protected void firstRun(@Nonnull InteractionType interactionType,
@@ -85,7 +86,7 @@ public class FallingProjectile extends SimpleInstantInteraction {
         CommandBuffer<EntityStore> buffer = context.getCommandBuffer();
 
         Ref<EntityStore> targetRef = context.getTargetEntity();
-        Ref<EntityStore> npcRef = context.getOwningEntity();
+        Ref<EntityStore> npcRef    = context.getOwningEntity();
 
         if (targetRef == null || !targetRef.isValid()) {
             context.getState().state = InteractionState.Failed;
@@ -111,74 +112,64 @@ public class FallingProjectile extends SimpleInstantInteraction {
             context.getState().state = InteractionState.Failed;
             return;
         }
-        UUID shooterUuid = uuidComp.getUuid();
+        UUID npcUuid = uuidComp.getUuid();
 
         Vector3d targetPos = targetTransform.getPosition();
 
-        // Landing position = target + offset
-        double landX = targetPos.x + offsetX;
-        double landY = targetPos.y + offsetY;
-        double landZ = targetPos.z + offsetZ;
+        int durationTicks = Math.max(1, Math.round(duration * 20));
+        int delayTicks    = Math.max(1, Math.round(delayBetweenProjectile * 20));
 
-        // Spawn warning particle at landing position
-        if (warningParticle != null && !warningParticle.isEmpty()) {
-            try {
-                ParticleUtil.spawnParticleEffect(
-                        warningParticle,
-                        new Vector3d(landX, landY, landZ),
-                        buffer);
-            } catch (Exception e) {
-                LOGGER.atWarning().log("[FallingProjectile] warning particle failed: %s", e.getMessage());
-            }
-        }
+        Task task = new Task(
+                targetPos.x, targetPos.y, targetPos.z,
+                range, height,
+                durationTicks, delayTicks,
+                projectileId, warningParticle, warningParticleScale,
+                npcUuid
+        );
 
-        // Spawn position: directly above the landing point
-        Vector3d spawnPos = new Vector3d(landX, landY + height, landZ);
-        Vector3f spawnRot = new Vector3f(0, -90, 0);
+        ACTIVE_TASKS.computeIfAbsent(npcUuid, k -> new ArrayList<>()).add(task);
 
-        TimeResource timeResource = buffer.getResource(TimeResource.getResourceType());
-
-        Holder<EntityStore> holder = ProjectileComponent.assembleDefaultProjectile(
-                timeResource, projectileId, spawnPos, spawnRot);
-
-        ProjectileComponent projComp = holder.getComponent(ProjectileComponent.getComponentType());
-        if (projComp == null) {
-            LOGGER.atWarning().log("[FallingProjectile] failed to assemble projectile '%s'", projectileId);
-            context.getState().state = InteractionState.Failed;
-            return;
-        }
-
-        holder.ensureComponent(Intangible.getComponentType());
-
-        if (projComp.getProjectile() == null) {
-            projComp.initialize();
-            if (projComp.getProjectile() == null) {
-                LOGGER.atWarning().log("[FallingProjectile] projectile config '%s' not found", projectileId);
-                context.getState().state = InteractionState.Failed;
-                return;
-            }
-        }
-
-        // shoot() sets creatorUuid and velocity from projectile config
-        projComp.shoot(holder, shooterUuid,
-                spawnPos.x, spawnPos.y, spawnPos.z,
-                0f, -90f);
-
-        // Override position to exact spawn point (undo computeStartOffset)
-        TransformComponent projTransform = holder.getComponent(TransformComponent.getComponentType());
-        if (projTransform != null) {
-            projTransform.setPosition(new Vector3d(landX, landY + height, landZ));
-        }
-
-        // Override velocity: perfectly straight down using MuzzleVelocity from config
-        double speed = projComp.getProjectile().getMuzzleVelocity();
-        projComp.getSimplePhysicsProvider().setVelocity(new Vector3d(0, -speed, 0));
-
-        buffer.addEntity(holder, AddReason.SPAWN);
-
-        LOGGER.atInfo().log("[FallingProjectile] spawned -> land (%.1f, %.1f, %.1f) speed=%.1f",
-                landX, landY, landZ, speed);
+        LOGGER.atInfo().log(
+                "[FallingProjectile] queued at (%.1f,%.1f,%.1f) dur=%d delay=%d",
+                targetPos.x, targetPos.y, targetPos.z, durationTicks, delayTicks);
 
         context.getState().state = InteractionState.Finished;
+    }
+
+    // ── Task ────────────────────────────────────────────────────────────────
+
+    public static class Task {
+        public final double centerX;
+        public final double centerY;
+        public final double centerZ;
+        public final float  range;
+        public final float  height;
+        public final int    durationTicks;
+        public final int    delayBetweenTicks;
+        public final String projectileId;
+        public final String warningParticle;
+        public final float  warningParticleScale;
+        public final UUID   shooterUuid;
+
+        /** Absolute tick counter — incremented exactly once per game tick. */
+        public int totalTicksElapsed = 0;
+
+        public Task(double cx, double cy, double cz,
+                    float range, float height,
+                    int durationTicks, int delayBetweenTicks,
+                    String projectileId, String warningParticle, float warningParticleScale,
+                    UUID shooterUuid) {
+            this.centerX           = cx;
+            this.centerY           = cy;
+            this.centerZ           = cz;
+            this.range             = range;
+            this.height            = height;
+            this.durationTicks     = durationTicks;
+            this.delayBetweenTicks = delayBetweenTicks;
+            this.projectileId      = projectileId;
+            this.warningParticle   = warningParticle;
+            this.warningParticleScale = warningParticleScale;
+            this.shooterUuid       = shooterUuid;
+        }
     }
 }

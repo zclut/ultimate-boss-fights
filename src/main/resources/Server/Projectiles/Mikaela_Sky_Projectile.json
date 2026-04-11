@@ -1,21 +1,13 @@
 {
-  "Appearance": "Fireball",
+  "Appearance": "Ice_Ball",
   "MuzzleVelocity": 5,
   "TerminalVelocity": 30,
   "Gravity": 5,
   "ImpactSlowdown": 1,
   "Damage": 15,
   "DeathEffectsOnHit": true,
-  "HitParticles": {
-    "SystemId": "Fire_AoE_Spawn",
-    "Scale": 2.0
-  },
   "HitSoundEventId": "SFX_Effect_Burn_World",
   "MissSoundEventId": "SFX_Rubble_Bounce",
-  "MissParticles": {
-    "SystemId": "Fire_AoE_Spawn",
-    "Scale": 1.5
-  },
   "ExplosionConfig": {
     "DamageBlocks": false,
     "DamageEntities": true,
