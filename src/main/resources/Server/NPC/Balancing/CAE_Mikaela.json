@@ -35,7 +35,7 @@
     "ActionSets": {
       "Default": {
         "Actions": [
-          "Grab"
+          "SkyStrike"
         ]
       }
     }

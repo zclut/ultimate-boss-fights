@@ -92,6 +92,31 @@ public class FallingProjectileTickSystem extends EntityTickingSystem<EntityStore
 
     private double[] pickLanding(Task task) {
         ThreadLocalRandom rng = ThreadLocalRandom.current();
+        double minDist = task.range * 0.4;
+
+        for (int attempt = 0; attempt < MAX_POSITION_ATTEMPTS; attempt++) {
+            double angle  = rng.nextDouble() * 2.0 * Math.PI;
+            double radius = rng.nextDouble() * task.range;
+            double x = task.centerX + Math.cos(angle) * radius;
+            double z = task.centerZ + Math.sin(angle) * radius;
+
+            boolean tooClose = false;
+            for (double[] recent : task.recentLandings) {
+                double dx = x - recent[0];
+                double dz = z - recent[1];
+                if (Math.sqrt(dx * dx + dz * dz) < minDist) {
+                    tooClose = true;
+                    break;
+                }
+            }
+            if (!tooClose) {
+                task.recentLandings.addLast(new double[]{x, z});
+                if (task.recentLandings.size() > 2) task.recentLandings.removeFirst();
+                return new double[]{x, z};
+            }
+        }
+
+        // Fallback: use last attempt regardless
         double angle  = rng.nextDouble() * 2.0 * Math.PI;
         double radius = rng.nextDouble() * task.range;
         return new double[]{

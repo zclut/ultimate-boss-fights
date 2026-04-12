@@ -12,11 +12,11 @@
         "Type": "HytaleZX:FallingProjectile",
         "ProjectileId": "Mikaela_Sky_Projectile",
         "Height": 20.0,
-        "Range": 20.0,
-        "Duration": 6.0,
-        "DelayBetweenProjectile": 0.1,
-        "WarningParticle": "Ice_Ring",
-        "WarningParticleScale": 2.0
+        "Range": 15.0,
+        "Duration": 10.0,
+        "DelayBetweenProjectile": 0.3,
+        "WarningParticle": "Area",
+        "WarningParticleScale": 1.0
       }
     ]
   }

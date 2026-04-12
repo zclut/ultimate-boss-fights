@@ -18,7 +18,9 @@ import com.hypixel.hytale.server.core.modules.interaction.interaction.config.Sim
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -153,6 +155,9 @@ public class FallingProjectileInteraction extends SimpleInstantInteraction {
 
         /** Absolute tick counter — incremented exactly once per game tick. */
         public int totalTicksElapsed = 0;
+
+        /** Last 2 landing positions used to avoid clustering. */
+        public final Deque<double[]> recentLandings = new ArrayDeque<>();
 
         public Task(double cx, double cy, double cz,
                     float range, float height,
