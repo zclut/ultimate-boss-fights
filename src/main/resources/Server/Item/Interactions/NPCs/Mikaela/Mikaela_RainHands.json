@@ -8,7 +8,7 @@
           "Type": "ApplyEffect",
           "EffectId": "Invulnerable",
           "Entity": "Owner",
-          "RunTime": 6.99
+          "RunTime": 8.17
         }
       ]
     },
@@ -24,7 +24,7 @@
               "DisableAll": true
             }
           },
-          "RunTime": 7
+          "RunTime": 8.18
         }
       ]
     },
@@ -41,7 +41,7 @@
       "Interactions": [
         {
           "Type": "Simple",
-          "RunTime": 7,
+          "RunTime": 8.18,
           "Next": {
             "Type": "ClearEntityEffect",
             "Entity": "Owner",

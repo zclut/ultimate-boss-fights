@@ -3,7 +3,7 @@
   "Description": "Launch projectile from the sky above the target",
   "Target": "Hostile",
   "WeightCoefficient": 2,
-  "AttackDistanceRange": [0, 5],
+  "AttackDistanceRange": [0, 20],
   "Ability": {
     "Interactions": ["Mikaela_RainHands"]
   },
@@ -12,7 +12,7 @@
       "Type": "TargetDistance",
       "Curve": {
         "ResponseCurve": "SimpleDescendingLogistic",
-        "XRange": [0, 5]
+        "XRange": [0, 20]
       }
     },
     {

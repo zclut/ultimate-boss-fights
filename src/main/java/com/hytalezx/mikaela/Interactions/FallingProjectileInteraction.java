@@ -109,6 +109,13 @@ public class FallingProjectileInteraction extends SimpleInstantInteraction {
             return;
         }
 
+        TransformComponent npcTransform = buffer.getComponent(
+                npcRef, TransformComponent.getComponentType());
+        if (npcTransform == null) {
+            context.getState().state = InteractionState.Failed;
+            return;
+        }
+
         UUIDComponent uuidComp = buffer.getComponent(npcRef, UUIDComponent.getComponentType());
         if (uuidComp == null) {
             context.getState().state = InteractionState.Failed;
@@ -117,12 +124,13 @@ public class FallingProjectileInteraction extends SimpleInstantInteraction {
         UUID npcUuid = uuidComp.getUuid();
 
         Vector3d targetPos = targetTransform.getPosition();
+        Vector3d npcPos    = npcTransform.getPosition();
 
         int durationTicks = Math.max(1, Math.round(duration * 20));
         int delayTicks    = Math.max(1, Math.round(delayBetweenProjectile * 20));
 
         Task task = new Task(
-                targetPos.x, targetPos.y, targetPos.z,
+                npcPos.x, npcPos.y, npcPos.z,
                 range, height,
                 durationTicks, delayTicks,
                 projectileId, warningParticle, warningParticleScale,
@@ -133,7 +141,7 @@ public class FallingProjectileInteraction extends SimpleInstantInteraction {
 
         LOGGER.atInfo().log(
                 "[FallingProjectile] queued at (%.1f,%.1f,%.1f) dur=%d delay=%d",
-                targetPos.x, targetPos.y, targetPos.z, durationTicks, delayTicks);
+                npcPos.x, npcPos.y, npcPos.z, durationTicks, delayTicks);
 
         context.getState().state = InteractionState.Finished;
     }
