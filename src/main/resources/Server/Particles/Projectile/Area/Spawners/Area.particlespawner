@@ -38,8 +38,8 @@
         "Z": { "Min": 0, "Max": 0 }
       },
       "Scale": {
-        "X": { "Min": 1.2, "Max": 1.2 },
-        "Y": { "Min": 1.2, "Max": 1.2 }
+        "X": { "Min": 1.1, "Max": 1.1 },
+        "Y": { "Min": 1.1, "Max": 1.1 }
       },
       "Opacity": 0.85,
       "Color": "#dd1100",
@@ -48,11 +48,11 @@
     "Animation": {
       "0": {
         "FrameIndex": { "Min": 0, "Max": 0 },
-        "Opacity": 0.85,
+        "Opacity": 0.65,
         "Color": "#dd1100",
         "Scale": {
-          "X": { "Min": 1.2, "Max": 1.2 },
-          "Y": { "Min": 1.2, "Max": 1.2 }
+          "X": { "Min": 1.1, "Max": 1.1 },
+          "Y": { "Min": 1.1, "Max": 1.1 }
         },
         "Rotation": {
           "X": { "Min": 0, "Max": 0 },
@@ -64,11 +64,11 @@
       "60": { "Opacity": 0.9, "Color": "#ee2200" },
       "85": { "Opacity": 0.65, "Color": "#ff3300" },
       "100": {
-        "Opacity": 0.95,
+        "Opacity": 0.75,
         "Color": "#ff4400",
         "Scale": {
-          "X": { "Min": 1.2, "Max": 1.2 },
-          "Y": { "Min": 1.2, "Max": 1.2 }
+          "X": { "Min": 1.1, "Max": 1.1 },
+          "Y": { "Min": 1.1, "Max": 1.1 }
         }
       }
     }

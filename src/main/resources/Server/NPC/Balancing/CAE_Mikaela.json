@@ -23,7 +23,6 @@
     "MinRunUtility": 0.5,
     "MinActionUtility": 0.01,
     "AvailableActions": {
-      "Example": "CAO_Mikaela_Example",
       "SwingDown": "CAO_Mikaela_Swing_Down",
       "SwingDownCombo": "CAO_Mikaela_Swing_Down_Combo",
       "SwingLeft": "CAO_Mikaela_Swing_Left",
@@ -35,7 +34,8 @@
     "ActionSets": {
       "Default": {
         "Actions": [
-          "SwingDown"
+          "SwingDown",
+          "RainHands"
         ]
       }
     }

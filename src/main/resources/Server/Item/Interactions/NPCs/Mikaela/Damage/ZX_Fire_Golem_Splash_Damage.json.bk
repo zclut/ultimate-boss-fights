@@ -1,8 +1,0 @@
-{
-  "Type": "HytaleZX:Grab",
-  "Duration": 6,
-  "Damage": 15,
-  "AnchorOffsetX": 0.0,
-  "AnchorOffsetY": 1.0,
-  "AnchorOffsetZ": -1.5
-}
