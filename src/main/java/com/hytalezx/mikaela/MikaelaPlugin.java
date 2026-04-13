@@ -7,14 +7,12 @@ import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hytalezx.mikaela.Command.MikaelaCommand;
-import com.hytalezx.mikaela.Components.HitboxOffsetComponent;
 import com.hytalezx.mikaela.Config.BossConfig;
 import com.hytalezx.mikaela.Config.BossRegistry;
-import com.hytalezx.mikaela.Interactions.ApplyHitboxInteraction;
+
 import com.hytalezx.mikaela.Interactions.FallingProjectileInteraction;
 import com.hytalezx.mikaela.Systems.BossTickingSystem;
 import com.hytalezx.mikaela.Systems.FallingProjectileTickSystem;
-import com.hytalezx.mikaela.Systems.HitboxOffsetTickSystem;
 import com.hytalezx.mikaela.Systems.NpcDeathRespawnSystem;
 
 import javax.annotation.Nonnull;
@@ -43,24 +41,7 @@ public class MikaelaPlugin extends JavaPlugin {
         BossRegistry.register(new BossConfig("Mikaela", "Mikaela",50.0));
 
 
-        // ── COMPONENTS ──────────────────────────────────────────────────────
-        LOGGER.atInfo().log("Registering HitboxOffset components...");
-        ComponentType<EntityStore, HitboxOffsetComponent> hitboxOffsetType =
-                this.getEntityStoreRegistry().registerComponent(
-                        HitboxOffsetComponent.class,
-                        HitboxOffsetComponent::new
-                );
-
-
         // ── INTERACTIONS ────────────────────────────────────────────────────
-        // ── HITBOX OFFSET (ApplyHitbox interaction) ────────────────────────
-        LOGGER.atInfo().log("Registering HitboxOffset interaction...");
-        ApplyHitboxInteraction.hitboxOffsetType = hitboxOffsetType;
-        getCodecRegistry(Interaction.CODEC).register(
-                "HytaleZX:ApplyHitbox",
-                ApplyHitboxInteraction.class,
-                ApplyHitboxInteraction.CODEC
-        );
         // ── FallingProjectile (FallingProjectile interaction) ──────────────────────────
         LOGGER.atInfo().log("Registering FallingProjectile interaction...");
         getCodecRegistry(Interaction.CODEC).register(
@@ -73,7 +54,6 @@ public class MikaelaPlugin extends JavaPlugin {
         // ── SYSTEMS ────────────────────────────────────────────────────────
         LOGGER.atInfo().log("Registering systems...");
         this.getEntityStoreRegistry().registerSystem(new BossTickingSystem());
-        this.getEntityStoreRegistry().registerSystem(new HitboxOffsetTickSystem(hitboxOffsetType));
         this.getEntityStoreRegistry().registerSystem(new FallingProjectileTickSystem());
 
 

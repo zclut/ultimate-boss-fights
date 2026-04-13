@@ -169,7 +169,7 @@ public class FallingProjectileTickSystem extends EntityTickingSystem<EntityStore
 
         commandBuffer.addEntity(holder, AddReason.SPAWN);
 
-        LOGGER.atInfo().log("[FallingProjectile] spawned -> land (%.1f, %.1f, %.1f) speed=%.1f",
-                landX, landY, landZ, speed);
+        // LOGGER.atInfo().log("[FallingProjectile] spawned -> land (%.1f, %.1f, %.1f) speed=%.1f",
+        //         landX, landY, landZ, speed);
     }
 }

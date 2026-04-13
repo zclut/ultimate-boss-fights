@@ -5,13 +5,12 @@
       "Interactions": [
         {
           "Type": "Simple",
-          "$Comment": "Add delay to sync hitbox with animation",
+          "$Comment": "Apply Invulnerable when the jump start to prevent hit real hitbox",
           "RunTime": 0.5,
           "Next": {
-            "Type": "HytaleZX:ApplyHitbox",
-            "OffsetY": 5.0,
-            "Speed": 0.1,
-            "Duration": 2
+            "Type": "ApplyEffect",
+            "EffectId": "Invulnerable",
+            "Entity": "Owner"
           }
         }
       ]
@@ -36,6 +35,20 @@
             "Interactions": [
               "Mikaela_AOEJump_Second_Damage"
             ]
+          }
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "$Comment": "Remove effect when jump its done",
+          "RunTime": 2,
+          "Next": {
+            "Type": "ClearEntityEffect",
+            "Entity": "Owner",
+            "EntityEffectId": "Invulnerable"
           }
         }
       ]
