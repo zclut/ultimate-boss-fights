@@ -1,7 +1,7 @@
 {
   "Model": "NPC/Mikaela/Models/model.blockymodel",
   "Texture": "NPC/Mikaela/Models/texture.png",
-  "EyeHeight": 7,
+  "EyeHeight": 1.75,
   "HitBox": {
     "Max": {
       "X": 0.5,

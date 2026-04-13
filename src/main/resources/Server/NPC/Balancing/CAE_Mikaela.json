@@ -34,7 +34,6 @@
     "ActionSets": {
       "Default": {
         "Actions": [
-          "SwingDown",
           "RainHands"
         ]
       }

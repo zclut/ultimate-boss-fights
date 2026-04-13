@@ -6,7 +6,8 @@
     "MaxHealth": 150,
     "MaxSpeed": 4,
     "RunThreshold": 1,
-    "AttackDistance": 20,
+    "AttackDistance": 40,
+    "LeashTimer": [15, 20],
     "HearingRange": 40,
     "ViewSector": 270,
     "WakingPeriod": [
