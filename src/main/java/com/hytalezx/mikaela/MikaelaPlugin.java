@@ -11,6 +11,7 @@ import com.hytalezx.mikaela.Config.BossConfig;
 import com.hytalezx.mikaela.Config.BossRegistry;
 
 import com.hytalezx.mikaela.Interactions.FallingProjectileInteraction;
+import com.hytalezx.mikaela.Interactions.ResetRegenTimerInteraction;
 import com.hytalezx.mikaela.Systems.BossTickingSystem;
 import com.hytalezx.mikaela.Systems.FallingProjectileTickSystem;
 import com.hytalezx.mikaela.Systems.NpcDeathRespawnSystem;
@@ -48,6 +49,15 @@ public class MikaelaPlugin extends JavaPlugin {
                 "HytaleZX:FallingProjectile",
                 FallingProjectileInteraction.class,
                 FallingProjectileInteraction.CODEC
+        );
+
+
+        // ── ResetRegenTimer ────────────────────────────────────────────────
+        LOGGER.atInfo().log("Registering ResetRegenTimer interaction...");
+        getCodecRegistry(Interaction.CODEC).register(
+                "HytaleZX:ResetRegenTimer",
+                ResetRegenTimerInteraction.class,
+                ResetRegenTimerInteraction.CODEC
         );
 
 

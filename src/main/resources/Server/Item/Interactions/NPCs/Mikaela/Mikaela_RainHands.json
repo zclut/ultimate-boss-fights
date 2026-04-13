@@ -5,16 +5,6 @@
     {
       "Interactions": [
         {
-          "Type": "ApplyEffect",
-          "EffectId": "Invulnerable",
-          "Entity": "Owner",
-          "RunTime": 8.17
-        }
-      ]
-    },
-    {
-      "Interactions": [
-        {
           "Type": "Simple",
           "$Comment": "Prepare Delay before damage is applied via selector",
           "Effects": {
@@ -30,24 +20,7 @@
     },
     {
       "Interactions": [
-        {
-          "Type": "Simple",
-          "RunTime": 1,
-          "Next": "Mikaela_RainHands_Selector"
-        }
-      ]
-    },
-    {
-      "Interactions": [
-        {
-          "Type": "Simple",
-          "RunTime": 8.18,
-          "Next": {
-            "Type": "ClearEntityEffect",
-            "Entity": "Owner",
-            "EntityEffectId": "Invulnerable"
-          }
-        }
+        "Mikaela_RainHands_Selector"
       ]
     }
   ]

@@ -1,23 +1,42 @@
 {
-  "Type": "Selector",
-  "$Comment": "Find target player in range to spawn sky projectile above them",
-  "RunTime": 0.16,
-  "Selector": {
-    "Id": "AOECircle",
-    "Range": 20
-  },
-  "HitEntity": {
-    "Interactions": [
-      {
-        "Type": "HytaleZX:FallingProjectile",
-        "ProjectileId": "Mikaela_Sky_Projectile",
-        "Height": 20.0,
-        "Range": 20.0,
-        "Duration": 7.0,
-        "DelayBetweenProjectile": 0.25,
-        "WarningParticle": "Area",
-        "WarningParticleScale": 1.0
+  "Type": "Serial",
+  "Interactions": [
+    {
+      "Type": "ApplyEffect",
+      "EffectId": "Invulnerable",
+      "Entity": "Owner",
+      "RunTime": 1.1
+    },
+    {
+      "Type": "Selector",
+      "$Comment": "Find target player in range to spawn sky projectile above them",
+      "RunTime": 7,
+      "Selector": {
+        "Id": "AOECircle",
+        "Range": 20
+      },
+      "HitEntity": {
+        "Interactions": [
+          {
+            "Type": "HytaleZX:FallingProjectile",
+            "ProjectileId": "Mikaela_Sky_Projectile",
+            "Height": 20.0,
+            "Range": 20.0,
+            "Duration": 7.0,
+            "DelayBetweenProjectile": 0.25,
+            "WarningParticle": "Area",
+            "WarningParticleScale": 1.0
+          }
+        ]
       }
-    ]
-  }
+    },
+    {
+      "Type": "ClearEntityEffect",
+      "Entity": "Owner",
+      "EntityEffectId": "Invulnerable"
+    },
+    {
+      "Type": "HytaleZX:ResetRegenTimer"
+    }
+  ]
 }
