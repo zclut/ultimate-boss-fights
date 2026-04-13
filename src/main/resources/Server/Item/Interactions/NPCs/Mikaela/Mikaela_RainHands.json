@@ -1,0 +1,54 @@
+{
+  "Type": "Parallel",
+  "$Comment": "This is a serial interaction to string together multiple selectors for the combo, where possible try to use the Simple one",
+  "Interactions": [
+    {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Invulnerable",
+          "Entity": "Owner",
+          "RunTime": 6.99
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "$Comment": "Prepare Delay before damage is applied via selector",
+          "Effects": {
+            "ItemPlayerAnimationsId": "Mikaela_Default",
+            "ItemAnimationId": "RainHands",
+            "MovementEffects": {
+              "DisableAll": true
+            }
+          },
+          "RunTime": 7
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 1,
+          "Next": "Mikaela_RainHands_Selector"
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 7,
+          "Next": {
+            "Type": "ClearEntityEffect",
+            "Entity": "Owner",
+            "EntityEffectId": "Invulnerable"
+          }
+        }
+      ]
+    }
+  ]
+}

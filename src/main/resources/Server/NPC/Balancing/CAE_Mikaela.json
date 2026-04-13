@@ -29,13 +29,13 @@
       "SwingLeft": "CAO_Mikaela_Swing_Left",
       "AOEJump": "CAO_Mikaela_AOE_Jump",
       "Punch": "CAO_Mikaela_Punch",
-      "SkyStrike": "CAO_Mikaela_Sky_Strike",
+      "RainHands": "CAO_Mikaela_RainHands",
       "Grab": "CAO_Mikaela_Grab"
     },
     "ActionSets": {
       "Default": {
         "Actions": [
-          "SkyStrike"
+          "RainHands"
         ]
       }
     }

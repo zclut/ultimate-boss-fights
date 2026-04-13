@@ -35,6 +35,15 @@
         }
       ]
     },
+    "WalkBackward": {
+      "Animations": [
+        {
+          "Animation": "NPC/Mikaela/Animations/Default/walk.blockyanim",
+          "Speed": 1,
+          "Looping": true
+        }
+      ]
+    },
     "Spawn": {
       "Animations": [
         {
@@ -48,6 +57,15 @@
       "Animations": [
         {
           "Animation": "NPC/Mikaela/Animations/Default/death.blockyanim",
+          "Speed": 1,
+          "Looping": false
+        }
+      ]
+    },
+    "Hurt": {
+      "Animations": [
+        {
+          "Animation": "NPC/Mikaela/Animations/Default/hurt.blockyanim",
           "Speed": 1,
           "Looping": false
         }

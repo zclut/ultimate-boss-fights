@@ -41,6 +41,13 @@
       "ThirdPerson": "NPC/Mikaela/Animations/Damage/Grab.blockyanim",
       "KeepPreviousFirstPersonAnimation": true,
       "ClipsGeometry": true
+    },
+    "RainHands": {
+      "Speed": 1,
+      "Looping": false,
+      "ThirdPerson": "NPC/Mikaela/Animations/Damage/RainHands.blockyanim",
+      "KeepPreviousFirstPersonAnimation": true,
+      "ClipsGeometry": true
     }
   },
   "Camera": {

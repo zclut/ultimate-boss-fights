@@ -5,7 +5,7 @@
   "WeightCoefficient": 2,
   "AttackDistanceRange": [0, 5],
   "Ability": {
-    "Interactions": ["Mikaela_Sky_Strike"]
+    "Interactions": ["Mikaela_RainHands"]
   },
   "Conditions": [
     {
