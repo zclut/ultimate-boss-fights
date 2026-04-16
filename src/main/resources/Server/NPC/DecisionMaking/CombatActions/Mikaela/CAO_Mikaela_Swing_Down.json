@@ -1,6 +1,6 @@
 {
   "Type": "Ability",
-  "Description": "Swing to the left",
+  "Description": "Swing down",
   "Target": "Hostile",
   "WeightCoefficient": 2,
   "AttackDistanceRange": [0, 5],
@@ -19,7 +19,7 @@
       "Type": "TimeSinceLastUsed",
       "Curve": {
         "Type": "Switch",
-        "SwitchPoint": 1
+        "SwitchPoint": 2
       }
     },
     {

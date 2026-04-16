@@ -1,25 +1,34 @@
 {
-  "Type": "Simple",
-  "$Comment": "Prepare Delay before damage is applied via selector",
-  "Effects": {
-    "ItemPlayerAnimationsId": "Mikaela_Default",
-    "ItemAnimationId": "AOEJump"
-  },
-  "RunTime": 0.25,
-  "Next": {
-    "Type": "Parallel",
-    "$Comment": "This is a parallel interaction to allow for extra FX during attack, where possible try to use the Simple one",
-    "Interactions": [
-      {
-        "Interactions": [
-          "Mikaela_AOEJump_First_Selector"
-        ]
-      },
-      {
-        "Interactions": [
-          "Mikaela_AOEJump_Second_Selector"
-        ]
-      }
-    ]
-  }
+  "Type": "Parallel",
+  "Interactions": [
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "Effects": {
+            "ItemPlayerAnimationsId": "Mikaela_Default",
+            "ItemAnimationId": "AOEJump",
+            "MovementEffects": {
+              "DisableAll": true
+            }
+          },
+          "RunTime": 3.8
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 0.3,
+          "Next": "Mikaela_AOEJump_First_Selector"
+        },
+        {
+          "Type": "Simple",
+          "RunTime": 1.1,
+          "Next": "Mikaela_AOEJump_Second_Selector"
+        }
+      ]
+    }
+  ]
 }

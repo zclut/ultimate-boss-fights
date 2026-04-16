@@ -2,8 +2,12 @@
   "Type": "Ability",
   "Description": "Grab — pulls the player toward Mikaela at mid range",
   "Target": "Hostile",
-  "WeightCoefficient": 3,
-  "AttackDistanceRange": [7, 8],
+  "WeightCoefficient": 5,
+  "AttackDistanceRange": [5, 8],
+  "PostExecuteDistanceRange": [
+    1,
+    2
+  ],
   "Ability": {
     "Interactions": ["Mikaela_Grab"]
   },
@@ -11,20 +15,31 @@
     {
       "Type": "TargetDistance",
       "Curve": {
-        "ResponseCurve": "SimpleLogistic",
-        "XRange": [7, 8]
+        "Type": "Switch",
+        "InitialState": 0,
+        "FinalState": 1,
+        "SwitchPoint": 5
+      }
+    },
+    {
+      "Type": "TargetDistance",
+      "Curve": {
+        "Type": "Switch",
+        "InitialState": 1,
+        "FinalState": 0,
+        "SwitchPoint": 7
       }
     },
     {
       "Type": "TimeSinceLastUsed",
       "Curve": {
         "Type": "Switch",
-        "SwitchPoint": 6
+        "SwitchPoint": 7
       }
     },
     {
       "Type": "Randomiser",
-      "MinValue": 0.5,
+      "MinValue": 0.4,
       "MaxValue": 1
     }
   ]

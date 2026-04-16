@@ -12,18 +12,20 @@
       "Type": "TimeSinceLastUsed",
       "Curve": {
         "Type": "Switch",
-        "SwitchPoint": 5
+        "SwitchPoint": 3
       }
     },
     {
       "Type": "TargetDistance",
       "Curve": {
         "ResponseCurve": "SimpleDescendingLogistic",
-        "XRange": [
-          0,
-          5
-        ]
+        "XRange": [0, 5]
       }
+    },
+    {
+      "Type": "Randomiser",
+      "MinValue": 0.75,
+      "MaxValue": 1
     }
   ]
 }

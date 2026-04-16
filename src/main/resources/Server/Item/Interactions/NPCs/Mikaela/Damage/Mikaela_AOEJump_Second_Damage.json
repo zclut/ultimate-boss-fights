@@ -27,8 +27,7 @@
     {
       "Type": "ClearEntityEffect",
       "Entity": "Target",
-      "EntityEffectId": "Stun",
-      "RunTime": 0.5
+      "EntityEffectId": "Stun"
     }
   ]
 }

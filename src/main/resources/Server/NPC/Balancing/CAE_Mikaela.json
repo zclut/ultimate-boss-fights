@@ -34,7 +34,13 @@
     "ActionSets": {
       "Default": {
         "Actions": [
-          "RainHands"
+          "SwingDown",
+          "SwingDownCombo",
+          "SwingLeft",
+          "AOEJump",
+          "Punch",
+          "RainHands",
+          "Grab"
         ]
       }
     }

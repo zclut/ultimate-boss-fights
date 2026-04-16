@@ -1,42 +1,51 @@
 {
-  "Type": "Simple",
-  "$Comment": "Prepare Delay before damage is applied via selector",
-  "Effects": {
-    "ItemPlayerAnimationsId": "Mikaela_Default",
-    "ItemAnimationId": "SwingDown"
-  },
-  "RunTime": 1,
-  "Next": {
-    "Type": "Parallel",
-    "$Comment": "This is a paraller interaction to allow for extra FX during attack, where possible try to use the Simple one",
-    "Interactions": [
-      {
-        "Interactions": [
-          "Mikaela_Swing_Down_Selector"
-        ]
-      },
-      {
-        "Interactions": [
-          {
+  "Type": "Parallel",
+  "Interactions": [
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "Effects": {
+            "ItemPlayerAnimationsId": "Mikaela_Default",
+            "ItemAnimationId": "SwingDown",
+            "MovementEffects": {
+              "DisableAll": true
+            }
+          },
+          "RunTime": 2.5
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 1,
+          "Next": "Mikaela_Swing_Down_Selector"
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 1.5,
+          "Next": {
             "Type": "Simple",
-            "RunTime": 0.5,
-            "Next": {
-              "Type": "Simple",
-              "Effects": {
-                "Particles": [
-                  {
-                    "TargetEntityPart": "Entity",
-                    "SystemId": "Fire_AoE_Spawn",
-                    "Scale": 10
-                  }
-                ],
-                "WorldSoundEventId": "SFX_Effect_Burn_World",
-                "LocalSoundEventId": "SFX_Effect_Burn_Local"
-              }
+            "Effects": {
+              "Particles": [
+                {
+                  "TargetEntityPart": "Entity",
+                  "SystemId": "Fire_AoE_Spawn",
+                  "Scale": 10
+                }
+              ],
+              "WorldSoundEventId": "SFX_Effect_Burn_World",
+              "LocalSoundEventId": "SFX_Effect_Burn_Local"
             }
           }
-        ]
-      }
-    ]
-  }
+        }
+      ]
+    }
+  ]
 }

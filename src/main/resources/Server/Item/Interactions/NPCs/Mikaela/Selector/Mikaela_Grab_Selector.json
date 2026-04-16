@@ -6,8 +6,8 @@
     "Id": "Stab",
     "TestLineOfSight": true,
     "ExtendTop": 0.0,
-    "ExtendLeft": 0.75,
-    "ExtendRight": 0.75,
+    "ExtendLeft": 1.5,
+    "ExtendRight": 1.5,
     "ExtendBottom": 4.0,
     "StartDistance": 0.1,
     "EndDistance": 10.0

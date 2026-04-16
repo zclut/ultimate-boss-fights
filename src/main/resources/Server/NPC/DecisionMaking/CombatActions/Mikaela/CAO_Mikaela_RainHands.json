@@ -2,7 +2,7 @@
   "Type": "Ability",
   "Description": "Launch projectile from the sky above the target",
   "Target": "Hostile",
-  "WeightCoefficient": 2,
+  "WeightCoefficient": 5,
   "AttackDistanceRange": [0, 20],
   "Ability": {
     "Interactions": ["Mikaela_RainHands"]
@@ -14,27 +14,20 @@
         "Type": "Switch",
         "InitialState": 1,
         "FinalState": 0,
-        "SwitchPoint": 75
+        "SwitchPoint": 350
       },
       "Stat": "Health"
-    },
-    {
-      "Type": "TargetDistance",
-      "Curve": {
-        "ResponseCurve": "SimpleDescendingLogistic",
-        "XRange": [0, 20]
-      }
     },
     {
       "Type": "TimeSinceLastUsed",
       "Curve": {
         "Type": "Switch",
-        "SwitchPoint": 10
+        "SwitchPoint": 15
       }
     },
     {
       "Type": "Randomiser",
-      "MinValue": 0.8,
+      "MinValue": 0.4,
       "MaxValue": 1
     }
   ]

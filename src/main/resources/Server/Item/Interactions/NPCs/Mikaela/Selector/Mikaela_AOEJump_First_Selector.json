@@ -10,5 +10,12 @@
     "Interactions": [
       "Mikaela_AOEJump_First_Damage"
     ]
+  },
+  "Next": {
+    "$Comment": "Apply Invulnerable when the jump start to prevent hit real hitbox",
+    "RunTime": 0.5,
+    "Type": "ApplyEffect",
+    "EffectId": "Invulnerable",
+    "Entity": "Owner"
   }
 }

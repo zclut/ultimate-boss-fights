@@ -10,7 +10,7 @@
     "ExtendRight": 0.75,
     "ExtendBottom": 4.0,
     "StartDistance": 0.1,
-    "EndDistance": 7.0
+    "EndDistance": 5.0
   },
   "HitEntity": {
     "Interactions": [

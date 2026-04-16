@@ -4,32 +4,12 @@
     {
       "Interactions": [
         {
-          "Type": "Simple",
-          "$Comment": "Apply Invulnerable when the jump start to prevent hit real hitbox",
-          "RunTime": 0.5,
-          "Next": {
-            "Type": "ApplyEffect",
-            "EffectId": "Invulnerable",
-            "Entity": "Owner"
-          }
-        }
-      ]
-    },
-    {
-      "Interactions": [
-        {
           "Type": "Selector",
           "$Comment": "Length of Combat",
-          "RunTime": 2.6,
+          "RunTime": 0.1,
           "Selector": {
-            "Id": "Stab",
-            "TestLineOfSight": true,
-            "ExtendTop": 0.0,
-            "ExtendLeft": 0.75,
-            "ExtendRight": 0.75,
-            "ExtendBottom": 4.0,
-            "StartDistance": 0.1,
-            "EndDistance": 7.0
+            "Id": "AOECircle",
+            "Range": 4
           },
           "HitEntity": {
             "Interactions": [
@@ -43,8 +23,7 @@
       "Interactions": [
         {
           "Type": "Simple",
-          "$Comment": "Remove effect when jump its done",
-          "RunTime": 2,
+          "RunTime": 0.1,
           "Next": {
             "Type": "ClearEntityEffect",
             "Entity": "Owner",

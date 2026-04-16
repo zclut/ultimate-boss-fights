@@ -1,8 +1,8 @@
 {
   "Type": "Ability",
-  "Description": "Swing to the left",
+  "Description": "Swing down combo",
   "Target": "Hostile",
-  "WeightCoefficient": 2,
+  "WeightCoefficient": 3,
   "AttackDistanceRange": [0, 5],
   "Ability": {
     "Interactions": ["Mikaela_Swing_Down_Combo"]
@@ -19,11 +19,13 @@
       "Type": "TargetDistance",
       "Curve": {
         "ResponseCurve": "SimpleDescendingLogistic",
-        "XRange": [
-          0,
-          5
-        ]
+        "XRange": [0, 5]
       }
+    },
+    {
+      "Type": "Randomiser",
+      "MinValue": 0.7,
+      "MaxValue": 1
     }
   ]
 }

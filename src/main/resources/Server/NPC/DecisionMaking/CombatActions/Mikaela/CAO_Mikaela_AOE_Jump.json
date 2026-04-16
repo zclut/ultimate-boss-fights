@@ -1,9 +1,9 @@
 {
   "Type": "Ability",
-  "Description": "Swing to the left",
+  "Description": "AOE jump slam",
   "Target": "Hostile",
-  "WeightCoefficient": 2,
-  "AttackDistanceRange": [0, 3],
+  "WeightCoefficient": 5,
+  "AttackDistanceRange": [0, 1],
   "Ability": {
     "Interactions": ["Mikaela_AOE_Jump"]
   },
@@ -12,15 +12,20 @@
       "Type": "TimeSinceLastUsed",
       "Curve": {
         "Type": "Switch",
-        "SwitchPoint": 5
+        "SwitchPoint": 15
       }
     },
     {
       "Type": "TargetDistance",
       "Curve": {
         "ResponseCurve": "SimpleDescendingLogistic",
-        "XRange": [0, 3]
+        "XRange": [0, 1]
       }
+    },
+    {
+      "Type": "Randomiser",
+      "MinValue": 0.4,
+      "MaxValue": 1
     }
   ]
 }
