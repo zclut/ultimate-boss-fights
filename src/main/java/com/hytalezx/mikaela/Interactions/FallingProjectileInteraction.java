@@ -59,6 +59,8 @@ public class FallingProjectileInteraction extends SimpleInstantInteraction {
     private float  delayBetweenProjectile = 0.3f;
     private String warningParticle        = "";
     private float  warningParticleScale   = 1.0f;
+    private float  positionCooldown       = 2.0f;
+    private float  minPositionDistance    = -1.0f; // -1 = auto (range * 0.4)
 
     public static final BuilderCodec<FallingProjectileInteraction> CODEC =
             BuilderCodec.builder(FallingProjectileInteraction.class, FallingProjectileInteraction::new, SimpleInstantInteraction.CODEC)
@@ -76,6 +78,10 @@ public class FallingProjectileInteraction extends SimpleInstantInteraction {
                             (i, v) -> i.warningParticle = v, i -> i.warningParticle).add()
                     .append(new KeyedCodec<>("WarningParticleScale", Codec.FLOAT),
                             (i, v) -> i.warningParticleScale = v, i -> i.warningParticleScale).add()
+                    .append(new KeyedCodec<>("PositionCooldown", Codec.FLOAT),
+                            (i, v) -> i.positionCooldown = v, i -> i.positionCooldown).add()
+                    .append(new KeyedCodec<>("MinPositionDistance", Codec.FLOAT),
+                            (i, v) -> i.minPositionDistance = v, i -> i.minPositionDistance).add()
                     .build();
 
     public FallingProjectileInteraction() {}
@@ -126,14 +132,16 @@ public class FallingProjectileInteraction extends SimpleInstantInteraction {
         Vector3d targetPos = targetTransform.getPosition();
         Vector3d npcPos    = npcTransform.getPosition();
 
-        int durationTicks = Math.max(1, Math.round(duration * 20));
-        int delayTicks    = Math.max(1, Math.round(delayBetweenProjectile * 20));
+        int durationTicks         = Math.max(1, Math.round(duration * 20));
+        int delayTicks            = Math.max(1, Math.round(delayBetweenProjectile * 20));
+        int positionCooldownTicks = Math.max(1, Math.round(positionCooldown * 20));
 
         Task task = new Task(
                 npcPos.x, npcPos.y, npcPos.z,
                 range, height,
                 durationTicks, delayTicks,
                 projectileId, warningParticle, warningParticleScale,
+                positionCooldownTicks, minPositionDistance,
                 npcUuid
         );
 
@@ -161,28 +169,34 @@ public class FallingProjectileInteraction extends SimpleInstantInteraction {
         public final float  warningParticleScale;
         public final UUID   shooterUuid;
 
+        public final int    positionCooldownTicks;
+        public final float  minPositionDistance;
+
         /** Absolute tick counter — incremented exactly once per game tick. */
         public int totalTicksElapsed = 0;
 
-        /** Last 2 landing positions used to avoid clustering. */
+        /** Recent landing positions: each entry is {x, z, tickUsed}. */
         public final Deque<double[]> recentLandings = new ArrayDeque<>();
 
         public Task(double cx, double cy, double cz,
                     float range, float height,
                     int durationTicks, int delayBetweenTicks,
                     String projectileId, String warningParticle, float warningParticleScale,
+                    int positionCooldownTicks, float minPositionDistance,
                     UUID shooterUuid) {
-            this.centerX           = cx;
-            this.centerY           = cy;
-            this.centerZ           = cz;
-            this.range             = range;
-            this.height            = height;
-            this.durationTicks     = durationTicks;
-            this.delayBetweenTicks = delayBetweenTicks;
-            this.projectileId      = projectileId;
-            this.warningParticle   = warningParticle;
+            this.centerX              = cx;
+            this.centerY              = cy;
+            this.centerZ              = cz;
+            this.range                = range;
+            this.height               = height;
+            this.durationTicks        = durationTicks;
+            this.delayBetweenTicks    = delayBetweenTicks;
+            this.projectileId         = projectileId;
+            this.warningParticle      = warningParticle;
             this.warningParticleScale = warningParticleScale;
-            this.shooterUuid       = shooterUuid;
+            this.positionCooldownTicks = positionCooldownTicks;
+            this.minPositionDistance  = minPositionDistance >= 0 ? minPositionDistance : range * 0.4f;
+            this.shooterUuid          = shooterUuid;
         }
     }
 }

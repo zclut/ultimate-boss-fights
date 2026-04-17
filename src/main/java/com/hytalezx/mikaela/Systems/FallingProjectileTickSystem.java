@@ -23,6 +23,7 @@ import com.hytalezx.mikaela.Interactions.FallingProjectileInteraction.Task;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
@@ -92,7 +93,20 @@ public class FallingProjectileTickSystem extends EntityTickingSystem<EntityStore
 
     private double[] pickLanding(Task task) {
         ThreadLocalRandom rng = ThreadLocalRandom.current();
-        double minDist = task.range * 0.4;
+        double minDist = task.minPositionDistance;
+
+        // Prune this task's expired entries
+        task.recentLandings.removeIf(
+                entry -> task.totalTicksElapsed - (int) entry[2] > task.positionCooldownTicks);
+
+        // Collect landings across ALL active tasks for this NPC so concurrent tasks respect each other
+        List<double[]> allLandings = new ArrayList<>();
+        List<Task> allTasks = FallingProjectileInteraction.ACTIVE_TASKS.get(task.shooterUuid);
+        if (allTasks != null) {
+            for (Task t : allTasks) allLandings.addAll(t.recentLandings);
+        }
+
+        double bestX = 0, bestZ = 0, bestMinDist = -1;
 
         for (int attempt = 0; attempt < MAX_POSITION_ATTEMPTS; attempt++) {
             double angle  = rng.nextDouble() * 2.0 * Math.PI;
@@ -100,29 +114,28 @@ public class FallingProjectileTickSystem extends EntityTickingSystem<EntityStore
             double x = task.centerX + Math.cos(angle) * radius;
             double z = task.centerZ + Math.sin(angle) * radius;
 
-            boolean tooClose = false;
-            for (double[] recent : task.recentLandings) {
+            double closestDist = Double.MAX_VALUE;
+            for (double[] recent : allLandings) {
                 double dx = x - recent[0];
                 double dz = z - recent[1];
-                if (Math.sqrt(dx * dx + dz * dz) < minDist) {
-                    tooClose = true;
-                    break;
-                }
+                double d = Math.sqrt(dx * dx + dz * dz);
+                if (d < closestDist) closestDist = d;
             }
-            if (!tooClose) {
-                task.recentLandings.addLast(new double[]{x, z});
-                if (task.recentLandings.size() > 2) task.recentLandings.removeFirst();
+
+            if (closestDist >= minDist) {
+                task.recentLandings.addLast(new double[]{x, z, task.totalTicksElapsed});
                 return new double[]{x, z};
+            }
+            if (closestDist > bestMinDist) {
+                bestMinDist = closestDist;
+                bestX = x;
+                bestZ = z;
             }
         }
 
-        // Fallback: use last attempt regardless
-        double angle  = rng.nextDouble() * 2.0 * Math.PI;
-        double radius = rng.nextDouble() * task.range;
-        return new double[]{
-                task.centerX + Math.cos(angle) * radius,
-                task.centerZ + Math.sin(angle) * radius
-        };
+        // Fallback: best candidate found (farthest from all recent landings)
+        task.recentLandings.addLast(new double[]{bestX, bestZ, task.totalTicksElapsed});
+        return new double[]{bestX, bestZ};
     }
 
     private void doSpawnProjectile(Task task, double landX, double landZ,
