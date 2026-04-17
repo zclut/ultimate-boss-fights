@@ -4,15 +4,33 @@
   "TerminalVelocity": 30,
   "Gravity": 5,
   "ImpactSlowdown": 1,
-  "Damage": 15,
+  "Damage": 100,
   "DeathEffectsOnHit": true,
-  "HitSoundEventId": "SFX_Effect_Burn_World",
-  "MissSoundEventId": "SFX_Rubble_Bounce",
+  "HitSoundEventId": "SFX_Torch_Impact",
+  "MissSoundEventId": "SFX_Torch_Impact",
   "ExplosionConfig": {
     "DamageBlocks": false,
     "DamageEntities": true,
     "EntityDamageRadius": 3,
-    "EntityDamage": 12
+    "EntityDamage": 80
   },
-  "DeadTimeMiss": 0
+  "DeadTimeMiss": 0,
+  "HitParticles": {
+    "SystemId": "Impact_Sword_Signature",
+    "RotationOffset": {
+      "Pitch": 90
+    },
+    "PositionOffset": {
+      "Y": -2
+    }
+  },
+  "MissParticles": {
+    "SystemId": "Impact_Sword_Signature",
+    "PositionOffset": {
+      "Y": -2
+    },
+    "RotationOffset": {
+      "Pitch": 90
+    }
+  }
 }

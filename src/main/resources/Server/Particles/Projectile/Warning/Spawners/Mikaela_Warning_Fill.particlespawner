@@ -1,0 +1,37 @@
+{
+  "RenderMode": "BlendLinear",
+  "ParticleRotationInfluence": "None",
+  "LinearFiltering": true,
+  "LightInfluence": 0,
+  "ParticleRotateWithSpawner": true,
+  "TrailSpawnerPositionMultiplier": 1.0,
+  "TrailSpawnerRotationMultiplier": 1.0,
+  "MaxConcurrentParticles": 2,
+  "ParticleLifeSpan": { "Min": 2.5, "Max": 2.5 },
+  "SpawnBurst": true,
+  "SpawnRate": { "Min": 1, "Max": 1 },
+  "Particle": {
+    "Texture": "Particles/Textures/Circles/Portal_Inside.png",
+    "ScaleRatioConstraint": "OneToOne",
+    "UVOption": "None",
+    "InitialAnimationFrame": {
+      "Rotation": {
+        "X": { "Min": 90, "Max": 90 },
+        "Z": { "Min": 0, "Max": 360 }
+      },
+      "Scale": {
+        "X": { "Min": 1.0, "Max": 1.0 },
+        "Y": { "Min": 1.0, "Max": 1.0 }
+      },
+      "Opacity": 0.9,
+      "Color": "#ffcc00",
+      "FrameIndex": { "Min": 0, "Max": 0 }
+    },
+    "Animation": {
+      "0":   { "FrameIndex": { "Min": 0, "Max": 0 }, "Opacity": 0.85, "Color": "#ffcc00" },
+      "20":  { "Opacity": 0.9,  "Color": "#ffcc00" },
+      "80":  { "Opacity": 0.9,  "Color": "#ffcc00" },
+      "100": { "Opacity": 0.7,  "Color": "#ffcc00" }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "Spawners": [
+    {
+      "SpawnerId": "Mikaela_Warning_Fill",
+      "PositionOffset": { "X": 0, "Y": 0.15, "Z": 0 }
+    },
+    {
+      "SpawnerId": "Mikaela_Warning_Runic_128",
+      "PositionOffset": { "X": 0, "Y": 0.2, "Z": 0 }
+    }
+  ],
+  "LifeSpan": 2.5,
+  "IsImportant": false
+}

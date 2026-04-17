@@ -71,5 +71,18 @@
         }
       ]
     }
-  }
+  },
+  "Particles": [
+    {
+      "TargetEntityPart": "Self",
+      "SystemId": "Impact_Sword_Basic_New",
+      "TargetNodeName": "",
+      "Scale": 1,
+      "PositionOffset": {
+        "Y": 0.4,
+        "Z": 2
+      },
+      "Color": "#fafafa"
+    }
+  ]
 }
