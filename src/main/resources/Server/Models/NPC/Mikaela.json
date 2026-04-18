@@ -58,7 +58,10 @@
         {
           "Animation": "NPC/Mikaela/Animations/Default/death.blockyanim",
           "Speed": 1,
-          "Looping": false
+          "Looping": false,
+          "FootstepIntervals": [
+            0
+          ]
         }
       ]
     },
@@ -71,18 +74,5 @@
         }
       ]
     }
-  },
-  "Particles": [
-    {
-      "TargetEntityPart": "Self",
-      "SystemId": "Impact_Sword_Basic_New",
-      "TargetNodeName": "",
-      "Scale": 1,
-      "PositionOffset": {
-        "Y": 0.4,
-        "Z": 2
-      },
-      "Color": "#fafafa"
-    }
-  ]
+  }
 }

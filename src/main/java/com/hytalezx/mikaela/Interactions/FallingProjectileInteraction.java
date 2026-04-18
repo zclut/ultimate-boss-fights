@@ -35,7 +35,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * JSON usage:
  * {
  *   "Type": "HytaleZX:FallingProjectile",
- *   "ProjectileId": "Mikaela_Sky_Projectile",
+ *   "ProjectileId": "Mikaela_Hand_Projectile",
  *   "Height": 40.0,
  *   "Range": 20.0,
  *   "Duration": 3.0,
@@ -52,7 +52,7 @@ public class FallingProjectileInteraction extends SimpleInstantInteraction {
     public static final Map<UUID, List<Task>> ACTIVE_TASKS = new ConcurrentHashMap<>();
 
     // ── Config ──────────────────────────────────────────────────────────────
-    private String projectileId           = "Mikaela_Sky_Projectile";
+    private String projectileId           = "Mikaela_Hand_Projectile";
     private float  height                 = 20.0f;
     private float  range                  = 8.0f;
     private float  duration               = 3.0f;

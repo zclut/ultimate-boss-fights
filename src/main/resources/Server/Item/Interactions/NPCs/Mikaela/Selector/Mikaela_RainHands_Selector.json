@@ -19,7 +19,7 @@
         "Interactions": [
           {
             "Type": "HytaleZX:FallingProjectile",
-            "ProjectileId": "Mikaela_Sky_Projectile",
+            "ProjectileId": "Mikaela_Hand_Projectile",
             "Height": 20.0,
             "Range": 15.0,
             "Duration": 7.0,

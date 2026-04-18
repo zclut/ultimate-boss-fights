@@ -1,5 +1,5 @@
 {
-  "Appearance": "Ice_Ball",
+  "Appearance": "Hand",
   "MuzzleVelocity": 5,
   "TerminalVelocity": 30,
   "Gravity": 5,
@@ -12,23 +12,17 @@
     "DamageBlocks": false,
     "DamageEntities": true,
     "EntityDamageRadius": 3,
-    "EntityDamage": 80
+    "EntityDamage": 100
   },
   "DeadTimeMiss": 0,
   "HitParticles": {
     "SystemId": "Impact_Sword_Signature",
     "RotationOffset": {
       "Pitch": 90
-    },
-    "PositionOffset": {
-      "Y": -2
     }
   },
   "MissParticles": {
     "SystemId": "Impact_Sword_Signature",
-    "PositionOffset": {
-      "Y": -2
-    },
     "RotationOffset": {
       "Pitch": 90
     }
