@@ -31,7 +31,7 @@
       "Interactions": [
         {
           "Type": "Simple",
-          "RunTime": 3,
+          "RunTime": 3.3,
           "Next": "Mikaela_Swing_Down_Selector"
         }
       ]
@@ -40,20 +40,50 @@
       "Interactions": [
         {
           "Type": "Simple",
-          "RunTime": 0.5,
-          "Next": {
-            "Type": "Simple",
-            "Effects": {
-              "Particles": [
-                {
-                  "TargetEntityPart": "Entity",
-                  "SystemId": "Fire_AoE_Spawn",
-                  "Scale": 10
+          "$Comment": "Delay for the sword to hit the ground effect",
+          "RunTime": 1.2
+        },
+        {
+          "Type": "Simple",
+          "RunTime": 2.3,
+          "Effects": {
+            "Particles": [
+              {
+                "TargetEntityPart": "Entity",
+                "SystemId": "Mace_Signature_Ground_Hit",
+                "Scale": 0.7,
+                "PositionOffset": {
+                  "Z": 3,
+                  "Y": -1
+                },
+                "RotationOffset": {
+                  "Pitch": -90
                 }
-              ],
-              "WorldSoundEventId": "SFX_Effect_Burn_World",
-              "LocalSoundEventId": "SFX_Effect_Burn_Local"
-            }
+              }
+            ],
+            "WorldSoundEventId": "SFX_Effect_Burn_World",
+            "LocalSoundEventId": "SFX_Effect_Burn_Local"
+          }
+        },
+        {
+          "Type": "Simple",
+          "Effects": {
+            "Particles": [
+              {
+                "TargetEntityPart": "Entity",
+                "SystemId": "Mace_Signature_Ground_Hit",
+                "Scale": 0.7,
+                "PositionOffset": {
+                  "Z": 3,
+                  "Y": -1
+                },
+                "RotationOffset": {
+                  "Pitch": -90
+                }
+              }
+            ],
+            "WorldSoundEventId": "SFX_Effect_Burn_World",
+            "LocalSoundEventId": "SFX_Effect_Burn_Local"
           }
         }
       ]

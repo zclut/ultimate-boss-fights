@@ -4,7 +4,7 @@
   "Reference": "Template_Phase",
   "Modify": {
     "MaxHealth": 700,
-    "MaxSpeed": 4,
+    "MaxSpeed": 5,
     "RunThreshold": 1,
     "AttackDistance": 40,
     "LeashTimer": [15, 20],

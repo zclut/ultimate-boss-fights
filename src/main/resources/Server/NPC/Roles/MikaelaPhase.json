@@ -3,8 +3,8 @@
   "$Comment": "DisplayState",
   "Reference": "Template_Phase",
   "Modify": {
-    "MaxHealth": 150,
-    "MaxSpeed": 4,
+    "MaxHealth": 700,
+    "MaxSpeed": 5,
     "RunThreshold": 1,
     "AttackDistance": 40,
     "LeashTimer": [15, 20],

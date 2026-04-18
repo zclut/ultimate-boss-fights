@@ -2,7 +2,7 @@
   "Type": "Ability",
   "Description": "Swing down combo",
   "Target": "Hostile",
-  "WeightCoefficient": 3,
+  "WeightCoefficient": 2,
   "AttackDistanceRange": [0, 5],
   "Ability": {
     "Interactions": ["Mikaela_Swing_Down_Combo"]
@@ -12,7 +12,7 @@
       "Type": "TimeSinceLastUsed",
       "Curve": {
         "Type": "Switch",
-        "SwitchPoint": 5
+        "SwitchPoint": 8
       }
     },
     {

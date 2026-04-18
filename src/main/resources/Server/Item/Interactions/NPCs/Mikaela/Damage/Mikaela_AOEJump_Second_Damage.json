@@ -16,7 +16,7 @@
     "LocalSoundEventId": "SFX_Unarmed_Impact",
     "WorldParticles": [
       {
-        "SystemId": "Impact_Sword_Basic"
+        "SystemId": "Impact_Sword_Basic_New"
       }
     ]
   }

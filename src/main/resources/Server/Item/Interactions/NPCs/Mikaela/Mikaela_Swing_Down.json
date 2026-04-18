@@ -29,15 +29,22 @@
       "Interactions": [
         {
           "Type": "Simple",
-          "RunTime": 1.5,
+          "RunTime": 1.2,
           "Next": {
             "Type": "Simple",
             "Effects": {
               "Particles": [
                 {
                   "TargetEntityPart": "Entity",
-                  "SystemId": "Fire_AoE_Spawn",
-                  "Scale": 10
+                  "SystemId": "Mace_Signature_Ground_Hit",
+                  "Scale": 0.7,
+                  "PositionOffset": {
+                    "Z": 3,
+                    "Y": -1
+                  },
+                  "RotationOffset": {
+                    "Pitch": -90
+                  }
                 }
               ],
               "WorldSoundEventId": "SFX_Effect_Burn_World",

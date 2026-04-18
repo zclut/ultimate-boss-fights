@@ -4,6 +4,7 @@
   "Target": "Hostile",
   "WeightCoefficient": 5,
   "AttackDistanceRange": [0, 1],
+  "FailureTimeout": 3,
   "Ability": {
     "Interactions": ["Mikaela_AOE_Jump"]
   },
@@ -12,14 +13,7 @@
       "Type": "TimeSinceLastUsed",
       "Curve": {
         "Type": "Switch",
-        "SwitchPoint": 15
-      }
-    },
-    {
-      "Type": "TargetDistance",
-      "Curve": {
-        "ResponseCurve": "SimpleDescendingLogistic",
-        "XRange": [0, 1]
+        "SwitchPoint": 10
       }
     },
     {
