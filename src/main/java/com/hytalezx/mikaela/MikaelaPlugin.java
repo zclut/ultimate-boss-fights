@@ -13,6 +13,7 @@ import com.hytalezx.mikaela.Config.BossRegistry;
 import com.hytalezx.mikaela.Interactions.FallingProjectileInteraction;
 import com.hytalezx.mikaela.Interactions.ResetRegenTimerInteraction;
 import com.hytalezx.mikaela.Systems.BossTickingSystem;
+import com.hytalezx.mikaela.Systems.DeathParticleTickSystem;
 import com.hytalezx.mikaela.Systems.FallingProjectileTickSystem;
 import com.hytalezx.mikaela.Systems.NpcDeathRespawnSystem;
 
@@ -65,10 +66,17 @@ public class MikaelaPlugin extends JavaPlugin {
         LOGGER.atInfo().log("Registering systems...");
         this.getEntityStoreRegistry().registerSystem(new BossTickingSystem());
         this.getEntityStoreRegistry().registerSystem(new FallingProjectileTickSystem());
+        this.getEntityStoreRegistry().registerSystem(new DeathParticleTickSystem());
 
 
         // ── NEW PHASE SYSTEM ────────────────────────────────────────────────
         EntityStore.REGISTRY.registerSystem(new NpcDeathRespawnSystem());
-        NpcDeathRespawnSystem.register("Mikaela", "MikaelaPhase", 5.0f);
+        NpcDeathRespawnSystem.register(
+                "Mikaela", "MikaelaPhase",
+                5.0f,               // segundos hasta phase 2
+                "Mikaela_Death_Legendary",
+                10.0f,              // scale
+                5.0f                // duración del particle — ajustar aquí
+        );
     }
 }

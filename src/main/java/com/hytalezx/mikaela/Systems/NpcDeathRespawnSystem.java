@@ -54,12 +54,25 @@ public class NpcDeathRespawnSystem extends EntityTickingSystem<EntityStore> {
     private final Set<Ref<EntityStore>> processed =
             Collections.newSetFromMap(new ConcurrentHashMap<>());
 
-    public record RespawnConfig(String nextRole, float spawnTimeout) {}
+    public record RespawnConfig(
+            String nextRole,
+            float spawnTimeout,
+            @NullableDecl String deathParticleId,
+            float deathParticleScale,
+            float deathParticleDuration
+    ) {}
 
     public static void register(String roleName, String nextRole, float spawnTimeout) {
-        CONFIGS.put(roleName, new RespawnConfig(nextRole, spawnTimeout));
+        CONFIGS.put(roleName, new RespawnConfig(nextRole, spawnTimeout, null, 1.0f, 0.0f));
         LOGGER.atInfo().log("[NpcDeathRespawnSystem] registered: %s -> %s (%.1fs)",
                 roleName, nextRole, spawnTimeout);
+    }
+
+    public static void register(String roleName, String nextRole, float spawnTimeout,
+                                String deathParticleId, float deathParticleScale, float deathParticleDuration) {
+        CONFIGS.put(roleName, new RespawnConfig(nextRole, spawnTimeout, deathParticleId, deathParticleScale, deathParticleDuration));
+        LOGGER.atInfo().log("[NpcDeathRespawnSystem] registered: %s -> %s (%.1fs), particle=%s scale=%.1f dur=%.1fs",
+                roleName, nextRole, spawnTimeout, deathParticleId, deathParticleScale, deathParticleDuration);
     }
 
     @NullableDecl
@@ -121,6 +134,15 @@ public class NpcDeathRespawnSystem extends EntityTickingSystem<EntityStore> {
 
         LOGGER.atInfo().log("[NpcDeathRespawnSystem] scheduling '%s' in %.1fs",
                 roleToSpawn, config.spawnTimeout());
+
+        if (config.deathParticleId() != null && config.deathParticleDuration() > 0) {
+            DeathParticleTickSystem.addEffect(
+                    config.deathParticleId(),
+                    config.deathParticleScale(),
+                    spawnPos,
+                    config.deathParticleDuration()
+            );
+        }
 
         SCHEDULER.schedule(() -> {
             try {
