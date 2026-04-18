@@ -15,28 +15,24 @@
             "Interactions": [
               "Mikaela_AOEJump_Second_Damage"
             ]
-          }
-        }
-      ]
-    },
-    {
-      "Interactions": [
-        {
-          "Type": "Selector",
-          "$Comment": "Always clear Stun regardless of damage hit",
-          "RunTime": 0.1,
-          "Selector": {
-            "Id": "AOECircle",
-            "Range": 20
           },
-          "HitEntity": {
-            "Interactions": [
-              {
-                "Type": "ClearEntityEffect",
-                "Entity": "Target",
-                "EntityEffectId": "Stun"
-              }
-            ]
+          "Next": {
+            "Type": "Selector",
+            "$Comment": "Always clear Stun regardless of damage hit",
+            "RunTime": 0.1,
+            "Selector": {
+              "Id": "AOECircle",
+              "Range": 20
+            },
+            "HitEntity": {
+              "Interactions": [
+                {
+                  "Type": "ClearEntityEffect",
+                  "Entity": "Target",
+                  "EntityEffectId": "Stun"
+                }
+              ]
+            }
           }
         }
       ]
