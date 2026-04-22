@@ -1,0 +1,27 @@
+{
+  "Type": "Parallel",
+  "$Comment": "This is a serial interaction to string together multiple selectors for the combo, where possible try to use the Simple one",
+  "Interactions": [
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "$Comment": "Prepare Delay before damage is applied via selector",
+          "Effects": {
+            "ItemPlayerAnimationsId": "Mikaela_Default",
+            "ItemAnimationId": "RainHands",
+            "MovementEffects": {
+              "DisableAll": true
+            }
+          },
+          "RunTime": 8.18
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        "Arcangel_Levitate_Selector"
+      ]
+    }
+  ]
+}

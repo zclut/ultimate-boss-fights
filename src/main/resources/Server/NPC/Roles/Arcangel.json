@@ -1,0 +1,24 @@
+{
+  "Type": "Variant",
+  "$Comment": "DisplayState",
+  "Reference": "Template_Arcangel",
+  "Modify": {
+    "MaxHealth": 700,
+    "MaxSpeed": 6,
+    "LeashDistance": 50,
+    "AerialStopDistance": 20,
+    "AttackDistance": 40,
+    "HearingRange": 40,
+    "ViewSector": 270,
+    "AlertedRange": 50,
+    "DropList": "",
+    "Appearance": "MikaelaArcangel",
+    "AttitudeGroup": "Empty",
+    "UseCombatActionEvaluator": true,
+    "_CombatConfig": "CAE_Arcangel",
+    "IsMemory": true,
+    "MemoriesCategory": "Boss",
+    "MemoriesNameOverride": "Mikaela",
+    "NameTranslationKey": "server.npcRoles.Arcangel.name"
+  }
+}

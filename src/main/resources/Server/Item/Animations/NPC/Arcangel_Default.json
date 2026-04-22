@@ -1,0 +1,85 @@
+{
+  "Animations": {
+    "SwingDown": {
+      "Speed": 1,
+      "Looping": false,
+      "ThirdPerson": "NPC/Mikaela/Animations/Damage/SwingDown.blockyanim",
+      "KeepPreviousFirstPersonAnimation": true,
+      "ClipsGeometry": true
+    },
+    "SwingDownCombo": {
+      "Speed": 1,
+      "Looping": false,
+      "ThirdPerson": "NPC/Mikaela/Animations/Damage/SwingDownCombo.blockyanim",
+      "KeepPreviousFirstPersonAnimation": true,
+      "ClipsGeometry": true
+    },
+    "SwingLeft": {
+      "Speed": 1,
+      "Looping": false,
+      "ThirdPerson": "NPC/Mikaela/Animations/Damage/SwingLeft.blockyanim",
+      "KeepPreviousFirstPersonAnimation": true,
+      "ClipsGeometry": true
+    },
+    "AOEJump": {
+      "Speed": 1,
+      "Looping": false,
+      "ThirdPerson": "NPC/Mikaela/Animations/Damage/AOEJump.blockyanim",
+      "KeepPreviousFirstPersonAnimation": true,
+      "ClipsGeometry": true
+    },
+    "Punch": {
+      "Speed": 1,
+      "Looping": false,
+      "ThirdPerson": "NPC/Mikaela/Animations/Damage/Punch.blockyanim",
+      "KeepPreviousFirstPersonAnimation": true,
+      "ClipsGeometry": true
+    },
+    "Grab": {
+      "Speed": 1,
+      "Looping": false,
+      "ThirdPerson": "NPC/Mikaela/Animations/Damage/Grab.blockyanim",
+      "KeepPreviousFirstPersonAnimation": true,
+      "ClipsGeometry": true
+    },
+    "RainHands": {
+      "Speed": 1,
+      "Looping": false,
+      "ThirdPerson": "NPC/Mikaela/Animations/Damage/RainHands.blockyanim",
+      "KeepPreviousFirstPersonAnimation": true,
+      "ClipsGeometry": true
+    }
+  },
+  "Camera": {
+    "Pitch": {
+      "AngleRange": {
+        "Max": 45,
+        "Min": -45
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    },
+    "Yaw": {
+      "AngleRange": {
+        "Max": 45,
+        "Min": -45
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    }
+  },
+  "WiggleWeights": {
+    "Pitch": 2,
+    "PitchDeceleration": 0.1,
+    "Roll": 0.1,
+    "RollDeceleration": 0.1,
+    "X": 3,
+    "XDeceleration": 0.1,
+    "Y": 0.1,
+    "YDeceleration": 0.1,
+    "Z": 0.1,
+    "ZDeceleration": 0.1
+  }
+}

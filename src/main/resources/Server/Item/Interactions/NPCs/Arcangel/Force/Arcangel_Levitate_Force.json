@@ -1,0 +1,18 @@
+{
+  "Parent": "DamageEntityParent",
+  "DamageCalculator": {
+    "BaseDamage": {
+      "Physical": 0
+    }
+  },
+  "DamageEffects": {
+    "Knockback": {
+      "Duration": 5,
+      "Force": 0,
+      "RelativeX": 0,
+      "RelativeZ": 0,
+      "VelocityY": 3,
+      "VelocityType": "Set"
+    }
+  }
+}

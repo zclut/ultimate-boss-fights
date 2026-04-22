@@ -1,0 +1,36 @@
+{
+  "Type": "CombatActionEvaluator",
+  "EntityEffect": "Immunity_Fire",
+  "TargetMemoryDuration": 10,
+  "CombatActionEvaluator": {
+    "RunConditions": [
+      {
+        "Type": "TimeSinceLastUsed",
+        "Curve": {
+          "ResponseCurve": "Linear",
+          "XRange": [
+            0,
+            5
+          ]
+        }
+      },
+      {
+        "Type": "Randomiser",
+        "MinValue": 0.75,
+        "MaxValue": 1
+      }
+    ],
+    "MinRunUtility": 0.5,
+    "MinActionUtility": 0.01,
+    "AvailableActions": {
+      "Levitate": "CAO_Arcangel_Levitate"
+    },
+    "ActionSets": {
+      "Default": {
+        "Actions": [
+          "Levitate"
+        ]
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 {
   "Type": "Variant",
   "$Comment": "DisplayState",
-  "Reference": "Template_Phase",
+  "Reference": "Template_Mikaela",
   "Modify": {
     "MaxHealth": 700,
     "MaxSpeed": 5,
