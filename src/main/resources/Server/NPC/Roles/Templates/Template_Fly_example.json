@@ -84,6 +84,10 @@
       "Value": "",
       "Description": "Overrides the memory name if set"
     },
+    "CombatDistance": {
+      "Value": 3,
+      "Description": "Hover/seek stop distance used in CAE combat. Defaults to AttackDistance if not overridden."
+    },
     "UseCombatActionEvaluator": {
       "Value": false,
       "Description": "Whether to use the Combat Action Evaluator via an accompanying CombatConfig."
@@ -287,8 +291,12 @@
               },
               "Actions": [
                 {
-                  "Type": "State",
-                  "State": ".Default"
+                  "Type": "Timeout",
+                  "Delay": [ 3, 3 ],
+                  "Action": {
+                    "Type": "State",
+                    "State": ".Default"
+                  }
                 }
               ]
             },
@@ -397,6 +405,37 @@
                   ]
                 },
                 {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Self",
+                        "Filters": [
+                          {
+                            "Type": "Stat",
+                            "Stat": "Health",
+                            "StatTarget": "Value",
+                            "RelativeTo": "Health",
+                            "RelativeToTarget": "Max",
+                            "ValueRange": [ 0, 0.5 ]
+                          }
+                        ]
+                      },
+                      {
+                        "Type": "State",
+                        "State": ".Default"
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "State",
+                      "State": ".Reposition"
+                    }
+                  ]
+                },
+                {
                   "TreeMode": true,
                   "Sensor": {
                     "Type": "Or",
@@ -413,11 +452,38 @@
                       },
                       {
                         "Type": "State",
+                        "State": ".Reposition",
+                        "IgnoreMissingSetState": true
+                      },
+                      {
+                        "Type": "State",
+                        "State": ".LowHP",
+                        "IgnoreMissingSetState": true
+                      },
+                      {
+                        "Type": "State",
                         "State": ".Default"
                       }
                     ]
                   },
                   "Instructions": [
+                    {
+                      "Sensor": {
+                        "Type": "State",
+                        "State": ".Reposition"
+                      },
+                      "ActionsAtomic": true,
+                      "Actions": [
+                        {
+                          "Type": "Timeout",
+                          "Delay": [ 2, 2 ]
+                        },
+                        {
+                          "Type": "State",
+                          "State": ".LowHP"
+                        }
+                      ]
+                    },
                     {
                       "Sensor": {
                         "Type": "CombatActionEvaluator",
@@ -429,8 +495,8 @@
                       },
                       "BodyMotion": {
                         "Type": "Seek",
-                        "SlowDownDistance": { "Compute": "AttackDistance + 5" },
-                        "StopDistance": { "Compute": "AttackDistance" },
+                        "SlowDownDistance": { "Compute": "CombatDistance + 5" },
+                        "StopDistance": { "Compute": "CombatDistance" },
                         "RelativeSpeed": 0.4
                       },
                       "Actions": [

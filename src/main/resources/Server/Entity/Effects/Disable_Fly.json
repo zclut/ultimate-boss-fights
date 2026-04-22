@@ -1,0 +1,8 @@
+{
+  "ApplicationEffects": {
+    "HorizontalSpeedMultiplier": 0.05
+  },
+  "RemovalBehavior": "Duration",
+  "Duration": 10,
+  "OverlapBehavior": "Overwrite"
+}
