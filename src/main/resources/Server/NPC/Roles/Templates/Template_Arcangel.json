@@ -1,6 +1,5 @@
 {
   "Type": "Abstract",
-  "Debug": "DisplayState",
   "Appearance": { "Compute": "Appearance" },
   "StartState": "Idle",
   "Parameters": {
@@ -9,7 +8,7 @@
       "Description": "Model to be used"
     },
     "ViewRange": {
-      "Value": 40,
+      "Value": 30,
       "Description": "View range"
     },
     "ViewSector": {
@@ -17,7 +16,7 @@
       "Description": "View sector"
     },
     "HearingRange": {
-      "Value": 40,
+      "Value": 20,
       "Description": "Hearing range"
     },
     "AlertedRange": {
@@ -31,18 +30,6 @@
     "MaxSpeed": {
       "Value": 15,
       "Description": "Maximum walking speed"
-    },
-    "RangedAttack": {
-      "Value": "Scarak_Seeker_Spit",
-      "Description": "The ranged attack to use"
-    },
-    "RangedAttackDistance": {
-      "Value": 24,
-      "Description": "The distance to attack at range from"
-    },
-    "Attack": {
-      "Value": "Scarak_Seeker_Sting",
-      "Description": "The close attack"
     },
     "AttackDistance": {
       "Value": 3,
@@ -100,7 +87,7 @@
   "IsMemory": { "Compute": "IsMemory" },
   "MemoriesCategory": { "Compute": "MemoriesCategory" },
   "MemoriesNameOverride": { "Compute": "MemoriesNameOverride" },
-  "DisableDamageGroups": [ "Self", "Scarak" ],
+  "DisableDamageGroups": ["Self", "Scarak"],
   "KnockbackScale": 0,
   "DefaultNPCAttitude": "Ignore",
   "DefaultPlayerAttitude": "Hostile",
@@ -137,7 +124,7 @@
             {
               "Reference": "Component_Instruction_Damage_Check",
               "Modify": {
-                "_ExportStates": [ "Alerted", "Alerted" ],
+                "_ExportStates": ["Alerted", "Alerted"],
                 "AlertedRange": { "Compute": "AlertedRange" }
               }
             },
@@ -150,14 +137,14 @@
                     "Modify": {
                       "ViewRange": { "Compute": "ViewRange" },
                       "ViewSector": { "Compute": "ViewSector" },
-                      "Attitudes": [ "Hostile", "Neutral" ]
+                      "Attitudes": ["Hostile", "Neutral"]
                     }
                   },
                   {
                     "Reference": "Component_Sensor_Sound_By_Attitude",
                     "Modify": {
                       "HearingRange": { "Compute": "HearingRange" },
-                      "Attitudes": [ "Hostile", "Neutral" ]
+                      "Attitudes": ["Hostile", "Neutral"]
                     }
                   }
                 ]
@@ -210,33 +197,8 @@
                   "Type": "PlayAnimation",
                   "Slot": "Status",
                   "Animation": "Alerted"
-                },
-                {
-                  "Type": "SpawnParticles",
-                  "Offset": [ 0, 0.8, 0 ],
-                  "ParticleSystem": "Alerted"
                 }
               ]
-            },
-            {
-              "Enabled": { "Compute": "!UseCombatActionEvaluator" },
-              "Sensor": {
-                "Type": "Target",
-                "Range": { "Compute": "ViewRange" }
-              },
-              "Actions": [
-                {
-                  "Type": "Timeout",
-                  "Delay": [ 1, 1 ],
-                  "Action": {
-                    "Type": "State",
-                    "State": "Attack"
-                  }
-                }
-              ],
-              "HeadMotion": {
-                "Type": "Watch"
-              }
             },
             {
               "Enabled": { "Compute": "UseCombatActionEvaluator" },
@@ -244,13 +206,25 @@
                 "Type": "Target",
                 "Range": { "Compute": "ViewRange" }
               },
+              "$Comment": "HytaleZX: Add delay to wait for the npc go to min altitude",
+              "ActionsBlocking": true,
+              "BodyMotion": {
+                "Type": "Seek",
+                "SlowDownDistance": { "Compute": "CombatDistance + 5" },
+                "StopDistance": { "Compute": "CombatDistance" },
+                "RelativeSpeed": 0.4
+              },
               "Actions": [
                 {
+                  "Type": "OverrideAltitude",
+                  "DesiredAltitudeRange": [3, 5]
+                },
+                {
                   "Type": "Timeout",
-                  "Delay": [ 1, 1 ],
+                  "Delay": [2, 2],
                   "Action": {
                     "Type": "State",
-                    "State": "Combat.Message"
+                    "State": "Combat"
                   }
                 }
               ],
@@ -263,7 +237,7 @@
               "Actions": [
                 {
                   "Type": "Timeout",
-                  "Delay": [ 2, 2 ]
+                  "Delay": [2, 2]
                 },
                 {
                   "Type": "ReleaseTarget"
@@ -284,21 +258,7 @@
           },
           "Instructions": [
             {
-              "Continue": true,
-              "Sensor": {
-                "Type": "State",
-                "State": ".Message"
-              },
-              "Actions": [
-                {
-                  "Type": "Timeout",
-                  "Delay": [ 3, 3 ],
-                  "Action": {
-                    "Type": "State",
-                    "State": ".Default"
-                  }
-                }
-              ]
+              "Reference": "Component_Instruction_Clear_Status_Animation"
             },
             {
               "Continue": true,
@@ -311,14 +271,14 @@
                     "StatTarget": "Value",
                     "RelativeTo": "Health",
                     "RelativeToTarget": "Max",
-                    "ValueRange": [ 0.5, 1 ]
+                    "ValueRange": [0.5, 1]
                   }
                 ]
               },
               "Actions": [
                 {
                   "Type": "OverrideAltitude",
-                  "DesiredAltitudeRange": [ 3, 5 ]
+                  "DesiredAltitudeRange": [3, 5]
                 }
               ]
             },
@@ -336,7 +296,7 @@
                         "StatTarget": "Value",
                         "RelativeTo": "Health",
                         "RelativeToTarget": "Max",
-                        "ValueRange": [ 0, 0.5 ]
+                        "ValueRange": [0, 0.5]
                       }
                     ]
                   },
@@ -349,7 +309,7 @@
               "Actions": [
                 {
                   "Type": "OverrideAltitude",
-                  "DesiredAltitudeRange": [ 0, 1 ]
+                  "DesiredAltitudeRange": [0, 1]
                 }
               ]
             },
@@ -362,7 +322,7 @@
                     "Modify": {
                       "ViewRange": { "Compute": "AlertedRange" },
                       "ViewSector": 360,
-                      "Attitudes": [ "Hostile" ]
+                      "Attitudes": ["Hostile"]
                     }
                   },
                   {
@@ -418,7 +378,7 @@
                             "StatTarget": "Value",
                             "RelativeTo": "Health",
                             "RelativeToTarget": "Max",
-                            "ValueRange": [ 0, 0.5 ]
+                            "ValueRange": [0, 0.5]
                           }
                         ]
                       },
@@ -476,7 +436,7 @@
                       "Actions": [
                         {
                           "Type": "Timeout",
-                          "Delay": [ 2, 2 ]
+                          "Delay": [2, 2]
                         },
                         {
                           "Type": "State",
@@ -491,7 +451,9 @@
                       },
                       "HeadMotion": {
                         "Type": "Aim",
-                        "RelativeTurnSpeed": { "Compute": "CombatRelativeTurnSpeed" }
+                        "RelativeTurnSpeed": {
+                          "Compute": "CombatRelativeTurnSpeed"
+                        }
                       },
                       "BodyMotion": {
                         "Type": "Seek",
@@ -511,126 +473,6 @@
             },
             {
               "Actions": [
-                {
-                  "Type": "State",
-                  "State": "Idle"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "Sensor": {
-            "Type": "State",
-            "State": "Attack"
-          },
-          "Instructions": [
-            {
-              "Reference": "Component_Instruction_Clear_Status_Animation"
-            },
-            {
-              "Continue": true,
-              "Sensor": {
-                "Type": "Self",
-                "Filters": [
-                  {
-                    "Type": "Stat",
-                    "Stat": "Health",
-                    "StatTarget": "Value",
-                    "RelativeTo": "Health",
-                    "RelativeToTarget": "Max",
-                    "ValueRange": [ 0.5, 1 ]
-                  }
-                ]
-              },
-              "Actions": [
-                {
-                  "Type": "OverrideAltitude",
-                  "DesiredAltitudeRange": [ 3, 5 ]
-                }
-              ]
-            },
-            {
-              "Continue": true,
-              "Sensor": {
-                "Type": "And",
-                "Sensors": [
-                  {
-                    "Type": "Self",
-                    "Filters": [
-                      {
-                        "Type": "Stat",
-                        "Stat": "Health",
-                        "StatTarget": "Value",
-                        "RelativeTo": "Health",
-                        "RelativeToTarget": "Max",
-                        "ValueRange": [ 0, 0.5 ]
-                      }
-                    ]
-                  },
-                  {
-                    "Type": "Target",
-                    "Range": { "Compute": "ViewRange" }
-                  }
-                ]
-              },
-              "Actions": [
-                {
-                  "Type": "OverrideAltitude",
-                  "DesiredAltitudeRange": [ 0, 1 ]
-                }
-              ]
-            },
-            {
-              "Continue": true,
-              "Sensor": {
-                "Type": "Target",
-                "Range": { "Compute": "RangedAttackDistance" },
-                "Filters": [
-                  {
-                    "Type": "LineOfSight"
-                  }
-                ]
-              },
-              "Actions": [
-                {
-                  "Type": "Attack",
-                  "Attack": { "Compute": "RangedAttack" },
-                  "BallisticMode": "Short",
-                  "AimingTimeRange": [ 2, 3 ],
-                  "AttackPauseRange": [ 2, 4 ]
-                }
-              ],
-              "HeadMotion": {
-                "Type": "Aim",
-                "Spread": 0,
-                "HitProbability": 1,
-                "Deflection": true,
-                "RelativeTurnSpeed": { "Compute": "CombatRelativeTurnSpeed" }
-              }
-            },
-            {
-              "Sensor": {
-                "Type": "Target",
-                "Range": { "Compute": "ViewRange" }
-              },
-              "HeadMotion": {
-                "Type": "Watch"
-              },
-              "BodyMotion": {
-                "Type": "Seek",
-                "SlowDownDistance": { "Compute": "AttackDistance + 2" },
-                "StopDistance": { "Compute": "AttackDistance" },
-                "RelativeSpeed": 0.3
-              }
-            },
-            {
-              "ActionsAtomic": true,
-              "Actions": [
-                {
-                  "Type": "Timeout",
-                  "Delay": [ 3, 4 ]
-                },
                 {
                   "Type": "State",
                   "State": "Idle"

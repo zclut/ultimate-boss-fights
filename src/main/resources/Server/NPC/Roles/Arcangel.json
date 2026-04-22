@@ -1,10 +1,10 @@
 {
   "Type": "Variant",
-  "Reference": "Template_Fly_example",
+  "Reference": "Template_Arcangel",
   "Modify": {
     "Appearance": "MikaelaArcangel",
     "DropList": "Drop_Scarak_Seeker",
-    "MaxHealth": 61,
+    "MaxHealth": 300,
     "IsMemory": true,
     "MemoriesCategory": "Scarak",
     "MemoriesNameOverride": "Scarak_Seeker",
