@@ -49,7 +49,7 @@
     "Walk": {
       "Animations": [
         {
-          "Animation": "NPC/Arcangel/Animations/Default/idle.blockyanim",
+          "Animation": "NPC/Arcangel/Animations/Default/walk.blockyanim",
           "Speed": 1,
           "Looping": true
         }
@@ -58,7 +58,7 @@
     "WalkBackward": {
       "Animations": [
         {
-          "Animation": "NPC/Arcangel/Animations/Default/idle.blockyanim",
+          "Animation": "NPC/Arcangel/Animations/Default/walk.blockyanim",
           "Speed": 1,
           "Looping": true
         }
@@ -68,7 +68,7 @@
     "Fly": {
       "Animations": [
         {
-          "Animation": "NPC/Arcangel/Animations/Default/idle.blockyanim",
+          "Animation": "NPC/Arcangel/Animations/Default/walk.blockyanim",
           "Speed": 1,
           "Looping": true
         }
@@ -86,7 +86,7 @@
     "FlyBackward": {
       "Animations": [
         {
-          "Animation": "NPC/Arcangel/Animations/Default/idle.blockyanim",
+          "Animation": "NPC/Arcangel/Animations/Default/walk.blockyanim",
           "Speed": 1,
           "Looping": true
         }
@@ -95,7 +95,7 @@
     "FlyFast": {
       "Animations": [
         {
-          "Animation": "NPC/Arcangel/Animations/Default/idle.blockyanim",
+          "Animation": "NPC/Arcangel/Animations/Default/walk.blockyanim",
           "Speed": 1,
           "Looping": true
         }

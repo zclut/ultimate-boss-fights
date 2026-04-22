@@ -1,24 +1,24 @@
 {
   "Type": "Variant",
-  "$Comment": "DisplayState",
-  "Reference": "Template_Arcangel",
+  "Reference": "Template_Fly_example",
   "Modify": {
-    "MaxHealth": 700,
-    "MaxSpeed": 6,
-    "LeashDistance": 50,
-    "AerialStopDistance": 20,
-    "AttackDistance": 40,
-    "HearingRange": 40,
-    "ViewSector": 270,
-    "AlertedRange": 50,
-    "DropList": "",
     "Appearance": "MikaelaArcangel",
-    "AttitudeGroup": "Empty",
+    "DropList": "Drop_Scarak_Seeker",
+    "MaxHealth": 61,
+    "IsMemory": true,
+    "MemoriesCategory": "Scarak",
+    "MemoriesNameOverride": "Scarak_Seeker",
+    "AttackDistance": 1,
     "UseCombatActionEvaluator": true,
     "_CombatConfig": "CAE_Arcangel",
-    "IsMemory": true,
-    "MemoriesCategory": "Boss",
-    "MemoriesNameOverride": "Mikaela",
-    "NameTranslationKey": "server.npcRoles.Arcangel.name"
+    "NameTranslationKey": {
+      "Compute": "NameTranslationKey"
+    }
+  },
+  "Parameters": {
+    "NameTranslationKey": {
+      "Value": "server.npcRoles.Scarak_Seeker.name",
+      "Description": "Translation key for NPC name display"
+    }
   }
 }
