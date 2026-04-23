@@ -9,6 +9,7 @@
     "MemoriesCategory": "Boss",
     "MemoriesNameOverride": "Mikaela",
     "AttackDistance": 1,
+    "CombatDistance": 5,
     "UseCombatActionEvaluator": true,
     "_CombatConfig": "CAE_Arcangel",
     "NameTranslationKey": "server.npcRoles.Arcangel.name",

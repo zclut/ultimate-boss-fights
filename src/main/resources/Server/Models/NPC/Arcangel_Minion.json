@@ -1,6 +1,5 @@
 {
-  "Model": "NPC/Arcangel/Models/model.blockymodel",
-  "Texture": "NPC/Arcangel/Models/texture.png",
+  "Parent": "Arcangel",
   "EyeHeight": 1.75,
   "HitBox": {
     "Max": {
@@ -16,91 +15,6 @@
   },
   "MinScale": 0.3,
   "MaxScale": 0.3,
-  "Camera": {
-    "Pitch": {
-      "AngleRange": {
-        "Max": 30,
-        "Min": -45
-      },
-      "TargetNodes": [
-        "Head"
-      ]
-    },
-    "Yaw": {
-      "TargetNodes": [
-        "Head"
-      ],
-      "AngleRange": {
-        "Min": -45,
-        "Max": 45
-      }
-    }
-  },
-  "AnimationSets": {
-    "Idle": {
-      "Animations": [
-        {
-          "Animation": "NPC/Arcangel/Animations/Default/idle.blockyanim",
-          "Speed": 1,
-          "Looping": true
-        }
-      ]
-    },
-    "Walk": {
-      "Animations": [
-        {
-          "Animation": "NPC/Arcangel/Animations/Default/walk.blockyanim",
-          "Speed": 1,
-          "Looping": true
-        }
-      ]
-    },
-    "WalkBackward": {
-      "Animations": [
-        {
-          "Animation": "NPC/Arcangel/Animations/Default/walk.blockyanim",
-          "Speed": 1,
-          "Looping": true
-        }
-      ]
-    },
-    "Fly": {
-      "Animations": [
-        {
-          "Animation": "NPC/Arcangel/Animations/Default/walk.blockyanim",
-          "Speed": 1,
-          "Looping": true
-        }
-      ]
-    },
-    "FlyIdle": {
-      "Animations": [
-        {
-          "Animation": "NPC/Arcangel/Animations/Default/idle.blockyanim",
-          "Speed": 1,
-          "Looping": true
-        }
-      ]
-    },
-    "FlyBackward": {
-      "Animations": [
-        {
-          "Animation": "NPC/Arcangel/Animations/Default/walk.blockyanim",
-          "Speed": 1,
-          "Looping": true
-        }
-      ]
-    },
-    "FlyFast": {
-      "Animations": [
-        {
-          "Animation": "NPC/Arcangel/Animations/Default/walk.blockyanim",
-          "Speed": 1,
-          "Looping": true
-        }
-      ]
-    }
-  },
   "GradientSet": "Fantasy_Cotton_Dark",
   "GradientId": "Yellow",
   "Light": {

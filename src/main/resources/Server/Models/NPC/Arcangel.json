@@ -37,6 +37,15 @@
     }
   },
   "AnimationSets": {
+    "Spawn": {
+      "Animations": [
+        {
+          "Animation": "NPC/Arcangel/Animations/Default/spawn.blockyanim",
+          "Speed": 0.6,
+          "Looping": false
+        }
+      ]
+    },
     "Idle": {
       "Animations": [
         {

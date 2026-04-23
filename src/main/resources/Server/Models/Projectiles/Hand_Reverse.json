@@ -1,0 +1,5 @@
+{
+  "Model": "Items/Projectiles/Hand/model_reverse.blockymodel",
+  "Texture": "Items/Projectiles/Hand/texture.png",
+  "Parent": "Hand"
+}

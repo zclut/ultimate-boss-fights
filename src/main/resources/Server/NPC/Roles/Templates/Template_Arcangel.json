@@ -111,12 +111,12 @@
       "MaxHorizontalSpeed": { "Compute": "MaxSpeed" },
       "MaxSinkSpeed": 3,
       "MaxClimbSpeed": 30,
-      "MinAirSpeed": 3,
+      "MinAirSpeed": 0,
       "Acceleration": 10,
       "MinHeightOverGround": 3,
       "MaxHeightOverGround": 5,
       "MaxRollAngle": 40,
-      "MaxTurnSpeed": 180,
+      "MaxTurnSpeed": 100,
       "DesiredAltitudeWeight": 1
     }
   ],
@@ -133,13 +133,6 @@
           "Instructions": [
             {
               "Reference": "Component_Instruction_Clear_Status_Animation"
-            },
-            {
-              "Reference": "Component_Instruction_Damage_Check",
-              "Modify": {
-                "_ExportStates": ["Alerted", "Alerted"],
-                "AlertedRange": { "Compute": "AlertedRange" }
-              }
             },
             {
               "Sensor": {
@@ -164,32 +157,14 @@
               },
               "Actions": [
                 {
-                  "Type": "State",
-                  "State": "Alerted"
+                  "Type": "Timeout",
+                  "Delay": [7, 7],
+                  "Action": {
+                      "Type": "State",
+                      "State": "Alerted"
+                  }
                 }
               ]
-            },
-            {
-              "Enabled": { "Compute": "FollowPath" },
-              "Sensor": {
-                "Type": "Path",
-                "Range": { "Compute": "FollowPathRange" }
-              },
-              "Actions": [
-                {
-                  "Type": "SetLeashPosition",
-                  "ToCurrent": true
-                }
-              ],
-              "BodyMotion": {
-                "Type": "Path",
-                "UseNodeViewDirection": true,
-                "Shape": { "Compute": "PathShape" },
-                "NodeWidth": 0.5
-              }
-            },
-            {
-              "Reference": "Component_Instruction_Intelligent_Idle_Motion_Wander"
             }
           ]
         },
@@ -225,7 +200,7 @@
                 "Type": "Seek",
                 "SlowDownDistance": { "Compute": "CombatDistance + 5" },
                 "StopDistance": { "Compute": "CombatDistance" },
-                "RelativeSpeed": 0.4
+                "RelativeSpeed": 1
               },
               "Actions": [
                 {
