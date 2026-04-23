@@ -1,0 +1,33 @@
+{
+  "Appearance": "Hand",
+  "MuzzleVelocity": 18,
+  "TerminalVelocity": 30,
+  "Gravity": 5,
+  "ImpactSlowdown": 1,
+  "Damage": 100,
+  "DeathEffectsOnHit": true,
+  "HitSoundEventId": "SFX_Torch_Impact",
+  "MissSoundEventId": "SFX_Torch_Impact",
+  "ExplosionConfig": {
+    "DamageBlocks": false,
+    "DamageEntities": true,
+    "EntityDamageRadius": 3,
+    "EntityDamage": 100
+  },
+  "DeadTimeMiss": 0,
+  "HitParticles": {
+    "SystemId": "Impact_Sword_Signature",
+    "RotationOffset": {
+      "Pitch": 90
+    }
+  },
+  "MissParticles": {
+    "SystemId": "Impact_Sword_Signature",
+    "RotationOffset": {
+      "Pitch": 90
+    }
+  },
+  "ComputeYaw": true,
+  "ComputePitch": true,
+  "ComputeRoll": true
+}

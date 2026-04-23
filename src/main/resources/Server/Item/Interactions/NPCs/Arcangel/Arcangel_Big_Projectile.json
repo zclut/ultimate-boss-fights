@@ -1,36 +1,52 @@
 {
-  "Type": "Parallel",
-  "Interactions": [
-    {
-      "Interactions": [
-        {
-          "Type": "ApplyEffect",
-          "EffectId": "Disable_Fly",
-          "Entity": "Owner",
-          "Next": {
-            "Type": "Simple",
-            "RunTime": 3,
-            "$Comment": "Prepare Delay before damage is applied via selector",
-            "Effects": {
-              "ItemPlayerAnimationsId": "Arcangel_Default",
-              "ItemAnimationId": "Cast",
-              "MovementEffects": {
-                "DisableAll": true
-              }
-            },
-            "Next": "Disable_Fly_Effect"
+  "Type": "Simple",
+  "Effects": {
+    "ItemPlayerAnimationsId": "Arcangel_Default",
+    "ItemAnimationId": "Cast",
+    "MovementEffects": {
+      "DisableAll": true
+    }
+  },
+  "$Comment": "Prepare Delay",
+  "RunTime": 0.1,
+  "Next": {
+    "Type": "Serial",
+    "Interactions": [
+      {
+        "Type": "ApplyEffect",
+        "EffectId": "Disable_Fly",
+        "Entity": "Owner"
+      },
+      {
+        "Type": "Simple",
+        "RunTime": 2,
+        "Effects": {
+          "Particles": [
+            {
+              "SystemId": "Arcangel_Portal_Projectile",
+              "Scale": 5,
+              "PositionOffset": {
+                "Y": -1,
+                "Z": 2.5
+              },
+              "TargetEntityPart": "Entity"
+            }
+          ]
+        },
+        "Next": {
+          "Type": "LaunchProjectile",
+          "RunTime": 0.86,
+          "ProjectileId": "Arcangel_Hand_Projectile",
+          "Tags": {
+            "AimingReference": []
           }
         }
-      ]
-    },
-    {
-      "Interactions": [
-        {
-          "Type": "Simple",
-          "RunTime": 0.1,
-          "Next": "Arcangel_Levitate_Selector"
-        }
-      ]
-    }
-  ]
+      },
+      {
+        "Type": "Simple",
+        "RunTime": 1.55,
+        "Next": "Disable_Fly_Effect"
+      }
+    ]
+  }
 }

@@ -1,0 +1,24 @@
+{
+  "Type": "Ability",
+  "Description": "Launch projectile from the sky above the target",
+  "Target": "Hostile",
+  "WeightCoefficient": 5,
+  "AttackDistanceRange": [10, 20],
+  "Ability": {
+    "Interactions": ["Arcangel_Burst_Projectile"]
+  },
+  "Conditions": [
+    {
+      "Type": "TimeSinceLastUsed",
+      "Curve": {
+        "Type": "Switch",
+        "SwitchPoint": 15
+      }
+    },
+    {
+      "Type": "Randomiser",
+      "MinValue": 0.8,
+      "MaxValue": 1
+    }
+  ]
+}

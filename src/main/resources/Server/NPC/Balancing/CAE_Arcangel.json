@@ -24,15 +24,18 @@
     "MinActionUtility": 0.01,
     "AvailableActions": {
       "Levitate": "CAO_Arcangel_Levitate",
+      "Summon": "CAO_Arcangel_Summon",
+      "BurstProjectile": "CAO_Arcangel_Burst_Projectile",
+      "BigProjectile": "CAO_Arcangel_Big_Projectile",
+
       "Ground": "CAO_Arcangel_Ground",
-      "AOESword": "CAO_Arcangel_AOESword",
-      "Summon": "CAO_Arcangel_Summon"
+
+      "AOESword": "CAO_Arcangel_AOESword"
     },
     "ActionSets": {
       "Default": {
         "Actions": [
-          "Summon",
-          "Ground"
+          "BigProjectile"
         ]
       },
       "Ground": {

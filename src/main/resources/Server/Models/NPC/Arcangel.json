@@ -116,15 +116,6 @@
         "Y": 0
       },
       "TargetEntityPart": "Self"
-    },
-    {
-      "SystemId": "Effect_Crown_Gold",
-      "Color": "#eff4c4",
-      "PositionOffset": {
-        "Z": 2.5,
-        "Y": -1
-      },
-      "Scale": 5
     }
   ]
 }

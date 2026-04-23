@@ -1,5 +1,5 @@
 {
   "Type": "ClearEntityEffect",
-  "Entity": "Target",
+  "Entity": "Owner",
   "EntityEffectId": "Disable_Fly"
 }
