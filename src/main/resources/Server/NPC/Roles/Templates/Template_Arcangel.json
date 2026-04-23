@@ -1,5 +1,6 @@
 {
   "Type": "Abstract",
+  "Debug": "DisplayState",
   "Appearance": { "Compute": "Appearance" },
   "StartState": "Idle",
   "Parameters": {
@@ -82,6 +83,18 @@
     "NameTranslationKey": {
       "Value": "server.npcRoles.Template.name",
       "Description": "Translation key for NPC name display"
+    },
+    "IsMinion": {
+      "Value": false,
+      "Description": "Defines whether this NPC is a minion (not override desired altitude when low on health)"
+    },
+    "DefaultAltitude": {
+      "Value": [3, 5],
+      "Description": "The altitude range the NPC will try to maintain when at high health"
+    },
+    "LowHealthAltitude": {
+      "Value": [0, 1],
+      "Description": "The altitude range the NPC will try to maintain when at low health (if not a minion)"
     }
   },
   "IsMemory": { "Compute": "IsMemory" },
@@ -217,7 +230,7 @@
               "Actions": [
                 {
                   "Type": "OverrideAltitude",
-                  "DesiredAltitudeRange": [3, 5]
+                  "DesiredAltitudeRange": { "Compute": "DefaultAltitude" }
                 },
                 {
                   "Type": "Timeout",
@@ -278,12 +291,13 @@
               "Actions": [
                 {
                   "Type": "OverrideAltitude",
-                  "DesiredAltitudeRange": [3, 5]
+                  "DesiredAltitudeRange": { "Compute": "DefaultAltitude" }
                 }
               ]
             },
             {
               "Continue": true,
+              "Enabled": { "Compute": "!IsMinion" },
               "Sensor": {
                 "Type": "And",
                 "Sensors": [
@@ -309,7 +323,7 @@
               "Actions": [
                 {
                   "Type": "OverrideAltitude",
-                  "DesiredAltitudeRange": [0, 1]
+                  "DesiredAltitudeRange": { "Compute": "LowHealthAltitude" }
                 }
               ]
             },
@@ -417,7 +431,7 @@
                       },
                       {
                         "Type": "State",
-                        "State": ".LowHP",
+                        "State": ".Ground",
                         "IgnoreMissingSetState": true
                       },
                       {
@@ -440,7 +454,7 @@
                         },
                         {
                           "Type": "State",
-                          "State": ".LowHP"
+                          "State": ".Ground"
                         }
                       ]
                     },

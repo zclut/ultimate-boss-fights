@@ -64,7 +64,6 @@
         }
       ]
     },
-
     "Fly": {
       "Animations": [
         {
@@ -101,5 +100,31 @@
         }
       ]
     }
-  }
+  },
+  "GradientSet": "Flashy_Synthetic",
+  "GradientId": "OrangePastel",
+  "Light": {
+    "Radius": 5,
+    "Color": "#888"
+  },
+  "Particles": [
+    {
+      "SystemId": "Void_Dragon_Effects",
+      "Color": "#fff200",
+      "Scale": 2.5,
+      "PositionOffset": {
+        "Y": 0
+      },
+      "TargetEntityPart": "Self"
+    },
+    {
+      "SystemId": "Effect_Crown_Gold",
+      "Color": "#eff4c4",
+      "PositionOffset": {
+        "Z": 2.5,
+        "Y": -1
+      },
+      "Scale": 5
+    }
+  ]
 }

@@ -9,11 +9,14 @@
           "Entity": "Owner",
           "Next": {
             "Type": "Simple",
-            "RunTime": 6.18,
+            "RunTime": 3,
             "$Comment": "Prepare Delay before damage is applied via selector",
             "Effects": {
               "ItemPlayerAnimationsId": "Arcangel_Default",
-              "ItemAnimationId": "Levitate"
+              "ItemAnimationId": "ThrowSword",
+              "MovementEffects": {
+                "DisableAll": true
+              }
             },
             "Next": "Disable_Fly_Effect"
           }
@@ -24,7 +27,7 @@
       "Interactions": [
         {
           "Type": "Simple",
-          "RunTime": 2,
+          "RunTime": 0.1,
           "Next": "Arcangel_Levitate_Selector"
         }
       ]

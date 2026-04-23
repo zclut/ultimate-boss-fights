@@ -2,17 +2,16 @@
   "Type": "Variant",
   "Reference": "Template_Arcangel",
   "Modify": {
-    "Appearance": "Arcangel",
+    "Appearance": "Arcangel_Minion",
     "DropList": "",
-    "MaxHealth": 700,
+    "MaxHealth": 50,
     "IsMemory": true,
     "MemoriesCategory": "Boss",
     "MemoriesNameOverride": "Mikaela",
-    "AttackDistance": 1,
+    "AttackDistance": 3,
     "UseCombatActionEvaluator": true,
     "_CombatConfig": "CAE_Arcangel",
     "NameTranslationKey": "server.npcRoles.Arcangel.name",
-    "LowHealthAltitude": [0, 1],
     "DefaultAltitude": [4, 6]
   }
 }

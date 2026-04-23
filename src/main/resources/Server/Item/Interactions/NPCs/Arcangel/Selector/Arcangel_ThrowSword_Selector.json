@@ -1,0 +1,20 @@
+{
+  "Type": "Selector",
+  "$Comment": "Punch stab selector",
+  "RunTime": 0.16,
+  "Selector": {
+    "Id": "Stab",
+    "TestLineOfSight": true,
+    "ExtendTop": 0.0,
+    "ExtendLeft": 0.75,
+    "ExtendRight": 0.75,
+    "ExtendBottom": 4.0,
+    "StartDistance": 0.1,
+    "EndDistance": 10
+  },
+  "HitEntity": {
+    "Interactions": [
+      "Arcangel_ThrowSword_Damage"
+    ]
+  }
+}

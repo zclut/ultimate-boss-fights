@@ -6,6 +6,34 @@
       "ThirdPerson": "NPC/Arcangel/Animations/Damage/Levitate.blockyanim",
       "KeepPreviousFirstPersonAnimation": true,
       "ClipsGeometry": true
+    },
+    "AOESword": {
+      "Speed": 1,
+      "Looping": false,
+      "ThirdPerson": "NPC/Arcangel/Animations/Damage/AOESword.blockyanim",
+      "KeepPreviousFirstPersonAnimation": true,
+      "ClipsGeometry": true
+    },
+    "Cast": {
+      "Speed": 1,
+      "Looping": false,
+      "ThirdPerson": "NPC/Arcangel/Animations/Damage/Cast.blockyanim",
+      "KeepPreviousFirstPersonAnimation": true,
+      "ClipsGeometry": true
+    },
+    "SwingCombo": {
+      "Speed": 1,
+      "Looping": false,
+      "ThirdPerson": "NPC/Arcangel/Animations/Damage/SwingCombo.blockyanim",
+      "KeepPreviousFirstPersonAnimation": true,
+      "ClipsGeometry": true
+    },
+    "ThrowSword": {
+      "Speed": 1,
+      "Looping": false,
+      "ThirdPerson": "NPC/Arcangel/Animations/Damage/ThrowSword.blockyanim",
+      "KeepPreviousFirstPersonAnimation": true,
+      "ClipsGeometry": true
     }
   },
   "Camera": {

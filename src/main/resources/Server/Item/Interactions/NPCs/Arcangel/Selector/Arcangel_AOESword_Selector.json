@@ -1,0 +1,14 @@
+{
+  "Type": "Selector",
+  "$Comment": "Length of Combat",
+  "RunTime": 0.16,
+  "Selector": {
+    "Id": "AOECircle",
+    "Range": 5
+  },
+  "HitEntity": {
+    "Interactions": [
+      "Arcangel_AOESword_Damage"
+    ]
+  }
+}

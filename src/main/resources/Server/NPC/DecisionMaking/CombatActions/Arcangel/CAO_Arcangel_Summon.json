@@ -1,0 +1,29 @@
+{
+  "Type": "Ability",
+  "Description": "Summons minions to assist in combat",
+  "Target": "Hostile",
+  "Ability": {
+    "Interactions": [
+      "Arcangel_Summon"
+    ]
+  },
+  "AttackDistanceRange": [
+    0,
+    10
+  ],
+  "PostExecuteDistanceRange": [
+    9,
+    20
+  ],
+  "WeightCoefficient": 2,
+  "Conditions": [
+    {
+      "Type": "TimeSinceLastUsed",
+      "Curve": {
+        "Type": "Switch",
+        "SwitchPoint": 5
+      }
+    }
+  ],
+  "ChargeFor": 1
+}

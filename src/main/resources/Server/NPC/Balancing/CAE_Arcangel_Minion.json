@@ -23,21 +23,12 @@
     "MinRunUtility": 0.5,
     "MinActionUtility": 0.01,
     "AvailableActions": {
-      "Levitate": "CAO_Arcangel_Levitate",
-      "Ground": "CAO_Arcangel_Ground",
-      "AOESword": "CAO_Arcangel_AOESword",
-      "Summon": "CAO_Arcangel_Summon"
+      "Levitate": "CAO_Arcangel_Levitate"
     },
     "ActionSets": {
       "Default": {
         "Actions": [
-          "Summon",
-          "Ground"
-        ]
-      },
-      "Ground": {
-        "Actions": [
-          "AOESword"
+          "Levitate"
         ]
       }
     }

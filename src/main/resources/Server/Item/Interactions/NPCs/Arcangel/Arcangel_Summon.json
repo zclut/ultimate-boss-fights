@@ -1,0 +1,28 @@
+{
+  "Type": "Simple",
+  "Effects": {
+    "ItemPlayerAnimationsId": "Arcangel_Default",
+    "ItemAnimationId": "Cast",
+    "MovementEffects": {
+      "DisableAll": true
+    }
+  },
+  "$Comment": "Prepare Delay",
+  "RunTime": 0.75,
+  "Next": {
+    "Type": "Serial",
+    "Interactions": [
+      {
+        "Type": "ApplyEffect",
+        "EffectId": "Disable_Fly",
+        "Entity": "Owner"
+      },
+      {
+        "Type": "TriggerSpawnMarkers",
+        "MarkerType": "Arcangel_Minion_Manual",
+        "Range": 30
+      },
+      "Disable_Fly_Effect"
+    ]
+  }
+}
