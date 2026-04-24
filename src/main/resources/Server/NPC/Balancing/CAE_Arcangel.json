@@ -27,6 +27,8 @@
       "Summon": "CAO_Arcangel_Summon",
       "BurstProjectile": "CAO_Arcangel_Burst_Projectile",
       "BigProjectile": "CAO_Arcangel_Big_Projectile",
+      "BurstProjectileAerial": "CAO_Arcangel_Burst_Projectile_Aerial",
+      "BigProjectileAerial": "CAO_Arcangel_Big_Projectile_Aerial",
 
       "AOESword": "CAO_Arcangel_AOESword",
       "ThrowSword": "CAO_Arcangel_ThrowSword",
@@ -36,8 +38,8 @@
       "Default": {
         "Actions": [
           "Levitate",
-          "BurstProjectile",
-          "BigProjectile"
+          "BurstProjectileAerial",
+          "BigProjectileAerial"
         ]
       },
       "Ground": {

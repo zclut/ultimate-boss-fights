@@ -1,6 +1,6 @@
 {
   "Type": "Ability",
-  "Description": "Burst projectile, secondary ranged",
+  "Description": "Burst projectile, aerial phase (no distance gate)",
   "Target": "Hostile",
   "WeightCoefficient": 2,
   "AttackDistanceRange": [0, 20],
@@ -9,19 +9,10 @@
   },
   "Conditions": [
     {
-      "Type": "TargetDistance",
-      "Curve": {
-        "Type": "Switch",
-        "InitialState": 0,
-        "FinalState": 1,
-        "SwitchPoint": 9
-      }
-    },
-    {
       "Type": "TimeSinceLastUsed",
       "Curve": {
         "Type": "Switch",
-        "SwitchPoint": 8
+        "SwitchPoint": 6
       }
     },
     {

@@ -1,13 +1,22 @@
 {
   "Type": "Ability",
-  "Description": "Launch projectile from the sky above the target",
+  "Description": "Big projectile, primary ranged in Default phase",
   "Target": "Hostile",
   "WeightCoefficient": 2,
-  "AttackDistanceRange": [10, 20],
+  "AttackDistanceRange": [0, 20],
   "Ability": {
     "Interactions": ["Arcangel_Big_Projectile"]
   },
   "Conditions": [
+    {
+      "Type": "TargetDistance",
+      "Curve": {
+        "Type": "Switch",
+        "InitialState": 0,
+        "FinalState": 1,
+        "SwitchPoint": 9
+      }
+    },
     {
       "Type": "TimeSinceLastUsed",
       "Curve": {
@@ -17,7 +26,7 @@
     },
     {
       "Type": "Randomiser",
-      "MinValue": 0.6,
+      "MinValue": 0.4,
       "MaxValue": 1
     }
   ]

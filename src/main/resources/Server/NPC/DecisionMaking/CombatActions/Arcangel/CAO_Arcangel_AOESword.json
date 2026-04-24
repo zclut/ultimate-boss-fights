@@ -1,32 +1,31 @@
 {
   "Type": "Ability",
-  "Description": "Launch projectile from the sky above the target",
+  "Description": "AOE sword slam",
   "Target": "Hostile",
-  "WeightCoefficient": 3,
-  "AttackDistanceRange": [
-    0,
-    30
-  ],
+  "WeightCoefficient": 2,
+  "AttackDistanceRange": [0, 15],
   "Ability": {
-    "Interactions": [
-      "Arcangel_AOESword"
-    ]
+    "Interactions": ["Arcangel_AOESword"]
   },
   "Conditions": [
+    {
+      "Type": "TargetDistance",
+      "Curve": {
+        "ResponseCurve": "SimpleDescendingLogistic",
+        "XRange": [0, 15]
+      }
+    },
     {
       "Type": "TimeSinceLastUsed",
       "Curve": {
         "Type": "Switch",
-        "SwitchPoint": 3
+        "SwitchPoint": 2
       }
     },
     {
       "Type": "Randomiser",
-      "MinValue": 0.8,
+      "MinValue": 0.75,
       "MaxValue": 1
     }
-  ],
-  "Positioning": "Front",
-  "PositionFirst": true,
-  "FailureTimeout": 2
+  ]
 }

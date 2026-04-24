@@ -1,24 +1,20 @@
 {
   "Type": "Ability",
-  "Description": "Launch projectile from the sky above the target",
+  "Description": "Sword swing combo",
   "Target": "Hostile",
   "WeightCoefficient": 2,
-  "AttackDistanceRange": [
-    0,
-    30
-  ],
-  "PostExecuteDistanceRange": [
-    11,
-    16
-  ],
-  "Positioning": "Front",
-  "PositionFirst": true,
+  "AttackDistanceRange": [0, 15],
   "Ability": {
-    "Interactions": [
-      "Arcangel_SwingCombo"
-    ]
+    "Interactions": ["Arcangel_SwingCombo"]
   },
   "Conditions": [
+    {
+      "Type": "TargetDistance",
+      "Curve": {
+        "ResponseCurve": "SimpleDescendingLogistic",
+        "XRange": [0, 15]
+      }
+    },
     {
       "Type": "TimeSinceLastUsed",
       "Curve": {
@@ -28,9 +24,8 @@
     },
     {
       "Type": "Randomiser",
-      "MinValue": 0.8,
+      "MinValue": 0.7,
       "MaxValue": 1
     }
-  ],
-  "FailureTimeout": 2
+  ]
 }

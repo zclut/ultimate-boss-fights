@@ -1,27 +1,18 @@
 {
   "Type": "Ability",
-  "Description": "Burst projectile, secondary ranged",
+  "Description": "Big projectile, aerial phase (no distance gate)",
   "Target": "Hostile",
   "WeightCoefficient": 2,
   "AttackDistanceRange": [0, 20],
   "Ability": {
-    "Interactions": ["Arcangel_Burst_Projectile"]
+    "Interactions": ["Arcangel_Big_Projectile"]
   },
   "Conditions": [
-    {
-      "Type": "TargetDistance",
-      "Curve": {
-        "Type": "Switch",
-        "InitialState": 0,
-        "FinalState": 1,
-        "SwitchPoint": 9
-      }
-    },
     {
       "Type": "TimeSinceLastUsed",
       "Curve": {
         "Type": "Switch",
-        "SwitchPoint": 8
+        "SwitchPoint": 4
       }
     },
     {

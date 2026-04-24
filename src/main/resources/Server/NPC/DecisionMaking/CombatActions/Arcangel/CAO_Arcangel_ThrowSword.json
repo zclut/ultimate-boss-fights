@@ -1,32 +1,31 @@
 {
   "Type": "Ability",
-  "Description": "Launch sword at the target",
+  "Description": "Throw sword at target",
   "Target": "Hostile",
   "WeightCoefficient": 2,
-  "AttackDistanceRange": [
-    0,
-    30
-  ],
+  "AttackDistanceRange": [0, 15],
   "Ability": {
-    "Interactions": [
-      "Arcangel_ThrowSword"
-    ]
+    "Interactions": ["Arcangel_ThrowSword"]
   },
   "Conditions": [
+    {
+      "Type": "TargetDistance",
+      "Curve": {
+        "ResponseCurve": "SimpleDescendingLogistic",
+        "XRange": [0, 15]
+      }
+    },
     {
       "Type": "TimeSinceLastUsed",
       "Curve": {
         "Type": "Switch",
-        "SwitchPoint": 6
+        "SwitchPoint": 4
       }
     },
     {
       "Type": "Randomiser",
-      "MinValue": 0.8,
+      "MinValue": 0.6,
       "MaxValue": 1
     }
-  ],
-  "Positioning": "Front",
-  "PositionFirst": true,
-  "FailureTimeout": 2
+  ]
 }
