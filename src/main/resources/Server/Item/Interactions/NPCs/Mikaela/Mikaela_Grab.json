@@ -21,29 +21,24 @@
         {
           "Type": "Simple",
           "RunTime": 0.5,
-          "Next": "Mikaela_Grab_Selector"
-        }
-      ]
-    },
-    {
-      "Interactions": [
-        {
-          "Type": "Simple",
-          "RunTime": 0.75,
-          "Next": {
-            "Type": "Simple",
-            "Effects": {
-              "Particles": [
-                {
-                  "TargetEntityPart": "Entity",
-                  "SystemId": "Fire_AoE_Spawn",
-                  "Scale": 10
+          "Effects": {
+            "Particles": [
+              {
+                "TargetEntityPart": "Entity",
+                "SystemId": "Sword_Charged_Trail",
+                "Scale": 1,
+                "PositionOffset": {
+                  "X": 0.5,
+                  "Z": 0.5,
+                  "Y": 1.2
+                },
+                "RotationOffset": {
+                  "Yaw": 90
                 }
-              ],
-              "WorldSoundEventId": "SFX_Effect_Burn_World",
-              "LocalSoundEventId": "SFX_Effect_Burn_Local"
-            }
-          }
+              }
+            ]
+          },
+          "Next": "Mikaela_Grab_Selector"
         }
       ]
     }
