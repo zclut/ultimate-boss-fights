@@ -16,36 +16,59 @@ The design goal was to make her feel like a real boss encounter — not just an 
 
 ### 🔄 Two-Phase Fight
 
-Mikaela starts in her base form. When she's defeated, she respawns in a more aggressive second phase with access to a different set of combat actions. The transition is handled automatically by the server.
+- **Phase 1 — Mikaela** (1,400 HP): Ground-based brawler. Close-range melee attacks with a few mid-range specials.
+- **Phase 2 — Archangel** (2,000 HP): Aerial powerhouse. Takes flight after Mikaela falls, switching between an aerial stance and a ground stance with a completely different attack kit.
 
-### 🥊 Attack Kit
+The transition is handled automatically by the server on Mikaela's death.
 
-She has seven abilities spread across two categories:
+---
 
-**Normal attacks** — her bread and butter, used frequently to keep pressure on the player:
+## 🥊 Attack Kits
+
+### Phase 1 — Mikaela
 
 | Attack | Description | Cooldown | Weight | Range |
 |--------|-------------|----------|--------|-------|
 | ⬅️ **Swing Left** | Wide horizontal swing | 3s | 2 | 0–5 |
 | ⬇️ **Swing Down** | Overhead slam | 2s | 2 | 0–5 |
-| 💥 **Swing Down Combo** | Follow-up combo version of the slam | 5s | 3 | 0–5 |
-| 👊 **Punch** | Direct hit with strong knockback | 3s | 2 | 0–5 |
+| 💥 **Swing Down Combo** | Follow-up combo slam | 8s | 2 | 0–5 |
+| 👊 **Punch** | Direct hit with strong knockback | 4s | 2 | 0–5 |
+| 🤜 **Grab** | Pulls the player from mid range | 7s | 5 | 5–8 |
+| 🌧️ **Rain Hands** | Projectiles fall from the sky above target | 30s | 5 | 0–20 |
+| 💢 **AOE Jump** | Ground-slam that hits everything nearby | 10s | 5 | 0–1 |
 
-**Special abilities** — less frequent, but harder to avoid and more punishing:
+### Phase 2 — Archangel
+
+Archangel operates in two stances: **Aerial** (default) and **Ground** (after landing).
+
+**Aerial stance** — attacks executed while airborne at altitude 5–7:
 
 | Attack | Description | Cooldown | Weight | Range |
 |--------|-------------|----------|--------|-------|
-| 🤜 **Grab** | Pulls the player toward her from mid range | 12s | 5 | 7–8 |
-| 🌧️ **Rain Hands** | Projectiles fall from the sky above the target *(only activates below 75 HP)* | 15s | 5 | 0–20 |
-| 💢 **AOE Jump** | Ground-slam that hits everything nearby | 15s | 5 | 0–3 |
+| 🌧️ **Rain Hands** | Aerial projectile rain | 30s | 2 | 0–20 |
+| 💥 **Burst Projectile** | Rapid projectile burst | 6s | 2 | 0–20 |
+| 🔵 **Big Projectile** | Heavy charged projectile | 4s | 2 | 0–20 |
+| ✈️ **Levitate** | Transitions to ground stance | 25s | 2 | 0–20 |
 
-The AI uses a utility-based system — each attack competes for priority every tick based on cooldown, distance, and a randomness factor. Special abilities have a much higher weight, so when they finally come off cooldown they tend to win the evaluation.
+**Ground stance** — attacks executed while landed:
+
+| Attack | Description | Cooldown | Weight | Range |
+|--------|-------------|----------|--------|-------|
+| 🌧️ **Rain Hands** | Ground projectile rain | 60s | 1.95 | 0–20 |
+| 💥 **Burst Projectile** | Rapid projectile burst | 8s | 2 | 0–20 |
+| 🔵 **Big Projectile** | Heavy charged projectile | 5s | 2 | 0–20 |
+| ⚔️ **AOE Sword** | Wide sword slam in all directions | 2s | 2 | 0–15 |
+| 🗡️ **Throw Sword** | Hurls sword at the player | 4s | 2 | 0–20 |
+| 🤺 **Swing Combo** | Multi-hit sword combo | 2s | 2 | 0–15 |
+| 🛸 **Levitate** | Returns to aerial stance | 30s | 2 | 0–20 |
+
+---
 
 ### ❤️ Health Bar HUD
 
-There's a custom health bar that appears when you get close enough to Mikaela and disappears when you move away. It changes color as the fight progresses:
+A custom health bar appears when you get close enough and disappears when you move away. It changes color as the fight progresses:
 
-- 🟡 **Yellow** — she's healthy
+- 🟡 **Yellow** — healthy
 - 🟠 **Orange** — mid-fight
 - 🔴 **Red** — nearly done
 
@@ -55,51 +78,7 @@ There's a custom health bar that appears when you get close enough to Mikaela an
 
 Built on Hytale's Entity Component System with:
 
-- ⚙️ **CAE/CAO combat AI** — each attack has its own decision conditions (cooldowns, distance, randomness) that feed into a central evaluator. The AI picks attacks based on weighted utility scores, so her behavior never feels like a fixed script.
-- 🔗 **Custom interactions** — the Rain Hands attack and regen reset are implemented as server-side custom interaction chains.
+- ⚙️ **CAE/CAO combat AI** — each attack has its own decision conditions (cooldowns, distance, randomness) feeding into a central evaluator. Archangel's CAE uses **ActionSets** to swap the full attack list when switching between aerial and ground stances.
+- 🔗 **Custom interactions** — Rain Hands and regen reset are implemented as server-side custom interaction chains.
 - 🔄 **ECS ticking systems** — proximity detection for the HUD, projectile spawning, and NPC respawn logic all run as independent systems.
-- 📦 **Asset pack included** — the plugin ships with Mikaela's model, texture, and all animations bundled in.
-
-**Stack:** Java 25 · Gradle · Hytale `2026.03.26-89796e57b`
-
----
-
-## 🚀 Build & Run
-
-```bash
-# Build the plugin JAR
-./gradlew shadowJar
-
-# Download the server and run with the plugin loaded
-./gradlew runServer
-
-# Run with an already-downloaded server
-./gradlew runServerJar
-```
-
-Output JAR: `build/libs/MikaelaPlugin-1.0.0.jar`
-
----
-
-## 📁 Project Structure
-
-```
-src/main/
-├── java/com/hytalezx/mikaela/
-│   ├── MikaelaPlugin.java              # Plugin entry point
-│   ├── Config/                         # Boss registry and per-boss config
-│   ├── Systems/                        # ECS ticking systems (HUD, projectiles, respawn)
-│   ├── Interactions/                   # Custom interaction logic
-│   └── UI/                             # Boss health bar HUD
-└── resources/
-    ├── Server/NPC/                     # Roles, combat AI (CAE/CAO), interactions
-    ├── Server/Projectiles/             # Rain Hands projectile
-    ├── Server/Entity/Effects/          # Invulnerable/Vulnerable status effects
-    └── Common/NPC/Mikaela/             # Model, texture, animations
-```
-
----
-
-## 📄 License
-
-MIT — do whatever you want with it.
+- 📦 **Asset pack included** — the plugin ships with both Mikaela and Archangel's models, textures, and all animations bundled in.
