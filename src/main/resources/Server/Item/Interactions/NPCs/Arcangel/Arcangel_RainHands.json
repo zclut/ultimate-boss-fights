@@ -1,0 +1,57 @@
+{
+  "Type": "Parallel",
+  "Interactions": [
+    {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Disable_Fly",
+          "Entity": "Owner",
+          "Next": {
+            "Type": "Simple",
+            "RunTime": 4.6,
+            "$Comment": "Prepare Delay before damage is applied via selector",
+            "Effects": {
+              "ItemPlayerAnimationsId": "Arcangel_Default",
+              "ItemAnimationId": "Cast"
+            },
+            "Next": "Disable_Fly_Effect"
+          }
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 0.3,
+          "Next": {
+            "Type": "Simple",
+            "RunTime": 0.7,
+            "Effects": {
+              "Particles": [
+                {
+                  "SystemId": "Sword_Charging",
+                  "Scale": 5,
+                  "PositionOffset": {
+                    "Y": 0
+                  },
+                  "DetachedFromModel": false,
+                  "TargetEntityPart": "Entity"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Simple",
+          "RunTime": 0.1,
+          "Next": "Arcangel_RainHands_Selector"
+        },
+        {
+          "Type": "HytaleZX:ResetRegenTimer"
+        }
+      ]
+    }
+  ]
+}

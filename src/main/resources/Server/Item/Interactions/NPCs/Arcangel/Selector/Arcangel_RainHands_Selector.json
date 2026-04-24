@@ -1,0 +1,42 @@
+{
+  "Type": "Serial",
+  "Interactions": [
+    {
+      "Type": "ApplyEffect",
+      "EffectId": "Invulnerable",
+      "Entity": "Owner",
+      "RunTime": 1.1
+    },
+    {
+      "Type": "Selector",
+      "$Comment": "Find target player in range to spawn sky projectile above them",
+      "RunTime": 5,
+      "Selector": {
+        "Id": "AOECircle",
+        "Range": 20
+      },
+      "HitEntity": {
+        "Interactions": [
+          {
+            "Type": "HytaleZX:FallingProjectile",
+            "ProjectileId": "Mikaela_Hand_Projectile",
+            "Height": 20.0,
+            "Range": 20.0,
+            "Duration": 5.0,
+            "DelayBetweenProjectile": 0.2,
+            "PositionCooldown": 3.0,
+            "MinPositionDistance": 3.5
+          }
+        ]
+      }
+    },
+    {
+      "Type": "ClearEntityEffect",
+      "Entity": "Owner",
+      "EntityEffectId": "Invulnerable"
+    },
+    {
+      "Type": "HytaleZX:ResetRegenTimer"
+    }
+  ]
+}

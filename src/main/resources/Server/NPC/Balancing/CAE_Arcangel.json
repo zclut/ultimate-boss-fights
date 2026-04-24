@@ -23,13 +23,16 @@
     "MinRunUtility": 0.5,
     "MinActionUtility": 0.01,
     "AvailableActions": {
-      "Levitate": "CAO_Arcangel_Levitate",
-      "Summon": "CAO_Arcangel_Summon",
-      "BurstProjectile": "CAO_Arcangel_Burst_Projectile",
-      "BigProjectile": "CAO_Arcangel_Big_Projectile",
+      "LevitateAerial": "CAO_Arcangel_Levitate_Aerial",
       "BurstProjectileAerial": "CAO_Arcangel_Burst_Projectile_Aerial",
       "BigProjectileAerial": "CAO_Arcangel_Big_Projectile_Aerial",
-
+      "RainHandsAerial": "CAO_Arcangel_RainHands_Aerial",
+      
+      
+      "RainHands": "CAO_Arcangel_RainHands",
+      "BurstProjectile": "CAO_Arcangel_Burst_Projectile",
+      "BigProjectile": "CAO_Arcangel_Big_Projectile",
+      "Levitate": "CAO_Arcangel_Levitate",
       "AOESword": "CAO_Arcangel_AOESword",
       "ThrowSword": "CAO_Arcangel_ThrowSword",
       "SwingCombo": "CAO_Arcangel_SwingCombo"
@@ -37,14 +40,15 @@
     "ActionSets": {
       "Default": {
         "Actions": [
-          "Levitate",
           "BurstProjectileAerial",
-          "BigProjectileAerial"
+          "BigProjectileAerial",
+          "RainHandsAerial",
+          "LevitateAerial"
         ]
       },
       "Ground": {
         "Actions": [
-          "BurstProjectile",
+          "RainHands",
           "BigProjectile",
           "AOESword",
           "ThrowSword",
