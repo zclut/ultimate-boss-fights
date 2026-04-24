@@ -40,8 +40,8 @@ public class MikaelaPlugin extends JavaPlugin {
 
         // BOSS REGISTRY HEALTH BARS
         LOGGER.atInfo().log("Registering bosses...");
-        BossRegistry.register(new BossConfig("Mikaela", "Mikaela Warderer",50.0));
-        BossRegistry.register(new BossConfig("Arcangel", "Mikaela Arcangel",50.0));
+        BossRegistry.register(new BossConfig("Mikaela", "Mikaela Warderer",50.0, "bosshealth.ui"));
+        BossRegistry.register(new BossConfig("Arcangel", "Mikaela Arcangel",50.0, "arcangel.ui"));
 
 
         // ── INTERACTIONS ────────────────────────────────────────────────────
@@ -74,10 +74,10 @@ public class MikaelaPlugin extends JavaPlugin {
         EntityStore.REGISTRY.registerSystem(new NpcDeathRespawnSystem());
         NpcDeathRespawnSystem.register(
                 "Mikaela", "Arcangel",
-                5.0f,               // segundos hasta phase 2
+                7.0f,               // segundos hasta phase 2
                 "Mikaela_Death_Legendary",
                 10.0f,              // scale
-                5.0f                // duración del particle — ajustar aquí
+                7.0f                // duración del particle — ajustar aquí
         );
     }
 }

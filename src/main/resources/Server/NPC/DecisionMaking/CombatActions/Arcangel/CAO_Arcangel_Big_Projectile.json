@@ -2,7 +2,7 @@
   "Type": "Ability",
   "Description": "Launch projectile from the sky above the target",
   "Target": "Hostile",
-  "WeightCoefficient": 5,
+  "WeightCoefficient": 2,
   "AttackDistanceRange": [10, 20],
   "Ability": {
     "Interactions": ["Arcangel_Big_Projectile"]
@@ -12,12 +12,12 @@
       "Type": "TimeSinceLastUsed",
       "Curve": {
         "Type": "Switch",
-        "SwitchPoint": 15
+        "SwitchPoint": 10
       }
     },
     {
       "Type": "Randomiser",
-      "MinValue": 0.8,
+      "MinValue": 0.6,
       "MaxValue": 1
     }
   ]

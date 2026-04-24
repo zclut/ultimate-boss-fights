@@ -30,17 +30,24 @@
 
       "Ground": "CAO_Arcangel_Ground",
 
-      "AOESword": "CAO_Arcangel_AOESword"
+      "AOESword": "CAO_Arcangel_AOESword",
+      "ThrowSword": "CAO_Arcangel_ThrowSword",
+      "SwingCombo": "CAO_Arcangel_SwingCombo"
     },
     "ActionSets": {
       "Default": {
         "Actions": [
+          "Levitate",
+          "BurstProjectile",
           "BigProjectile"
         ]
       },
       "Ground": {
         "Actions": [
-          "AOESword"
+          "AOESword",
+          "ThrowSword",
+          "SwingCombo",
+          "Levitate"
         ]
       }
     }

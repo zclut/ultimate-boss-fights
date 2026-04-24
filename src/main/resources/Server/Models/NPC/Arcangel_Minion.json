@@ -13,8 +13,8 @@
       "Z": -0.2
     }
   },
-  "MinScale": 0.3,
-  "MaxScale": 0.3,
+  "MinScale": 0.4,
+  "MaxScale": 0.4,
   "GradientSet": "Fantasy_Cotton_Dark",
   "GradientId": "Yellow",
   "Light": {

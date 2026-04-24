@@ -1,5 +1,5 @@
 {
   "Type": "Simple",
   "$Comment": "Delay before go to ground",
-  "RunTime": 4
+  "RunTime": 0.5
 }

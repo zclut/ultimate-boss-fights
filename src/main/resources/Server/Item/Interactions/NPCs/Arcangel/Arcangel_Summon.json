@@ -7,8 +7,8 @@
       "DisableAll": true
     }
   },
-  "$Comment": "Prepare Delay",
-  "RunTime": 0.10,
+  "$Comment": "Prepare Delay — spawn handled by Template_Arcangel .Summon substate",
+  "RunTime": 0.1,
   "Next": {
     "Type": "Serial",
     "Interactions": [
@@ -18,11 +18,10 @@
         "Entity": "Owner"
       },
       {
-        "Type": "TriggerSpawnMarkers",
-        "MarkerType": "Arcangel_Minion_Manual",
-        "Range": 30
-      },
-      "Disable_Fly_Effect"
+        "Type": "Simple",
+        "RunTime": 2,
+        "Next": "Disable_Fly_Effect"
+      }
     ]
   }
 }

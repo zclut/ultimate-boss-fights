@@ -1,18 +1,18 @@
 {
   "Type": "Ability",
-  "Description": "Launch projectile from the sky above the target",
+  "Description": "Launch sword at the target",
   "Target": "Hostile",
-  "WeightCoefficient": 1.9,
-  "AttackDistanceRange": [0, 20],
+  "WeightCoefficient": 3,
+  "AttackDistanceRange": [0, 8],
   "Ability": {
-    "Interactions": ["Arcangel_Levitate"]
+    "Interactions": ["Arcangel_ThrowSword"]
   },
   "Conditions": [
     {
       "Type": "TimeSinceLastUsed",
       "Curve": {
         "Type": "Switch",
-        "SwitchPoint": 25
+        "SwitchPoint": 7
       }
     },
     {

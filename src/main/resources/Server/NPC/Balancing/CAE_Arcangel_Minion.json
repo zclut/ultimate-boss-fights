@@ -23,12 +23,12 @@
     "MinRunUtility": 0.5,
     "MinActionUtility": 0.01,
     "AvailableActions": {
-      "Levitate": "CAO_Arcangel_Levitate"
+      "BigProjectile": "CAO_Arcangel_Big_Projectile"
     },
     "ActionSets": {
       "Default": {
         "Actions": [
-          "Levitate"
+          "BigProjectile"
         ]
       }
     }

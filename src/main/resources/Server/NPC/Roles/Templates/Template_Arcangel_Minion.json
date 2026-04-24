@@ -1,0 +1,505 @@
+{
+  "Type": "Abstract",
+  "Debug": "DisplayState",
+  "Appearance": { "Compute": "Appearance" },
+  "StartState": "Idle",
+  "Parameters": {
+    "Appearance": {
+      "Value": "Scarak_Seeker",
+      "Description": "Model to be used"
+    },
+    "ViewRange": {
+      "Value": 30,
+      "Description": "View range"
+    },
+    "ViewSector": {
+      "Value": 180,
+      "Description": "View sector"
+    },
+    "HearingRange": {
+      "Value": 20,
+      "Description": "Hearing range"
+    },
+    "AlertedRange": {
+      "Value": 40,
+      "Description": "A range within which the player can be seen/sensed when the NPC is alerted to their presence"
+    },
+    "DropList": {
+      "Value": "Drop_Scarak_Fighter",
+      "Description": "Drop Items"
+    },
+    "MaxSpeed": {
+      "Value": 15,
+      "Description": "Maximum walking speed"
+    },
+    "AttackDistance": {
+      "Value": 3,
+      "Description": "The close distance attack range"
+    },
+    "AttitudeGroup": {
+      "Value": "Scarak",
+      "Description": "This NPCs attitude group"
+    },
+    "FollowPath": {
+      "Value": false,
+      "Description": "Whether to follow paths or be stationary"
+    },
+    "FollowPathRange": {
+      "Value": 30,
+      "Description": "The search radius when looking for a patrol path"
+    },
+    "PathShape": {
+      "Value": "Line",
+      "Description": "The shape of the path the NPC should follow. 'Chain' will result in chained paths"
+    },
+    "CombatRelativeTurnSpeed": {
+      "Value": 1.5,
+      "Description": "Modifier that decides turn speed difference in combat"
+    },
+    "MaxHealth": {
+      "Value": 100,
+      "Description": "Max health for the NPC"
+    },
+    "IsMemory": {
+      "Value": false,
+      "Description": "Defines if the NPC is a memory"
+    },
+    "MemoriesCategory": {
+      "Value": "Other",
+      "Description": "Defines the category of the memory"
+    },
+    "MemoriesNameOverride": {
+      "Value": "",
+      "Description": "Overrides the memory name if set"
+    },
+    "CombatDistance": {
+      "Value": 3,
+      "Description": "Hover/seek stop distance used in CAE combat. Defaults to AttackDistance if not overridden."
+    },
+    "UseCombatActionEvaluator": {
+      "Value": false,
+      "Description": "Whether to use the Combat Action Evaluator via an accompanying CombatConfig."
+    },
+    "NameTranslationKey": {
+      "Value": "server.npcRoles.Template.name",
+      "Description": "Translation key for NPC name display"
+    },
+    "IsMinion": {
+      "Value": false,
+      "Description": "Defines whether this NPC is a minion (not override desired altitude when low on health)"
+    },
+    "DefaultAltitude": {
+      "Value": [3, 5],
+      "Description": "The altitude range the NPC will try to maintain when at high health"
+    },
+    "LowHealthAltitude": {
+      "Value": [0, 1],
+      "Description": "The altitude range the NPC will try to maintain when at low health (if not a minion)"
+    }
+  },
+  "IsMemory": { "Compute": "IsMemory" },
+  "MemoriesCategory": { "Compute": "MemoriesCategory" },
+  "MemoriesNameOverride": { "Compute": "MemoriesNameOverride" },
+  "DisableDamageGroups": ["Self", "Scarak"],
+  "KnockbackScale": 0,
+  "DefaultNPCAttitude": "Ignore",
+  "DefaultPlayerAttitude": "Hostile",
+  "AttitudeGroup": { "Compute": "AttitudeGroup" },
+  "MotionControllerList": [
+    {
+      "Type": "Fly",
+      "MaxHorizontalSpeed": { "Compute": "MaxSpeed" },
+      "MaxSinkSpeed": 3,
+      "MaxClimbSpeed": 30,
+      "MinAirSpeed": 3,
+      "Acceleration": 10,
+      "MinHeightOverGround": 3,
+      "MaxHeightOverGround": 5,
+      "MaxRollAngle": 40,
+      "MaxTurnSpeed": 100,
+      "DesiredAltitudeWeight": 1
+    }
+  ],
+  "MaxHealth": { "Compute": "MaxHealth" },
+  "DropList": { "Compute": "DropList" },
+  "Instructions": [
+    {
+      "Instructions": [
+        {
+          "Sensor": {
+            "Type": "State",
+            "State": "Idle"
+          },
+          "Instructions": [
+            {
+              "Reference": "Component_Instruction_Clear_Status_Animation"
+            },
+            {
+              "Sensor": {
+                "Type": "Or",
+                "Sensors": [
+                  {
+                    "Reference": "Component_Sensor_Sight_By_Attitude",
+                    "Modify": {
+                      "ViewRange": { "Compute": "ViewRange" },
+                      "ViewSector": { "Compute": "ViewSector" },
+                      "Attitudes": ["Hostile", "Neutral"]
+                    }
+                  },
+                  {
+                    "Reference": "Component_Sensor_Sound_By_Attitude",
+                    "Modify": {
+                      "HearingRange": { "Compute": "HearingRange" },
+                      "Attitudes": ["Hostile", "Neutral"]
+                    }
+                  }
+                ]
+              },
+              "Actions": [
+                {
+                  "Type": "State",
+                  "State": "Alerted"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sensor": {
+            "Type": "State",
+            "State": "Alerted"
+          },
+          "Instructions": [
+            {
+              "Continue": true,
+              "Sensor": {
+                "Type": "Any",
+                "Once": true
+              },
+              "Actions": [
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status",
+                  "Animation": "Alerted"
+                }
+              ]
+            },
+            {
+              "Enabled": { "Compute": "UseCombatActionEvaluator" },
+              "Sensor": {
+                "Type": "Target",
+                "Range": { "Compute": "ViewRange" }
+              },
+              "$Comment": "HytaleZX: Add delay to wait for the npc go to min altitude",
+              "ActionsBlocking": true,
+              "BodyMotion": {
+                "Type": "Seek",
+                "SlowDownDistance": { "Compute": "CombatDistance + 5" },
+                "StopDistance": { "Compute": "CombatDistance" },
+                "RelativeSpeed": 1
+              },
+              "Actions": [
+                {
+                  "Type": "OverrideAltitude",
+                  "DesiredAltitudeRange": { "Compute": "DefaultAltitude" }
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [2, 2],
+                  "Action": {
+                    "Type": "State",
+                    "State": "Combat"
+                  }
+                }
+              ],
+              "HeadMotion": {
+                "Type": "Watch"
+              }
+            },
+            {
+              "ActionsAtomic": true,
+              "Actions": [
+                {
+                  "Type": "Timeout",
+                  "Delay": [2, 2]
+                },
+                {
+                  "Type": "ReleaseTarget"
+                },
+                {
+                  "Type": "State",
+                  "State": "Idle"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Enabled": { "Compute": "UseCombatActionEvaluator" },
+          "Sensor": {
+            "Type": "State",
+            "State": "Combat"
+          },
+          "Instructions": [
+            {
+              "Reference": "Component_Instruction_Clear_Status_Animation"
+            },
+            {
+              "Continue": true,
+              "Sensor": {
+                "Type": "Self",
+                "Filters": [
+                  {
+                    "Type": "Stat",
+                    "Stat": "Health",
+                    "StatTarget": "Value",
+                    "RelativeTo": "Health",
+                    "RelativeToTarget": "Max",
+                    "ValueRange": [0.5, 1]
+                  }
+                ]
+              },
+              "Actions": [
+                {
+                  "Type": "OverrideAltitude",
+                  "DesiredAltitudeRange": { "Compute": "DefaultAltitude" }
+                }
+              ]
+            },
+            {
+              "Continue": true,
+              "Enabled": { "Compute": "!IsMinion" },
+              "Sensor": {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "Self",
+                    "Filters": [
+                      {
+                        "Type": "Stat",
+                        "Stat": "Health",
+                        "StatTarget": "Value",
+                        "RelativeTo": "Health",
+                        "RelativeToTarget": "Max",
+                        "ValueRange": [0, 0.5]
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Target",
+                    "Range": { "Compute": "ViewRange" }
+                  }
+                ]
+              },
+              "Actions": [
+                {
+                  "Type": "OverrideAltitude",
+                  "DesiredAltitudeRange": { "Compute": "LowHealthAltitude" }
+                }
+              ]
+            },
+            {
+              "Sensor": {
+                "Type": "Or",
+                "Sensors": [
+                  {
+                    "Reference": "Component_Sensor_Sight_By_Attitude",
+                    "Modify": {
+                      "ViewRange": { "Compute": "AlertedRange" },
+                      "ViewSector": 360,
+                      "Attitudes": ["Hostile"]
+                    }
+                  },
+                  {
+                    "Type": "HasHostileTargetMemory"
+                  }
+                ]
+              },
+              "Instructions": [
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Or",
+                    "Sensors": [
+                      {
+                        "Type": "CombatActionEvaluator",
+                        "TargetInRange": true
+                      },
+                      {
+                        "Type": "CombatActionEvaluator",
+                        "TargetInRange": false
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SetMarkedTarget"
+                    }
+                  ]
+                },
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Damage",
+                    "Combat": true
+                  },
+                  "Actions": [
+                    {
+                      "Type": "AddToHostileTargetMemory"
+                    }
+                  ]
+                },
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Self",
+                        "Filters": [
+                          {
+                            "Type": "Stat",
+                            "Stat": "Health",
+                            "StatTarget": "Value",
+                            "RelativeTo": "Health",
+                            "RelativeToTarget": "Max",
+                            "ValueRange": [0, 0.5]
+                          }
+                        ]
+                      },
+                      {
+                        "Type": "State",
+                        "State": ".Default"
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "State",
+                      "State": ".Reposition"
+                    }
+                  ]
+                },
+                {
+                  "TreeMode": true,
+                  "Sensor": {
+                    "Type": "Or",
+                    "Sensors": [
+                      {
+                        "Type": "State",
+                        "State": ".Melee",
+                        "IgnoreMissingSetState": true
+                      },
+                      {
+                        "Type": "State",
+                        "State": ".Ranged",
+                        "IgnoreMissingSetState": true
+                      },
+                      {
+                        "Type": "State",
+                        "State": ".Reposition",
+                        "IgnoreMissingSetState": true
+                      },
+                      {
+                        "Type": "State",
+                        "State": ".Ground",
+                        "IgnoreMissingSetState": true
+                      },
+                      {
+                        "Type": "State",
+                        "State": ".Summon",
+                        "IgnoreMissingSetState": true
+                      },
+                      {
+                        "Type": "State",
+                        "State": ".Default"
+                      }
+                    ]
+                  },
+                  "Instructions": [
+                    {
+                      "Sensor": {
+                        "Type": "State",
+                        "State": ".Summon"
+                      },
+                      "ActionsAtomic": true,
+                      "Actions": [
+                        {
+                          "Type": "Timeout",
+                          "Delay": [0.5, 0.5]
+                        },
+                        {
+                          "Type": "Spawn",
+                          "Kind": "Arcangel_Minion",
+                          "CountRange": [3, 3],
+                          "FanOut": true,
+                          "SpawnAngle": 180,
+                          "SpawnDirection": 0,
+                          "DistanceRange": [8, 12],
+                          "DelayRange": [0, 0]
+                        },
+                        {
+                          "Type": "State",
+                          "State": ".Default"
+                        }
+                      ]
+                    },
+                    {
+                      "Sensor": {
+                        "Type": "State",
+                        "State": ".Reposition"
+                      },
+                      "ActionsAtomic": true,
+                      "Actions": [
+                        {
+                          "Type": "Timeout",
+                          "Delay": [2, 2]
+                        },
+                        {
+                          "Type": "State",
+                          "State": ".Ground"
+                        }
+                      ]
+                    },
+                    {
+                      "Sensor": {
+                        "Type": "CombatActionEvaluator",
+                        "TargetInRange": true
+                      },
+                      "HeadMotion": {
+                        "Type": "Aim",
+                        "RelativeTurnSpeed": {
+                          "Compute": "CombatRelativeTurnSpeed"
+                        }
+                      },
+                      "BodyMotion": {
+                        "Type": "Seek",
+                        "SlowDownDistance": { "Compute": "CombatDistance + 5" },
+                        "StopDistance": { "Compute": "CombatDistance" },
+                        "RelativeSpeed": 0.4
+                      },
+                      "Actions": [
+                        {
+                          "Type": "CombatAbility"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Actions": [
+                {
+                  "Type": "State",
+                  "State": "Idle"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "NameTranslationKey": { "Compute": "NameTranslationKey" }
+}

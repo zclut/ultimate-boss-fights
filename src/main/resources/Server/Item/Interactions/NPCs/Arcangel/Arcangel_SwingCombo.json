@@ -13,7 +13,7 @@
             "$Comment": "Prepare Delay before damage is applied via selector",
             "Effects": {
               "ItemPlayerAnimationsId": "Arcangel_Default",
-              "ItemAnimationId": "ThrowSword",
+              "ItemAnimationId": "SwingCombo",
               "MovementEffects": {
                 "DisableAll": true
               }
@@ -27,13 +27,23 @@
       "Interactions": [
         {
           "Type": "Simple",
-          "RunTime": 0.3,
-          "Next": "Arcangel_ThrowSword_Selector"
+          "RunTime": 0.8,
+          "Next": "Arcangel_Swing_Left_Selector"
         },
         {
           "Type": "Simple",
-          "RunTime": 0.6,
-          "Next": "Arcangel_ThrowSword_Selector"
+          "RunTime": 0.35,
+          "Next": "Arcangel_Swing_Right_Selector"
+        },
+        {
+          "Type": "Simple",
+          "RunTime": 0.40,
+          "Next": "Arcangel_Swing_Left_Selector"
+        },
+        {
+          "Type": "Simple",
+          "RunTime": 0.25,
+          "Next": "Arcangel_Swing_Right_Selector"
         }
       ]
     }

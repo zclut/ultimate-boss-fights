@@ -2,8 +2,8 @@
   "Type": "Ability",
   "Description": "Launch projectile from the sky above the target",
   "Target": "Hostile",
-  "WeightCoefficient": 5,
-  "AttackDistanceRange": [0, 20],
+  "WeightCoefficient": 2,
+  "AttackDistanceRange": [0, 3],
   "Ability": {
     "Interactions": ["Arcangel_AOESword"]
   },
@@ -12,7 +12,7 @@
       "Type": "TimeSinceLastUsed",
       "Curve": {
         "Type": "Switch",
-        "SwitchPoint": 20
+        "SwitchPoint": 4
       }
     },
     {

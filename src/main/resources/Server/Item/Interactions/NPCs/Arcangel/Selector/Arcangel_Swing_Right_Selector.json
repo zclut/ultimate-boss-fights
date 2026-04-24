@@ -1,0 +1,20 @@
+{
+  "Type": "Selector",
+  "$Comment": "Length of Combat",
+  "RunTime": 0.16,
+  "Selector": {
+    "Id": "Stab",
+    "TestLineOfSight": true,
+    "ExtendTop": 4.0,
+    "ExtendLeft": 2,
+    "ExtendRight": 2,
+    "ExtendBottom": 4.0,
+    "StartDistance": 0.1,
+    "EndDistance": 3.5
+  },
+  "HitEntity": {
+    "Interactions": [
+      "Arcangel_Swing_Right_Damage"
+    ]
+  }
+}
