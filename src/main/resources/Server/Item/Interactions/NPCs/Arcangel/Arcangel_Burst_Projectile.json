@@ -29,12 +29,81 @@
           ]
         },
         "Next": {
-          "Type": "LaunchProjectile",
-          "RunTime": 2.1,
-          "ProjectileId": "Arcangel_Hand_Projectile",
-          "Tags": {
-            "AimingReference": []
-          }
+          "Type": "Serial",
+          "Interactions": [
+            {
+              "Type": "LaunchProjectile",
+              "RunTime": 0.2,
+              "ProjectileId": "Arcangel_Hand_Projectile",
+              "Tags": {
+                "AimingReference": []
+              }
+            },
+            {
+              "Type": "LaunchProjectile",
+              "RunTime": 0.2,
+              "ProjectileId": "Arcangel_Hand_Projectile",
+              "Tags": {
+                "AimingReference": []
+              }
+            },
+            {
+              "Type": "LaunchProjectile",
+              "RunTime": 0.2,
+              "ProjectileId": "Arcangel_Hand_Projectile",
+              "Tags": {
+                "AimingReference": []
+              }
+            },
+            {
+              "Type": "LaunchProjectile",
+              "RunTime": 0.2,
+              "ProjectileId": "Arcangel_Hand_Projectile",
+              "Tags": {
+                "AimingReference": []
+              }
+            },
+            {
+              "Type": "LaunchProjectile",
+              "RunTime": 0.2,
+              "ProjectileId": "Arcangel_Hand_Projectile",
+              "Tags": {
+                "AimingReference": []
+              }
+            },
+            {
+              "Type": "LaunchProjectile",
+              "RunTime": 0.2,
+              "ProjectileId": "Arcangel_Hand_Projectile",
+              "Tags": {
+                "AimingReference": []
+              }
+            },
+            {
+              "Type": "LaunchProjectile",
+              "RunTime": 0.2,
+              "ProjectileId": "Arcangel_Hand_Projectile",
+              "Tags": {
+                "AimingReference": []
+              }
+            },
+            {
+              "Type": "LaunchProjectile",
+              "RunTime": 0.2,
+              "ProjectileId": "Arcangel_Hand_Projectile",
+              "Tags": {
+                "AimingReference": []
+              }
+            },
+            {
+              "Type": "LaunchProjectile",
+              "RunTime": 0.01,
+              "ProjectileId": "Arcangel_Hand_Projectile",
+              "Tags": {
+                "AimingReference": []
+              }
+            }
+          ]
         }
       },
       {
