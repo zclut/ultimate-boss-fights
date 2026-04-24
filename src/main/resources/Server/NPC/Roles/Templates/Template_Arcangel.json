@@ -425,7 +425,7 @@
                       "Actions": [
                         {
                           "Type": "Timeout",
-                          "Delay": [2, 2]
+                          "Delay": [3, 3]
                         },
                         {
                           "Type": "State",

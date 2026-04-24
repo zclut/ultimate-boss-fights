@@ -10,7 +10,7 @@
   },
   "AttackDistanceRange": [
     0,
-    10
+    20
   ],
   "WeightCoefficient": 2,
   "Conditions": [

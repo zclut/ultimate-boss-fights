@@ -7,11 +7,11 @@
   },
   "DamageEffects": {
     "Knockback": {
-      "Duration": 5,
+      "Duration": 4,
       "Force": 0,
       "RelativeX": 0,
       "RelativeZ": 0,
-      "VelocityY": 3,
+      "VelocityY": 3.5,
       "VelocityType": "Set"
     }
   }

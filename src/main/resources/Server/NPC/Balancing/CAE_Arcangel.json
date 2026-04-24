@@ -28,8 +28,6 @@
       "BurstProjectile": "CAO_Arcangel_Burst_Projectile",
       "BigProjectile": "CAO_Arcangel_Big_Projectile",
 
-      "Ground": "CAO_Arcangel_Ground",
-
       "AOESword": "CAO_Arcangel_AOESword",
       "ThrowSword": "CAO_Arcangel_ThrowSword",
       "SwingCombo": "CAO_Arcangel_SwingCombo"
@@ -44,6 +42,8 @@
       },
       "Ground": {
         "Actions": [
+          "BurstProjectile",
+          "BigProjectile",
           "AOESword",
           "ThrowSword",
           "SwingCombo",
