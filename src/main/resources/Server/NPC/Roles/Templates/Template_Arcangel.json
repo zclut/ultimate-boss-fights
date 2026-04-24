@@ -76,6 +76,10 @@
       "Value": 3,
       "Description": "Hover/seek stop distance used in CAE combat. Defaults to AttackDistance if not overridden."
     },
+    "AerialCombatDistance": {
+      "Value": 8,
+      "Description": "Stop distance used in aerial (.Default) combat state."
+    },
     "UseCombatActionEvaluator": {
       "Value": false,
       "Description": "Whether to use the Combat Action Evaluator via an accompanying CombatConfig."
@@ -435,8 +439,18 @@
                     },
                     {
                       "Sensor": {
-                        "Type": "CombatActionEvaluator",
-                        "TargetInRange": true
+                        "Type": "And",
+                        "Sensors": [
+                          {
+                            "Type": "CombatActionEvaluator",
+                            "TargetInRange": true
+                          },
+                          {
+                            "Type": "State",
+                            "State": ".Ground",
+                            "IgnoreMissingSetState": true
+                          }
+                        ]
                       },
                       "HeadMotion": {
                         "Type": "Aim",
@@ -448,6 +462,38 @@
                         "Type": "Seek",
                         "SlowDownDistance": { "Compute": "CombatDistance + 5" },
                         "StopDistance": { "Compute": "CombatDistance" },
+                        "RelativeSpeed": 0.6
+                      },
+                      "Actions": [
+                        {
+                          "Type": "CombatAbility"
+                        }
+                      ]
+                    },
+                    {
+                      "Sensor": {
+                        "Type": "And",
+                        "Sensors": [
+                          {
+                            "Type": "CombatActionEvaluator",
+                            "TargetInRange": true
+                          },
+                          {
+                            "Type": "State",
+                            "State": ".Default"
+                          }
+                        ]
+                      },
+                      "HeadMotion": {
+                        "Type": "Aim",
+                        "RelativeTurnSpeed": {
+                          "Compute": "CombatRelativeTurnSpeed"
+                        }
+                      },
+                      "BodyMotion": {
+                        "Type": "Seek",
+                        "SlowDownDistance": { "Compute": "AerialCombatDistance + 5" },
+                        "StopDistance": { "Compute": "AerialCombatDistance" },
                         "RelativeSpeed": 0.4
                       },
                       "Actions": [

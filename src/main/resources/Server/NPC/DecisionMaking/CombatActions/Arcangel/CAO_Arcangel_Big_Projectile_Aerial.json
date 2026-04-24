@@ -3,9 +3,14 @@
   "Description": "Big projectile, aerial phase (no distance gate)",
   "Target": "Hostile",
   "WeightCoefficient": 2,
-  "AttackDistanceRange": [0, 20],
+  "AttackDistanceRange": [
+    0,
+    20
+  ],
   "Ability": {
-    "Interactions": ["Arcangel_Big_Projectile"]
+    "Interactions": [
+      "Arcangel_Big_Projectile"
+    ]
   },
   "Conditions": [
     {
@@ -20,5 +25,10 @@
       "MinValue": 0.4,
       "MaxValue": 1
     }
-  ]
+  ],
+  "RequireAiming": true,
+  "Positioning": "Flank",
+  "PositionFirst": true,
+  "ChargeDistance": 4,
+  "ChargeFor": 1
 }

@@ -9,10 +9,11 @@
     "MemoriesCategory": "Boss",
     "MemoriesNameOverride": "Mikaela",
     "CombatDistance": 2,
+    "AerialCombatDistance": 6,
     "UseCombatActionEvaluator": true,
     "_CombatConfig": "CAE_Arcangel",
     "NameTranslationKey": "server.npcRoles.Arcangel.name",
     "LowHealthAltitude": [0, 1],
-    "DefaultAltitude": [4, 6]
+    "DefaultAltitude": [5, 7]
   }
 }

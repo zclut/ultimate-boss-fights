@@ -13,11 +13,6 @@
     "Type": "Serial",
     "Interactions": [
       {
-        "Type": "ApplyEffect",
-        "EffectId": "Disable_Fly",
-        "Entity": "Owner"
-      },
-      {
         "Type": "Simple",
         "RunTime": 2,
         "Effects": {
@@ -35,17 +30,12 @@
         },
         "Next": {
           "Type": "LaunchProjectile",
-          "RunTime": 0.86,
+          "RunTime": 2.1,
           "ProjectileId": "Arcangel_Hand_Projectile",
           "Tags": {
             "AimingReference": []
           }
         }
-      },
-      {
-        "Type": "Simple",
-        "RunTime": 1.55,
-        "Next": "Disable_Fly_Effect"
       }
     ]
   }
