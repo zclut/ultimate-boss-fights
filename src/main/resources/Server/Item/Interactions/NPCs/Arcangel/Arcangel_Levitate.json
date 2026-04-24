@@ -47,6 +47,9 @@
           "Type": "Simple",
           "RunTime": 0.1,
           "Next": "Arcangel_Levitate_Selector"
+        },
+        {
+          "Type": "HytaleZX:ResetRegenTimer"
         }
       ]
     }

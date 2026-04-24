@@ -38,6 +38,9 @@
           "Type": "Simple",
           "RunTime": 0.25,
           "Next": "Arcangel_Swing_Right_Selector"
+        },
+        {
+          "Type": "HytaleZX:ResetRegenTimer"
         }
       ]
     }

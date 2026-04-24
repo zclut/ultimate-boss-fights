@@ -33,6 +33,9 @@
           "Type": "Simple",
           "RunTime": 0.3,
           "Next": "Arcangel_AOESword_Selector"
+        },
+        {
+          "Type": "HytaleZX:ResetRegenTimer"
         }
       ]
     }

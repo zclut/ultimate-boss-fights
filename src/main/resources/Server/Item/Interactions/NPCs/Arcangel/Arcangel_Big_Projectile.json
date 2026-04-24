@@ -36,6 +36,9 @@
             "AimingReference": []
           }
         }
+      },
+      {
+        "Type": "HytaleZX:ResetRegenTimer"
       }
     ]
   }
