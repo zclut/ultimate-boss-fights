@@ -22,6 +22,9 @@
           "Type": "Simple",
           "RunTime": 0.5,
           "Next": "Mikaela_Punch_Selector"
+        },
+        {
+          "Type": "HytaleZX:ResetRegenTimer"
         }
       ]
     },

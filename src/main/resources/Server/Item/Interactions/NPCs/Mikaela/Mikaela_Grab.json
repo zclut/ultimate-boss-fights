@@ -39,6 +39,9 @@
             ]
           },
           "Next": "Mikaela_Grab_Selector"
+        },
+        {
+          "Type": "HytaleZX:ResetRegenTimer"
         }
       ]
     }

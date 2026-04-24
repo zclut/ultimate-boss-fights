@@ -22,6 +22,9 @@
           "Type": "Simple",
           "RunTime": 1,
           "Next": "Mikaela_Swing_Down_Selector"
+        },
+        {
+          "Type": "HytaleZX:ResetRegenTimer"
         }
       ]
     },

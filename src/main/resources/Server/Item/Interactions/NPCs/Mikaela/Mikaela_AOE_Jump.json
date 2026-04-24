@@ -27,6 +27,9 @@
           "Type": "Simple",
           "RunTime": 1.1,
           "Next": "Mikaela_AOEJump_Second_Selector"
+        },
+        {
+          "Type": "HytaleZX:ResetRegenTimer"
         }
       ]
     }
