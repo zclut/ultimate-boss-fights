@@ -4,7 +4,7 @@
   "Modify": {
     "Appearance": "Arcangel",
     "DropList": "",
-    "MaxHealth": 700,
+    "MaxHealth": 2000,
     "IsMemory": true,
     "MemoriesCategory": "Boss",
     "MemoriesNameOverride": "Mikaela",

@@ -3,7 +3,7 @@
   "$Comment": "DisplayState",
   "Reference": "Template_Mikaela",
   "Modify": {
-    "MaxHealth": 700,
+    "MaxHealth": 1400,
     "MaxSpeed": 5,
     "RunThreshold": 1,
     "AttackDistance": 40,

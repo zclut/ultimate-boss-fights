@@ -1,6 +1,6 @@
 {
   "Type": "CombatActionEvaluator",
-  "EntityEffect": "Immunity_Fire",
+  "EntityEffect": "Arcangel_Resistance",
   "TargetMemoryDuration": 10,
   "CombatActionEvaluator": {
     "RunConditions": [

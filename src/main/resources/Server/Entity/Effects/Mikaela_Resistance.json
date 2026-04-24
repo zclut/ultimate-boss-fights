@@ -1,0 +1,30 @@
+{
+  "Infinite": true,
+  "DamageResistance": {
+    "Projectile": [
+      {
+        "CalculationType": "Multiplicative",
+        "Amount": 0.95
+      }
+    ],
+    "Fire": [
+      {
+        "CalculationType": "Multiplicative",
+        "Amount": 0.5
+      }
+    ],
+    "Ice": [
+      {
+        "CalculationType": "Multiplicative",
+        "Amount": 0.5
+      }
+    ],
+    "Physical": [
+      {
+        "CalculationType": "Multiplicative",
+        "Amount": 0.7
+      }
+    ]
+  },
+  "RemovalBehavior": "Complete"
+}

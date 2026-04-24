@@ -14,7 +14,7 @@
         "Type": "Switch",
         "InitialState": 0,
         "FinalState": 1,
-        "SwitchPoint": 9
+        "SwitchPoint": 10
       }
     },
     {

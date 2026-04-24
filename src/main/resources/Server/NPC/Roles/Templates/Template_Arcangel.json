@@ -462,7 +462,7 @@
                         "Type": "Seek",
                         "SlowDownDistance": { "Compute": "CombatDistance + 5" },
                         "StopDistance": { "Compute": "CombatDistance" },
-                        "RelativeSpeed": 0.6
+                        "RelativeSpeed": 0.3
                       },
                       "Actions": [
                         {

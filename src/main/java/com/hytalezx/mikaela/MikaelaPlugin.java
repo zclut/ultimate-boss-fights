@@ -40,8 +40,8 @@ public class MikaelaPlugin extends JavaPlugin {
 
         // BOSS REGISTRY HEALTH BARS
         LOGGER.atInfo().log("Registering bosses...");
-        BossRegistry.register(new BossConfig("Mikaela", "Mikaela Warderer",50.0, "bosshealth.ui"));
-        BossRegistry.register(new BossConfig("Arcangel", "Mikaela Arcangel",50.0, "arcangel.ui"));
+        BossRegistry.register(new BossConfig("Mikaela", "MIKAELA WARDERER",75.0, "mikaela.ui"));
+        BossRegistry.register(new BossConfig("Arcangel", "MIKAELA ARCHANGEL",75.0, "arcangel.ui"));
 
 
         // ── INTERACTIONS ────────────────────────────────────────────────────

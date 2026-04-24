@@ -1,6 +1,6 @@
 {
   "Type": "CombatActionEvaluator",
-  "EntityEffect": "Immunity_Fire",
+  "EntityEffect": "Mikaela_Resistance",
   "TargetMemoryDuration": 10,
   "CombatActionEvaluator": {
     "RunConditions": [
