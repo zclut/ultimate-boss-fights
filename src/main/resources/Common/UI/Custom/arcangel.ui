@@ -7,7 +7,7 @@ Group {
     Anchor: (Left: 0, Right: 0, Horizontal: 0);
     Text: " ";
     Style: (FontSize: 25, RenderBold: true, VerticalAlignment: Center, Alignment: Center, TextColor: #ffffff, HorizontalAlignment: Center);
-    Background: "mikaela_name.png";
+    Background: "arcangel_name.png";
   }
 
   Group {

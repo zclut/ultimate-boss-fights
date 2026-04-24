@@ -1,6 +1,5 @@
 {
   "Type": "Abstract",
-  "Debug": "DisplayState",
   "Appearance": { "Compute": "Appearance" },
   "StartState": "Idle",
   "Parameters": {
@@ -160,6 +159,11 @@
                 ]
               },
               "Actions": [
+                {
+                  "Type": "ApplyEntityEffect",
+                  "UseTarget": false,
+                  "EntityEffect": "Invulnerable"
+                },
                 {
                   "Type": "Timeout",
                   "Delay": [7, 7],

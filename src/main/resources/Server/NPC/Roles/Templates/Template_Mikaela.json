@@ -1,6 +1,5 @@
 {
   "Type": "Abstract",
-  "Debug": "DisplayState",
   "Parameters": {
     "SecondPhaseRole": {
       "Value": "Skeleton_Fighter",

@@ -23,13 +23,9 @@ import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
-import java.util.Map;
-import java.util.UUID;
-
 /**
- * Player-based system — always ticks regardless of NPC visibility.
- * Reads fresh NPC data from the store by UUID (from BossNPCTracker)
- * so the HUD works even when the player isn't looking at the boss.
+ * Player-based system — always ticks regardless of NPC view frustum.
+ * Uses Ref<EntityStore> from BossNPCTracker directly — no UUID lookup needed.
  */
 public class PlayerBossHudSystem extends EntityTickingSystem<EntityStore> {
 
@@ -57,15 +53,17 @@ public class PlayerBossHudSystem extends EntityTickingSystem<EntityStore> {
         PlayerRef playerRef = (PlayerRef) chunk.getComponent(idx, PlayerRef.getComponentType());
         if (playerRef == null) return;
 
-        HudManager hud   = player.getHudManager();
+        HudManager hud     = player.getHudManager();
         Vector3d playerPos = playerTransform.getPosition();
 
-        for (Map.Entry<UUID, BossConfig> entry : BossNPCTracker.entries()) {
-            UUID bossUuid   = entry.getKey();
-            BossConfig config = entry.getValue();
+        for (BossNPCTracker.Entry entry : BossNPCTracker.entries()) {
+            Ref<EntityStore> npcRef = entry.ref();
+            BossConfig config       = entry.config();
 
-            Ref<EntityStore> npcRef = player.getWorld().getEntityRef(bossUuid);
-            if (npcRef == null) continue;
+            if (!npcRef.isValid()) {
+                BossNPCTracker.unregister(npcRef);
+                continue;
+            }
 
             TransformComponent npcTransform = (TransformComponent) store.getComponent(
                     npcRef, TransformComponent.getComponentType());
@@ -78,9 +76,9 @@ public class PlayerBossHudSystem extends EntityTickingSystem<EntityStore> {
             EntityStatValue healthValue = statMap.get(DefaultEntityStatTypes.getHealth());
             if (healthValue == null) continue;
 
-            double healthPct  = healthValue.asPercentage();
-            Vector3d npcPos   = npcTransform.getPosition();
-            double distSq     = horizontalDistSq(npcPos, playerPos);
+            double healthPct = healthValue.asPercentage();
+            Vector3d npcPos  = npcTransform.getPosition();
+            double distSq    = horizontalDistSq(npcPos, playerPos);
 
             double entryRadiusSq = config.getProximityBlocks() * config.getProximityBlocks();
             double exitRadiusSq  = config.getExitBlocks()      * config.getExitBlocks();

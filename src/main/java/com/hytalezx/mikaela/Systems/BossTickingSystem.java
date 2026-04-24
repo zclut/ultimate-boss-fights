@@ -5,10 +5,10 @@ import com.hytalezx.mikaela.Config.BossNPCTracker;
 import com.hytalezx.mikaela.Config.BossRegistry;
 import com.hypixel.hytale.component.ArchetypeChunk;
 import com.hypixel.hytale.component.CommandBuffer;
+import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.component.system.tick.EntityTickingSystem;
-import com.hypixel.hytale.server.core.entity.UUIDComponent;
 import com.hypixel.hytale.server.core.modules.entitystats.EntityStatMap;
 import com.hypixel.hytale.server.core.modules.entitystats.EntityStatValue;
 import com.hypixel.hytale.server.core.modules.entitystats.asset.DefaultEntityStatTypes;
@@ -18,9 +18,9 @@ import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
 /**
- * NPC-based system — runs only when NPC is in view (frustum).
- * Sole job: populate BossNPCTracker so PlayerBossHudSystem can work
- * even when the NPC is out of the player's view.
+ * NPC-based system — runs when NPC is in view.
+ * Registers boss NPCs into BossNPCTracker so PlayerBossHudSystem
+ * can update the HUD even when the player looks away.
  */
 public class BossTickingSystem extends EntityTickingSystem<EntityStore> {
 
@@ -42,14 +42,12 @@ public class BossTickingSystem extends EntityTickingSystem<EntityStore> {
         BossConfig config = BossRegistry.resolve(npc.getRoleName());
         if (config == null) return;
 
-        UUIDComponent uuidComp = (UUIDComponent) chunk.getComponent(idx, UUIDComponent.getComponentType());
-        if (uuidComp == null) return;
-
         EntityStatMap statMap = (EntityStatMap) chunk.getComponent(idx, EntityStatMap.getComponentType());
         if (statMap == null) return;
         EntityStatValue healthValue = statMap.get(DefaultEntityStatTypes.getHealth());
         if (healthValue != null && healthValue.asPercentage() <= 0.0) return;
 
-        BossNPCTracker.register(uuidComp.getUuid(), config);
+        Ref<EntityStore> ref = chunk.getReferenceTo(idx);
+        BossNPCTracker.register(ref, config);
     }
 }
