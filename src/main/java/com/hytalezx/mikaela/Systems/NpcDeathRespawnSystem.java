@@ -9,12 +9,15 @@ import com.hypixel.hytale.component.system.tick.EntityTickingSystem;
 import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.math.vector.Vector3d;
 import com.hypixel.hytale.math.vector.Vector3f;
+import com.hypixel.hytale.server.core.entity.UUIDComponent;
 import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
 import com.hypixel.hytale.server.core.modules.entitystats.EntityStatMap;
 import com.hypixel.hytale.server.core.modules.entitystats.asset.DefaultEntityStatTypes;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.npc.NPCPlugin;
 import com.hypixel.hytale.server.npc.entities.NPCEntity;
+import com.hytalezx.mikaela.Config.BossNPCTracker;
+import com.hytalezx.mikaela.Config.BossRegistry;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
@@ -22,6 +25,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -106,6 +110,12 @@ public class NpcDeathRespawnSystem extends EntityTickingSystem<EntityStore> {
         NPCEntity npcEntity = chunk.getComponent(idx, NPCEntity.getComponentType());
         if (npcEntity == null) return;
 
+        UUIDComponent uuidComp = chunk.getComponent(idx, UUIDComponent.getComponentType());
+        final UUID deadBossUuid = uuidComp != null ? uuidComp.getUuid() : null;
+
+        // Unregister dead boss from HUD tracker
+        if (deadBossUuid != null) BossNPCTracker.unregister(deadBossUuid);
+
         String roleName = NPCPlugin.get().getName(npcEntity.getRoleIndex());
         LOGGER.atInfo().log("[NpcDeathRespawnSystem] NPC dead: roleName='%s'", roleName);
 
@@ -153,6 +163,16 @@ public class NpcDeathRespawnSystem extends EntityTickingSystem<EntityStore> {
                             worldStore, roleToSpawn, null, spawnPos, spawnRot);
                     if (result != null) {
                         LOGGER.atInfo().log("[NpcDeathRespawnSystem] '%s' spawned", roleToSpawn);
+                        // Register new boss UUID so PlayerBossHudSystem can track it
+                        var newRef = result.first();
+                        if (newRef != null) {
+                            var bossConfig = BossRegistry.resolve(roleToSpawn);
+                            UUIDComponent newUuidComp = (UUIDComponent) worldStore.getComponent(
+                                    newRef, UUIDComponent.getComponentType());
+                            if (bossConfig != null && newUuidComp != null) {
+                                BossNPCTracker.register(newUuidComp.getUuid(), bossConfig);
+                            }
+                        }
                     } else {
                         LOGGER.atWarning().log(
                                 "[NpcDeathRespawnSystem] spawnNPC null for '%s'", roleToSpawn);

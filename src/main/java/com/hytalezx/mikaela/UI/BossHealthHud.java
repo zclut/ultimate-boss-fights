@@ -28,7 +28,6 @@ public class BossHealthHud extends CustomUIHud {
     @Override
     protected void build(@Nonnull UICommandBuilder builder) {
         builder.append(this.hudStyle);
-        builder.set("#BossName.Text", this.bossName);
         applyTier(builder, this.currentTier, this.percentagePv);
     }
 

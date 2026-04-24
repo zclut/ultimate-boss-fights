@@ -2,12 +2,14 @@
 $Hotbar = "Hotbar.ui";
 Group {
   LayoutMode: Top;
-  Anchor: (Top: 30, Width: 800, Height: 500);
+  Anchor: (Top: 30, Width: 400, Height: 600);
   Label #BossName {
     Anchor: (Left: 0, Right: 0, Horizontal: 0);
-    Text: "Nom Boss";
+    Text: " ";
     Style: (FontSize: 25, RenderBold: true, VerticalAlignment: Center, Alignment: Center, TextColor: #ffffff, HorizontalAlignment: Center);
+    Background: "mikaela_name.png";
   }
+
   Group {
     Anchor: (Width: 1000, Height: 70);
     Background: "arcangel_bar.png";

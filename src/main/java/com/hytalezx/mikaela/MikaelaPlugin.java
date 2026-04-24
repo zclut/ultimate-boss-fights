@@ -16,6 +16,7 @@ import com.hytalezx.mikaela.Systems.BossTickingSystem;
 import com.hytalezx.mikaela.Systems.DeathParticleTickSystem;
 import com.hytalezx.mikaela.Systems.FallingProjectileTickSystem;
 import com.hytalezx.mikaela.Systems.NpcDeathRespawnSystem;
+import com.hytalezx.mikaela.Systems.PlayerBossHudSystem;
 
 import javax.annotation.Nonnull;
 
@@ -66,6 +67,7 @@ public class MikaelaPlugin extends JavaPlugin {
         // ── SYSTEMS ────────────────────────────────────────────────────────
         LOGGER.atInfo().log("Registering systems...");
         this.getEntityStoreRegistry().registerSystem(new BossTickingSystem());
+        this.getEntityStoreRegistry().registerSystem(new PlayerBossHudSystem());
         this.getEntityStoreRegistry().registerSystem(new FallingProjectileTickSystem());
         this.getEntityStoreRegistry().registerSystem(new DeathParticleTickSystem());
 
