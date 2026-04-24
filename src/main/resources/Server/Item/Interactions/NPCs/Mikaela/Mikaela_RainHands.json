@@ -12,7 +12,18 @@
             "ItemAnimationId": "RainHands",
             "MovementEffects": {
               "DisableAll": true
-            }
+            },
+            "Particles": [
+              {
+                "SystemId": "Sword_Charging",
+                "Scale": 5,
+                "PositionOffset": {
+                  "Y": 0
+                },
+                "DetachedFromModel": false,
+                "TargetEntityPart": "Entity"
+              }
+            ]
           },
           "RunTime": 8.18
         }
