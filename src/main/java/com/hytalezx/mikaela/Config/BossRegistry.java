@@ -11,7 +11,6 @@ public class BossRegistry {
         REGISTRY.put(config.getRolePrefix(), config);
     }
 
-    /** Devuelve la config si el roleName coincide con algún prefijo, o null si no es boss. */
     public static BossConfig resolve(String npcRoleName) {
         for (Map.Entry<String, BossConfig> entry : REGISTRY.entrySet()) {
             if (npcRoleName.startsWith(entry.getKey())) {

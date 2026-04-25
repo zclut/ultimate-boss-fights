@@ -25,6 +25,18 @@ public class MikaelaPlugin extends JavaPlugin {
 
     private static final HytaleLogger LOGGER = HytaleLogger.forEnclosingClass();
 
+    private static final BossConfig[] BOSS_CONFIGS = {
+        new BossConfig("Mikaela", "MIKAELA WARDERER",  55.0, "Pages/HUD/Mikaela/mikaela.ui"),
+        new BossConfig("Arcangel", "MIKAELA ARCHANGEL", 55.0, "Pages/HUD/Arcangel/arcangel.ui"),
+    };
+
+    private record PhaseTransition(String from, String to, float delay,
+                                   String particle, float scale, float duration) {}
+
+    private static final PhaseTransition[] PHASE_TRANSITIONS = {
+        new PhaseTransition("Mikaela", "Arcangel", 7.0f, "Mikaela_Death_Legendary", 10.0f, 7.0f),
+    };
+
     public MikaelaPlugin(@Nonnull JavaPluginInit init) {
         super(init);
         LOGGER.atInfo().log("Hello from " + this.getName() + " version " + this.getManifest().getVersion().toString());
@@ -41,8 +53,7 @@ public class MikaelaPlugin extends JavaPlugin {
 
         // BOSS REGISTRY HEALTH BARS
         LOGGER.atInfo().log("Registering bosses...");
-        BossRegistry.register(new BossConfig("Mikaela", "MIKAELA WARDERER",55.0, "Pages/HUD/Mikaela/mikaela.ui"));
-        BossRegistry.register(new BossConfig("Arcangel", "MIKAELA ARCHANGEL",55.0, "Pages/HUD/Arcangel/arcangel.ui"));
+        for (BossConfig cfg : BOSS_CONFIGS) BossRegistry.register(cfg);
 
 
         // ── INTERACTIONS ────────────────────────────────────────────────────
@@ -74,12 +85,7 @@ public class MikaelaPlugin extends JavaPlugin {
 
         // ── NEW PHASE SYSTEM ────────────────────────────────────────────────
         EntityStore.REGISTRY.registerSystem(new NpcDeathRespawnSystem());
-        NpcDeathRespawnSystem.register(
-                "Mikaela", "Arcangel",
-                7.0f,               // segundos hasta phase 2
-                "Mikaela_Death_Legendary",
-                10.0f,              // scale
-                7.0f                // duración del particle — ajustar aquí
-        );
+        for (PhaseTransition t : PHASE_TRANSITIONS)
+            NpcDeathRespawnSystem.register(t.from(), t.to(), t.delay(), t.particle(), t.scale(), t.duration());
     }
 }
