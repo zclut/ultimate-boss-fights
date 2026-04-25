@@ -1,0 +1,48 @@
+{
+  "$Comment": "This instanced world spawns a Default world from the Hytale Generator prototype",
+  "RequiredPlugins": {},
+  "ChunkStorage": {
+    "Type": "Hytale"
+  },
+  "GameMode": "Adventure",
+  "IsPvpEnabled": false,
+  "IsSpawningNPC": false,
+  "GameTime": "0001-01-01T17:00:00Z",
+  "UUID": {
+    "$binary": "AZKxiVAMQfWIS0qBsBfjzQ==",
+    "$type": "04"
+  },
+  "GameplayConfig": "Config_Structure",
+  "IsCompassUpdating": true,
+  "IsTicking": true,
+  "IsGameTimePaused": true,
+  "IsObjectiveMarkersEnabled": true,
+  "IsAllNPCFrozen": false,
+  "IsSavingPlayers": true,
+  "WorldGen": {
+    "Type": "HytaleGenerator",
+    "WorldStructure": "StructureAsset",
+    "PlayerSpawn" : {
+      "X": 18,
+      "Y": 4,
+      "Z": -100,
+      "Pitch": -0.1,
+      "Yaw": 168.1,
+      "Roll": 0
+    }
+  },
+  "SpawnProvider": {
+    "Id": "Global",
+    "SpawnPoint": {
+      "X": 18,
+      "Y": 4,
+      "Z": -100,
+      "Pitch": -0.1,
+      "Yaw": 168.1,
+      "Roll": 0
+    }
+  },
+  "IsSpawnMarkersEnabled": true,
+  "DeleteOnRemove": true,
+  "Version": 2
+}

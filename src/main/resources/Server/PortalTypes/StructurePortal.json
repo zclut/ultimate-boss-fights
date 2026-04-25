@@ -1,0 +1,28 @@
+{
+  "InstanceId": "Structure",
+  "Description": {
+    "DisplayName": "server.portals.structure",
+    "FlavorText": "server.portals.structure.description",
+    "SplashImage": "MikaelaArtwork.png",
+    "Tips": [
+      "server.portals.structure.tip1",
+      "server.portals.structure.tip2",
+      "server.portals.structure.tip3"
+    ],
+    "ThemeColor": "#c9ff00"
+  },
+  "GameplayConfig": "Config_Structure",
+  "Spawn": {
+    "SpawnProviderOverride": {
+      "SpawnPoint": {
+        "X": 18,
+        "Y": 4,
+        "Z": -100,
+        "Pitch": -0.1,
+        "Yaw": 168.1,
+        "Roll": 0
+      }
+    }
+  },
+  "VoidInvasionEnabled": true
+}

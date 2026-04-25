@@ -4,12 +4,12 @@ items.Mikaela_Hand.name=Mikaela's Hand
 
 
 # Portal
-portals.structure=Valley of the Fallen
-portals.structure.description=asd
-portals.structure.tip1=<color is="#05c09a">asd1</color>
-portals.structure.tip2=<color is="#05c09a">asd2</color>
-portals.structure.tip3=<b><color is="#fc51e1">asd3</color></b>
+portals.structure=<color is="#f7b801">Valley of the Fallen</color>
+portals.structure.description=<color is="#ffffff">Within the sacred grounds of the <b><color is="#f7b801">VALLEY OF THE FALLEN</color></b>, a divine guardian awaits. A trial that will test the harmony, strength, and resolve of those who dare to enter.</color>
+portals.structure.tip1=<b><color is="#8b8668">There are no second chances here. Fall in battle, and you will be cast out of the valley with no way back.</color></b>
+portals.structure.tip2=<b><color is="#8b8668">This is no place for lone heroes. You will need at least one ally… or face a swift and brutal end.</color></b>
+portals.structure.tip3=<b><color is="#c01919">Extreme difficulty ahead. And trust me… you might want to bring something that shoots from a distance.</color></b>
 
 # Key
-items.PortalKey_Structure.name=Fragment: Structure
-items.PortalKey_Structure.description=Key for the entrance to the Structure.
+items.PortalKey_Structure.name=Fragment: Valley of the Fallen
+items.PortalKey_Structure.description=A sacred fragment that resonates with the Valley of the Fallen. It grants passage to those deemed worthy of facing the trial within.
