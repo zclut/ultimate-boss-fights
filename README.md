@@ -34,7 +34,7 @@ The transition is handled automatically by the server on Mikaela's death.
 | 💥 **Swing Down Combo** | Follow-up combo slam | 8s | 2 | 0–5 |
 | 👊 **Punch** | Direct hit with strong knockback | 4s | 2 | 0–5 |
 | 🤜 **Grab** | Pulls the player from mid range | 7s | 5 | 5–8 |
-| 🌧️ **Rain Hands** | Projectiles fall from the sky above target | 30s | 5 | 0–20 |
+| 🌧️ **Rain Hands** | Projectiles fall from the sky | 30s | 5 | 0–20 |
 | 💢 **AOE Jump** | Ground-slam that hits everything nearby | 10s | 5 | 0–1 |
 
 ### Phase 2 — Archangel
@@ -45,22 +45,22 @@ Archangel operates in two stances: **Aerial** (default) and **Ground** (after la
 
 | Attack | Description | Cooldown | Weight | Range |
 |--------|-------------|----------|--------|-------|
-| 🌧️ **Rain Hands** | Aerial projectile rain | 30s | 2 | 0–20 |
-| 💥 **Burst Projectile** | Rapid projectile burst | 6s | 2 | 0–20 |
-| 🔵 **Big Projectile** | Heavy charged projectile | 4s | 2 | 0–20 |
-| ✈️ **Levitate** | Transitions to ground stance | 25s | 2 | 0–20 |
+| 🌧️ **Rain Hands** | Projectiles fall from the sky | 30s | 2 | 0–20 |
+| 💥 **Burst Projectiles** | Rapid projectiles burst | 6s | 2 | 0–20 |
+| 🔵 **Big Projectiles** | 3 heavy projectiles | 4s | 2 | 0–20 |
+| ✈️ **Levitate** | Transitions to ground stance | 20s | 2 | 0–20 |
 
 **Ground stance** — attacks executed while landed:
 
 | Attack | Description | Cooldown | Weight | Range |
 |--------|-------------|----------|--------|-------|
-| 🌧️ **Rain Hands** | Ground projectile rain | 60s | 1.95 | 0–20 |
-| 💥 **Burst Projectile** | Rapid projectile burst | 8s | 2 | 0–20 |
-| 🔵 **Big Projectile** | Heavy charged projectile | 5s | 2 | 0–20 |
+| 🌧️ **Rain Hands** | Projectiles fall from the sky | 60s | 1.95 | 0–20 |
+| 💥 **Burst Projectiles** | Rapid projectiles burst | 8s | 2 | 0–20 |
+| 🔵 **Big Projectiles** | 3 heavy projectiles | 5s | 2 | 0–20 |
 | ⚔️ **AOE Sword** | Wide sword slam in all directions | 2s | 2 | 0–15 |
-| 🗡️ **Throw Sword** | Hurls sword at the player | 4s | 2 | 0–20 |
+| 🗡️ **Throw Sword** | Throw sword | 4s | 2 | 0–20 |
 | 🤺 **Swing Combo** | Multi-hit sword combo | 2s | 2 | 0–15 |
-| 🛸 **Levitate** | Returns to aerial stance | 30s | 2 | 0–20 |
+| ✈️ **Levitate** | Returns to aerial stance | 30s | 2 | 0–20 |
 
 ---
 
