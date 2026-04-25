@@ -28,12 +28,24 @@
     "KnowledgeRequired": false,
     "Input": [
       {
-        "ItemId": "Ingredient_Bar_Thorium",
+        "ItemId": "Ingredient_Life_Essence_Concentrated",
+        "Quantity": 1
+      },
+      {
+        "ItemId": "Weapon_Longsword_Iron",
+        "Quantity": 1
+      },
+      {
+        "ItemId": "Ingredient_Bar_Gold",
         "Quantity": 10
       },
       {
-        "ItemId": "Ingredient_Life_Essence",
-        "Quantity": 30
+        "ItemId": "Plant_Flower_Common_White2",
+        "Quantity": 10
+      },
+      {
+        "ItemId": "Plant_Flower_Common_Red2",
+        "Quantity": 10
       }
     ],
     "BenchRequirement": [
@@ -45,7 +57,7 @@
         ]
       }
     ],
-    "RequiredMemoriesLevel": 5
+    "RequiredMemoriesLevel": 1
   },
   "PlayerAnimationsId": "Item",
   "Tags": {
