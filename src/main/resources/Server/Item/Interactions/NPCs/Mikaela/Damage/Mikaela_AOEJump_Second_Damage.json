@@ -2,10 +2,11 @@
   "Parent": "DamageEntityParent",
   "DamageCalculator": {
     "BaseDamage": {
-      "Physical": 10
+      "Physical": 70
     }
   },
   "DamageEffects": {
+    "StaminaDrainMultiplier": 3,
     "Knockback": {
       "Force": 1,
       "RelativeX": 0,
