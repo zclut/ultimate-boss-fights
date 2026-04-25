@@ -46,6 +46,15 @@
         }
       ]
     },
+    "Death": {
+      "Animations": [
+        {
+          "Animation": "NPC/Arcangel/Animations/Default/death.blockyanim",
+          "Speed": 1,
+          "Looping": false
+        }
+      ]
+    },
     "Idle": {
       "Animations": [
         {
