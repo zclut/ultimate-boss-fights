@@ -2,10 +2,11 @@
   "Parent": "DamageEntityParent",
   "DamageCalculator": {
     "BaseDamage": {
-      "Physical": 10
+      "Physical": 25
     }
   },
   "DamageEffects": {
+    "StaminaDrainMultiplier": 1.6,
     "WorldSoundEventId": "SFX_Unarmed_Impact",
     "LocalSoundEventId": "SFX_Unarmed_Impact",
     "Knockback": {

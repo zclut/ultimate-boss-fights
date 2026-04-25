@@ -1,13 +1,23 @@
 {
   "Parent": "DamageEntityParent",
+  "Effects": {
+    "Particles": [
+      {
+        "TargetEntityPart": "Entity",
+        "SystemId": "Shock_Levitate",
+        "Scale": 12
+      }
+    ]
+  },
   "DamageCalculator": {
     "BaseDamage": {
-      "Physical": 0
+      "Physical": 15
     }
   },
   "DamageEffects": {
+    "StaminaDrainMultiplier": 1.5,
     "Knockback": {
-      "Duration": 3.1,
+      "Duration": 0.5,
       "Force": 0,
       "RelativeX": 0,
       "RelativeZ": 0,

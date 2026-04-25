@@ -22,7 +22,7 @@
       "Type": "TimeSinceLastUsed",
       "Curve": {
         "Type": "Switch",
-        "SwitchPoint": 25
+        "SwitchPoint": 20
       }
     },
     {

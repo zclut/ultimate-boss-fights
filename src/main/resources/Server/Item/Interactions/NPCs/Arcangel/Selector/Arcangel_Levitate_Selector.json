@@ -7,7 +7,17 @@
   },
   "HitEntity": {
     "Interactions": [
-      "Arcangel_Levitate_Force"
+      {
+        "Type": "Serial",
+        "Interactions": [
+          "Arcangel_Levitate_Damage",
+          "Arcangel_Levitate_Damage",
+          "Arcangel_Levitate_Damage",
+          "Arcangel_Levitate_Damage",
+          "Arcangel_Levitate_Damage",
+          "Arcangel_Levitate_Damage"
+        ]
+      }
     ]
   },
   "Next": {
