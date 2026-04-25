@@ -9,6 +9,8 @@ import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.component.system.tick.EntityTickingSystem;
+import com.hypixel.hytale.math.vector.Vector3d;
+import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
 import com.hypixel.hytale.server.core.modules.entitystats.EntityStatMap;
 import com.hypixel.hytale.server.core.modules.entitystats.EntityStatValue;
 import com.hypixel.hytale.server.core.modules.entitystats.asset.DefaultEntityStatTypes;
@@ -45,9 +47,18 @@ public class BossTickingSystem extends EntityTickingSystem<EntityStore> {
         EntityStatMap statMap = (EntityStatMap) chunk.getComponent(idx, EntityStatMap.getComponentType());
         if (statMap == null) return;
         EntityStatValue healthValue = statMap.get(DefaultEntityStatTypes.getHealth());
-        if (healthValue != null && healthValue.asPercentage() <= 0.0) return;
+        if (healthValue == null) return;
 
+        double healthPct = healthValue.asPercentage();
+
+        TransformComponent transform = (TransformComponent) chunk.getComponent(
+                idx, TransformComponent.getComponentType());
+        if (transform == null) return;
+
+        Vector3d pos = transform.getPosition();
         Ref<EntityStore> ref = chunk.getReferenceTo(idx);
-        BossNPCTracker.register(ref, config);
+        BossNPCTracker.registerOrUpdate(ref, config, npc.getWorld(), healthPct, pos.x, pos.z);
+
+        if (healthPct <= 0.0) return;
     }
 }

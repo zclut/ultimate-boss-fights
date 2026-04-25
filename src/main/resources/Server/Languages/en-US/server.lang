@@ -1,2 +1,15 @@
 npcRoles.Mikaela.name=Mikaela Wanderer
 npcRoles.Arcangel.name=Mikaela Archangel
+items.Mikaela_Hand.name=Mikaela's Hand
+
+
+# Portal
+portals.structure=Valley of the Fallen
+portals.structure.description=asd
+portals.structure.tip1=<color is="#05c09a">asd1</color>
+portals.structure.tip2=<color is="#05c09a">asd2</color>
+portals.structure.tip3=<b><color is="#fc51e1">asd3</color></b>
+
+# Key
+items.PortalKey_Structure.name=Fragment: Structure
+items.PortalKey_Structure.description=Key for the entrance to the Structure.

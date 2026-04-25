@@ -3,7 +3,7 @@
   "Reference": "Template_Arcangel",
   "Modify": {
     "Appearance": "Arcangel",
-    "DropList": "",
+    "DropList": "Drop_Arcangel",
     "MaxHealth": 2000,
     "IsMemory": true,
     "MemoriesCategory": "Boss",

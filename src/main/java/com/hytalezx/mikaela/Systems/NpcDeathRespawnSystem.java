@@ -108,7 +108,8 @@ public class NpcDeathRespawnSystem extends EntityTickingSystem<EntityStore> {
         NPCEntity npcEntity = chunk.getComponent(idx, NPCEntity.getComponentType());
         if (npcEntity == null) return;
 
-        // Unregister dead boss from HUD tracker
+        // Push health=0 to cache so HUD drains before entry is removed
+        BossNPCTracker.markDead(ref);
         BossNPCTracker.unregister(ref);
 
         String roleName = NPCPlugin.get().getName(npcEntity.getRoleIndex());
