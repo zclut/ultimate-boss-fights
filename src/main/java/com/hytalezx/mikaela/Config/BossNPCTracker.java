@@ -1,4 +1,4 @@
-package com.hytalezx.ultimatebossfights.Config;
+package com.hytalezx.mikaela.Config;
 
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.server.core.universe.world.World;

@@ -1,4 +1,4 @@
-package com.hytalezx.ultimatebossfights.UI;
+package com.hytalezx.mikaela.UI;
 
 import com.hypixel.hytale.server.core.entity.entities.player.hud.CustomUIHud;
 import com.hypixel.hytale.server.core.entity.entities.player.hud.HudManager;

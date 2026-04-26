@@ -1,4 +1,4 @@
-package com.hytalezx.ultimatebossfights.Interactions;
+package com.hytalezx.mikaela.Interactions;
 
 import com.hypixel.hytale.codec.Codec;
 import com.hypixel.hytale.codec.KeyedCodec;

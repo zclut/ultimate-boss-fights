@@ -1,4 +1,4 @@
-package com.hytalezx.ultimatebossfights.Systems;
+package com.hytalezx.mikaela.Systems;
 
 import com.hypixel.hytale.component.ArchetypeChunk;
 import com.hypixel.hytale.component.CommandBuffer;
@@ -15,8 +15,8 @@ import com.hypixel.hytale.server.core.modules.entitystats.asset.DefaultEntitySta
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.npc.NPCPlugin;
 import com.hypixel.hytale.server.npc.entities.NPCEntity;
-import com.hytalezx.ultimatebossfights.Config.BossNPCTracker;
-import com.hytalezx.ultimatebossfights.Config.BossRegistry;
+import com.hytalezx.mikaela.Config.BossNPCTracker;
+import com.hytalezx.mikaela.Config.BossRegistry;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
@@ -34,7 +34,7 @@ import java.util.concurrent.TimeUnit;
  * When detected, schedules a spawn of the configured next role.
  * Uses a processed-set to fire only once per death.
  *
- * Register in UltimateBossFight.setup():
+ * Register in MikaelaPlugin.setup():
  *   EntityStore.REGISTRY.registerSystem(new NpcDeathRespawnSystem());
  *   NpcDeathRespawnSystem.register("MyBoss_Phase1", "MyBoss_Phase2", 5.0f);
  */

@@ -132,7 +132,7 @@ if (hasHytaleHome) {
         classpath = files(serverJar)
         workingDir = serverRunDir.absolutePath
         doFirst {
-            def modPaths = [shadowJarTask.get().archiveFile.get().asFile.parentFile.absolutePath]
+            def modPaths = [shadowJarTask.get().archiveFile.get().asFile.absolutePath]
             if (load_user_mods.toBoolean()) {
                 modPaths << "${hytaleHome}/UserData/Mods"
             }

@@ -1,4 +1,4 @@
-package com.hytalezx.ultimatebossfights.Config;
+package com.hytalezx.mikaela.Config;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

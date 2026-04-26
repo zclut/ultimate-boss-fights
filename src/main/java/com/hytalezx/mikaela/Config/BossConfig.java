@@ -1,4 +1,4 @@
-package com.hytalezx.ultimatebossfights.Config;
+package com.hytalezx.mikaela.Config;
 
 
 public class BossConfig {

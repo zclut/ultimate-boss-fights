@@ -1,8 +1,8 @@
 {
     "Group": "HytaleZX",
-    "Name": "Ultimate Boss Fights",
+    "Name": "MikaelaPlugin",
     "Version": "1.0.0",
-    "Description": "A content mod that adds several new boss NPCs to the game, featuring unique mechanics, abilities, and encounters.",
+    "Description": "A plugin that adds a new NPC Boss named Mikaela to the game.",
     "Authors": [
         {
             "Name": "zClut"
@@ -20,6 +20,6 @@
         
     },
     "DisabledByDefault": false,
-    "Main": "com.hytalezx.ultimatebossfights.UltimateBossFight",
+    "Main": "com.hytalezx.mikaela.MikaelaPlugin",
     "IncludesAssetPack": true
 }

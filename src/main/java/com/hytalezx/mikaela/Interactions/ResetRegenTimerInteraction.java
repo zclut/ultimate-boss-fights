@@ -1,4 +1,4 @@
-package com.hytalezx.ultimatebossfights.Interactions;
+package com.hytalezx.mikaela.Interactions;
 
 import com.hypixel.hytale.codec.builder.BuilderCodec;
 import com.hypixel.hytale.component.CommandBuffer;

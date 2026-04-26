@@ -1,4 +1,4 @@
-package com.hytalezx.ultimatebossfights.Systems;
+package com.hytalezx.mikaela.Systems;
 
 import com.hypixel.hytale.component.ArchetypeChunk;
 import com.hypixel.hytale.component.CommandBuffer;
