@@ -13,9 +13,14 @@ Ultimate Boss Fights mod focuses on delivering an original boss battle experienc
 
 “Mikaela, Fallen One” is the first on this list, we want to make her feel like a real boss encounter — not just an NPC with high health and a single attack, mixing up her moves, and shifts into a second phase when she goes down for the first time.
 
-
-
-
+<p align="center">
+  <a href="https://youtu.be/Ior6mqGIV0Q">
+    <img src="https://img.youtube.com/vi/Ior6mqGIV0Q/maxresdefault.jpg" alt="Watch the video" width="55%" style="height:300px;">
+  </a>
+  <p align="center">
+    <a href="https://youtu.be/Ior6mqGIV0Q">Full video</a>
+  </p>
+</p>
 
 To unlock the encounter, you must collect 10 daisies, 10 poppies, obtain an iron sword, craft 10 gold ingots, and acquire a Greater Essence of Life. 
 <p align="center">
@@ -36,8 +41,6 @@ Once you have all the ingredients, craft the "Fragment: Valley of the Fallen" at
 ### Two-Phase Fight
 
 - **Phase 1 — Mikaela, fallen one** (1,400 HP): Ground-based brawler. Seven devastating attacks, including melee attacks, area attacks, stuns, player displacement, and special abilities. In this phase, the fight is a very high-difficulty melee battle. Mikaela has numerous resistances to projectiles, status effects, and physical attacks. Her strikes are devastating to both your health and stamina bar, so make sure to face her with a good supply of potions or many friends.  
-
-
 
 - **Phase 2 — Mikaela, Archangel** (2,000 HP): Aerial powerhouse. Once you enter this second phase, during the first half of her health bar the combat will becomes an entirely aerial battle, with powerful area-of-effect and ranged attacks. Most of the time, taking cover will not help because of her immense explosive damage. Equip ranged weapons and dodge to survive this phase.
 
