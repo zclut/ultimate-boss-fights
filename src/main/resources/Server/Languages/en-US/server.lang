@@ -1,6 +1,9 @@
-npcRoles.Mikaela.name=Mikaela Wanderer
-npcRoles.Arcangel.name=Mikaela Archangel
+npcRoles.Mikaela.name=Mikaela, Fallen One
+npcRoles.Arcangel.name=Mikaela, Archangel
 items.Mikaela_Hand.name=Mikaela's Hand
+
+# Memories
+memories.categories.UltimateBossFights.title=Ultimate Boss Fights
 
 
 # Portal

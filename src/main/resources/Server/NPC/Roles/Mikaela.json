@@ -24,7 +24,7 @@
     "UseCombatActionEvaluator": true,
     "_CombatConfig": "CAE_Mikaela",
     "IsMemory": true,
-    "MemoriesCategory": "Boss",
+    "MemoriesCategory": "UltimateBossFights",
     "MemoriesNameOverride": "Mikaela",
     "BreathesInWater": true,
     "NameTranslationKey": "server.npcRoles.Mikaela.name"
