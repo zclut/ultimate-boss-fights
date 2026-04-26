@@ -19,11 +19,11 @@ Ultimate Boss Fights mod focuses on delivering an original boss battle experienc
 
 To unlock the encounter, you must collect 10 daisies, 10 poppies, obtain an iron sword, craft 10 gold ingots, and acquire a Greater Essence of Life. 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/b1cf17f2-f95c-44ec-9e28-acec0423280e" width="18%" />
-  <img src="https://github.com/user-attachments/assets/88658399-cb9d-4bf2-8eef-7f0e1183682c" width="18%" />
-  <img src="https://github.com/user-attachments/assets/25f50fce-a794-4896-ae2a-b54551d62ade" width="18%" />
-  <img src="https://github.com/user-attachments/assets/3649a5e6-aeb6-4c46-aacc-9bcde413bcac" width="18%" />
-  <img src="https://github.com/user-attachments/assets/f949dbd4-5016-498a-89c7-25bf95d1ff1d" width="18%" />
+  <img src="https://github.com/user-attachments/assets/b1cf17f2-f95c-44ec-9e28-acec0423280e" width="18%" style="height:75px;" />
+  <img src="https://github.com/user-attachments/assets/88658399-cb9d-4bf2-8eef-7f0e1183682c" width="18%" style="height:75px;" />
+  <img src="https://github.com/user-attachments/assets/25f50fce-a794-4896-ae2a-b54551d62ade" width="18%" style="height:75px;" />
+  <img src="https://github.com/user-attachments/assets/3649a5e6-aeb6-4c46-aacc-9bcde413bcac" width="18%" style="height:75px;" />
+  <img src="https://github.com/user-attachments/assets/f949dbd4-5016-498a-89c7-25bf95d1ff1d" width="18%" style="height:75px;" />
 </p>
 Once you have all the ingredients, craft the "Fragment: Valley of the Fallen" at an Arcanist Workbench. Remember to go accompanied or be extremely well equipped, with strong armor and health potions. Mikaela is a very powerful boss, and there are no second chances. If you die in the Fallen Valley, you will not be able to enter again until you obtain another Fragment of it.
 <p align="center">
@@ -44,7 +44,6 @@ Once you have all the ingredients, craft the "Fragment: Valley of the Fallen" at
 When her health reaches 50%, Mikaela will descend to face you. Her powerful aerial attacks will now have greater precision, and she will use her deadly combat swords to engage you in melee. This is the hardest phase of the boss fight, so be very careful if you do not want to start all over again.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/2accd006-66ef-4843-8486-f42624f6d4b4" width="45%"height="500px" />
-  <img src="https://github.com/user-attachments/assets/c0507e0c-36f9-4042-8ba9-523184eba8bd" width="45%"height="500px" />
-  
+  <img src="https://github.com/user-attachments/assets/2accd006-66ef-4843-8486-f42624f6d4b4" width="45%" style="height:447px;" />
+  <img src="https://github.com/user-attachments/assets/c0507e0c-36f9-4042-8ba9-523184eba8bd" width="45%" style="height:447px;" />
 </p>
