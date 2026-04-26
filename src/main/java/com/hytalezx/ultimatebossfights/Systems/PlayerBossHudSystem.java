@@ -1,9 +1,9 @@
-package com.hytalezx.mikaela.Systems;
+package com.hytalezx.ultimatebossfights.Systems;
 
-import com.hytalezx.mikaela.Config.BossConfig;
-import com.hytalezx.mikaela.Config.BossNPCTracker;
-import com.hytalezx.mikaela.UI.BossHealthHud;
-import com.hytalezx.mikaela.UI.EmptyHud;
+import com.hytalezx.ultimatebossfights.Config.BossConfig;
+import com.hytalezx.ultimatebossfights.Config.BossNPCTracker;
+import com.hytalezx.ultimatebossfights.UI.BossHealthHud;
+import com.hytalezx.ultimatebossfights.UI.EmptyHud;
 import com.hypixel.hytale.component.ArchetypeChunk;
 import com.hypixel.hytale.component.CommandBuffer;
 import com.hypixel.hytale.component.Ref;

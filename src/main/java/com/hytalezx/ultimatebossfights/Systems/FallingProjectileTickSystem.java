@@ -1,4 +1,4 @@
-package com.hytalezx.mikaela.Systems;
+package com.hytalezx.ultimatebossfights.Systems;
 
 import com.hypixel.hytale.component.AddReason;
 import com.hypixel.hytale.component.ArchetypeChunk;
@@ -18,8 +18,8 @@ import com.hypixel.hytale.server.core.modules.time.TimeResource;
 import com.hypixel.hytale.server.core.universe.world.ParticleUtil;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.npc.entities.NPCEntity;
-import com.hytalezx.mikaela.Interactions.FallingProjectileInteraction;
-import com.hytalezx.mikaela.Interactions.FallingProjectileInteraction.Task;
+import com.hytalezx.ultimatebossfights.Interactions.FallingProjectileInteraction;
+import com.hytalezx.ultimatebossfights.Interactions.FallingProjectileInteraction.Task;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
