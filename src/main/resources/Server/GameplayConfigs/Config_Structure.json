@@ -21,7 +21,7 @@
   "Plugin": {
     "Portal": {
       "VoidEvent": {
-        "DurationSeconds": 180
+        "DurationSeconds": 0
       }
     }
   }

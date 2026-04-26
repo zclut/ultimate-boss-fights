@@ -9,7 +9,7 @@
   ],
   "PortalKey": {
     "PortalType": "StructurePortal",
-    "TimeLimitSeconds": 900
+    "TimeLimitSeconds": 1200
   },
   "BlockType": {
     "DrawType": "Model",
