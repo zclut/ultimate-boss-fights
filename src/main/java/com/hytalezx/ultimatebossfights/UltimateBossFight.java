@@ -1,27 +1,26 @@
-package com.hytalezx.mikaela;
+package com.hytalezx.ultimatebossfights;
 
-import com.hypixel.hytale.component.ComponentType;
 import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.server.core.modules.interaction.interaction.config.Interaction;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
-import com.hytalezx.mikaela.Command.MikaelaCommand;
-import com.hytalezx.mikaela.Config.BossConfig;
-import com.hytalezx.mikaela.Config.BossRegistry;
+import com.hytalezx.ultimatebossfights.Command.UltimateBossFightCommand;
+import com.hytalezx.ultimatebossfights.Config.BossConfig;
+import com.hytalezx.ultimatebossfights.Config.BossRegistry;
 
-import com.hytalezx.mikaela.Interactions.FallingProjectileInteraction;
-import com.hytalezx.mikaela.Interactions.ResetRegenTimerInteraction;
-import com.hytalezx.mikaela.Systems.BossTickingSystem;
-import com.hytalezx.mikaela.Systems.DeathParticleTickSystem;
-import com.hytalezx.mikaela.Systems.FallingProjectileTickSystem;
-import com.hytalezx.mikaela.Systems.NpcDeathRespawnSystem;
-import com.hytalezx.mikaela.Systems.PlayerBossHudSystem;
+import com.hytalezx.ultimatebossfights.Interactions.FallingProjectileInteraction;
+import com.hytalezx.ultimatebossfights.Interactions.ResetRegenTimerInteraction;
+import com.hytalezx.ultimatebossfights.Systems.BossTickingSystem;
+import com.hytalezx.ultimatebossfights.Systems.DeathParticleTickSystem;
+import com.hytalezx.ultimatebossfights.Systems.FallingProjectileTickSystem;
+import com.hytalezx.ultimatebossfights.Systems.NpcDeathRespawnSystem;
+import com.hytalezx.ultimatebossfights.Systems.PlayerBossHudSystem;
 
 import javax.annotation.Nonnull;
 
 
-public class MikaelaPlugin extends JavaPlugin {
+public class UltimateBossFight extends JavaPlugin {
 
     private static final HytaleLogger LOGGER = HytaleLogger.forEnclosingClass();
 
@@ -37,7 +36,7 @@ public class MikaelaPlugin extends JavaPlugin {
         new PhaseTransition("Mikaela", "Arcangel", 7.0f, "Mikaela_Death_Legendary", 10.0f, 7.0f),
     };
 
-    public MikaelaPlugin(@Nonnull JavaPluginInit init) {
+    public UltimateBossFight(@Nonnull JavaPluginInit init) {
         super(init);
         LOGGER.atInfo().log("Hello from " + this.getName() + " version " + this.getManifest().getVersion().toString());
     }
@@ -48,7 +47,7 @@ public class MikaelaPlugin extends JavaPlugin {
 
         // COMMAND REGISTRY
         LOGGER.atInfo().log("Setting up plugin " + this.getName());
-        this.getCommandRegistry().registerCommand(new MikaelaCommand(this.getName(), this.getManifest().getVersion().toString()));
+        this.getCommandRegistry().registerCommand(new UltimateBossFightCommand(this.getName(), this.getManifest().getVersion().toString()));
 
 
         // BOSS REGISTRY HEALTH BARS
