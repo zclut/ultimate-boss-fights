@@ -1,84 +1,50 @@
-# 👸 Mikaela — Hytale Modding Contest Entry
+<p align="center">
+  <a href="https://discord.gg/msbgKrxwBd">
+    <img src="https://img.shields.io/badge/Discord-Join%20Server-5865F2?style=for-the-badge&logo=discord&logoColor=white">
+  </a>
+  <a href="https://www.patreon.com/HytaleZX">
+    <img src="https://img.shields.io/badge/Patreon-Support-FF424D?style=for-the-badge&logo=patreon&logoColor=white">
+  </a>
+</p>
 
-Mikaela is a custom boss NPC built for a Hytale modding contest. She's a two-phase fighter with a handcrafted combat AI, a custom health bar HUD, and a set of abilities that escalate as the fight goes on. The whole thing is implemented as a server-side plugin using Hytale's ECS framework.
+# Ultimate boss fights: Mikaela, fallen one 
 
----
+Ultimate Boss Fights mod focuses on delivering an original boss battle experience, pushing Hytale’s design and development tools to their highest potential.
 
-## 🗡️ What is this?
+“Mikaela, Fallen One” is the first on this list, we want to make her feel like a real boss encounter — not just an NPC with high health and a single attack, mixing up her moves, and shifts into a second phase when she goes down for the first time.
 
-This plugin adds **Mikaela**, a fully original boss character, to a Hytale server. She has her own 3D model, animations, attack kit, and a dynamic HUD that shows players how the fight is going.
 
-The design goal was to make her feel like a real boss encounter — not just an NPC with high health and a single attack. She reads the situation, mixes up her moves, and shifts into a second phase when she goes down for the first time.
 
----
 
-## ⚔️ Boss Overview
 
-### 🔄 Two-Phase Fight
+To unlock the encounter, you must collect 10 daisies, 10 poppies, obtain an iron sword, craft 10 gold ingots, and acquire a Greater Essence of Life. 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/b1cf17f2-f95c-44ec-9e28-acec0423280e" width="18%" />
+  <img src="https://github.com/user-attachments/assets/88658399-cb9d-4bf2-8eef-7f0e1183682c" width="18%" />
+  <img src="https://github.com/user-attachments/assets/25f50fce-a794-4896-ae2a-b54551d62ade" width="18%" />
+  <img src="https://github.com/user-attachments/assets/3649a5e6-aeb6-4c46-aacc-9bcde413bcac" width="18%" />
+  <img src="https://github.com/user-attachments/assets/f949dbd4-5016-498a-89c7-25bf95d1ff1d" width="18%" />
+</p>
+Once you have all the ingredients, craft the "Fragment: Valley of the Fallen" at an Arcanist Workbench. Remember to go accompanied or be extremely well equipped, with strong armor and health potions. Mikaela is a very powerful boss, and there are no second chances. If you die in the Fallen Valley, you will not be able to enter again until you obtain another Fragment of it.
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/de6ed0d0-dcc5-4d25-8ef4-2b1ea43b7013" width="50%" />
+</p>
 
-- **Phase 1 — Mikaela** (1,400 HP): Ground-based brawler. Close-range melee attacks with a few mid-range specials.
-- **Phase 2 — Archangel** (2,000 HP): Aerial powerhouse. Takes flight after Mikaela falls, switching between an aerial stance and a ground stance with a completely different attack kit.
 
-The transition is handled automatically by the server on Mikaela's death.
+## Boss Overview
 
----
+### Two-Phase Fight
 
-## 🥊 Attack Kits
+- **Phase 1 — Mikaela, fallen one** (1,400 HP): Ground-based brawler. Seven devastating attacks, including melee attacks, area attacks, stuns, player displacement, and special abilities. In this phase, the fight is a very high-difficulty melee battle. Mikaela has numerous resistances to projectiles, status effects, and physical attacks. Her strikes are devastating to both your health and stamina bar, so make sure to face her with a good supply of potions or many friends.  
 
-### Phase 1 — Mikaela
 
-| Attack | Description | Cooldown | Weight | Range |
-|--------|-------------|----------|--------|-------|
-| ⬅️ **Swing Left** | Wide horizontal swing | 3s | 2 | 0–5 |
-| ⬇️ **Swing Down** | Overhead slam | 2s | 2 | 0–5 |
-| 💥 **Swing Down Combo** | Follow-up combo slam | 8s | 2 | 0–5 |
-| 👊 **Punch** | Direct hit with strong knockback | 4s | 2 | 0–5 |
-| 🤜 **Grab** | Pulls the player from mid range | 7s | 5 | 5–8 |
-| 🌧️ **Rain Hands** | Projectiles fall from the sky | 30s | 5 | 0–20 |
-| 💢 **AOE Jump** | Ground-slam that hits everything nearby | 10s | 5 | 0–1 |
 
-### Phase 2 — Archangel
+- **Phase 2 — Mikaela, Archangel** (2,000 HP): Aerial powerhouse. Once you enter this second phase, during the first half of her health bar the combat will becomes an entirely aerial battle, with powerful area-of-effect and ranged attacks. Most of the time, taking cover will not help because of her immense explosive damage. Equip ranged weapons and dodge to survive this phase.
 
-Archangel operates in two stances: **Aerial** (default) and **Ground** (after landing).
+When her health reaches 50%, Mikaela will descend to face you. Her powerful aerial attacks will now have greater precision, and she will use her deadly combat swords to engage you in melee. This is the hardest phase of the boss fight, so be very careful if you do not want to start all over again.
 
-**Aerial stance** — attacks executed while airborne at altitude 5–7:
-
-| Attack | Description | Cooldown | Weight | Range |
-|--------|-------------|----------|--------|-------|
-| 🌧️ **Rain Hands** | Projectiles fall from the sky | 30s | 2 | 0–20 |
-| 💥 **Burst Projectiles** | Rapid projectiles burst | 6s | 2 | 0–20 |
-| 🔵 **Big Projectiles** | 3 heavy projectiles | 4s | 2 | 0–20 |
-| ✈️ **Levitate** | Transitions to ground stance | 20s | 2 | 0–20 |
-
-**Ground stance** — attacks executed while landed:
-
-| Attack | Description | Cooldown | Weight | Range |
-|--------|-------------|----------|--------|-------|
-| 🌧️ **Rain Hands** | Projectiles fall from the sky | 60s | 1.95 | 0–20 |
-| 💥 **Burst Projectiles** | Rapid projectiles burst | 8s | 2 | 0–20 |
-| 🔵 **Big Projectiles** | 3 heavy projectiles | 5s | 2 | 0–20 |
-| ⚔️ **AOE Sword** | Wide sword slam in all directions | 2s | 2 | 0–15 |
-| 🗡️ **Throw Sword** | Throw sword | 4s | 2 | 0–20 |
-| 🤺 **Swing Combo** | Multi-hit sword combo | 2s | 2 | 0–15 |
-| ✈️ **Levitate** | Returns to aerial stance | 30s | 2 | 0–20 |
-
----
-
-### ❤️ Health Bar HUD
-
-A custom health bar appears when you get close enough and disappears when you move away. It changes color as the fight progresses:
-
-- 🟡 **Yellow** — healthy
-- 🟠 **Orange** — mid-fight
-- 🔴 **Red** — nearly done
-
----
-
-## 🔧 Technical Details
-
-Built on Hytale's Entity Component System with:
-
-- ⚙️ **CAE/CAO combat AI** — each attack has its own decision conditions (cooldowns, distance, randomness) feeding into a central evaluator. Archangel's CAE uses **ActionSets** to swap the full attack list when switching between aerial and ground stances.
-- 🔗 **Custom interactions** — Rain Hands and regen reset are implemented as server-side custom interaction chains.
-- 🔄 **ECS ticking systems** — proximity detection for the HUD, projectile spawning, and NPC respawn logic all run as independent systems.
-- 📦 **Asset pack included** — the plugin ships with both Mikaela and Archangel's models, textures, and all animations bundled in.
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/2accd006-66ef-4843-8486-f42624f6d4b4" width="45%"height="500px" />
+  <img src="https://github.com/user-attachments/assets/c0507e0c-36f9-4042-8ba9-523184eba8bd" width="45%"height="500px" />
+  
+</p>
