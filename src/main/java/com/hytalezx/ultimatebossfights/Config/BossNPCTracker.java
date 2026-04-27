@@ -47,8 +47,6 @@ public class BossNPCTracker {
                 return;
             }
         }
-        // new entry — remove stale entry for same config first
-        ENTRIES.removeIf(e -> e.config() == config);
         Entry entry = new Entry(ref, config);
         entry.update(world, healthPct, x, z);
         ENTRIES.add(entry);
@@ -58,7 +56,6 @@ public class BossNPCTracker {
         for (Entry e : ENTRIES) {
             if (e.ref() == ref) return;
         }
-        ENTRIES.removeIf(e -> e.config() == config);
         ENTRIES.add(new Entry(ref, config));
     }
 

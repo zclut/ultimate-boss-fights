@@ -6,7 +6,6 @@ import com.hytalezx.ultimatebossfights.UI.BossHealthHud;
 import com.hytalezx.ultimatebossfights.UI.EmptyHud;
 import com.hypixel.hytale.component.ArchetypeChunk;
 import com.hypixel.hytale.component.CommandBuffer;
-import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.component.system.tick.EntityTickingSystem;
@@ -54,73 +53,56 @@ public class PlayerBossHudSystem extends EntityTickingSystem<EntityStore> {
         HudManager hud     = player.getHudManager();
         Vector3d playerPos = playerTransform.getPosition();
 
-        // If showing a boss that's no longer tracked, clear the HUD immediately
-        CustomUIHud showing = hud.getCustomHud();
-        if (showing instanceof BossHealthHud) {
-            String showingName = ((BossHealthHud) showing).getBossName();
-            boolean stillTracked = false;
-            for (BossNPCTracker.Entry e : BossNPCTracker.entries()) {
-                if (e.config().getDisplayName().equals(showingName)) {
-                    stillTracked = true;
-                    break;
-                }
-            }
-            if (!stillTracked) {
-                hud.setCustomHud(playerRef, new EmptyHud(playerRef));
+        CustomUIHud current   = hud.getCustomHud();
+        String showingName    = (current instanceof BossHealthHud)
+                ? ((BossHealthHud) current).getBossName() : null;
+
+        // Prune invalid refs
+        for (BossNPCTracker.Entry entry : BossNPCTracker.entries()) {
+            if (!entry.ref().isValid()) BossNPCTracker.unregister(entry.ref());
+        }
+
+        // Single-pass: find the closest in-range entry across ALL tracked NPCs.
+        // Uses exit radius for the currently shown boss (hysteresis), entry radius for others.
+        BossNPCTracker.Entry bestEntry  = null;
+        double               bestDistSq = Double.MAX_VALUE;
+
+        for (BossNPCTracker.Entry entry : BossNPCTracker.entries()) {
+            if (!entry.ref().isValid()) continue;
+            if (entry.npcWorld() != null && entry.npcWorld() != player.getWorld()) continue;
+
+            double healthPct = entry.cachedHealthPct();
+            if (healthPct <= 0.0) continue;
+
+            double dx     = entry.cachedX() - playerPos.x;
+            double dz     = entry.cachedZ() - playerPos.z;
+            double distSq = dx * dx + dz * dz;
+
+            boolean isShowing = entry.config().getDisplayName().equals(showingName);
+            double  radius    = isShowing
+                    ? entry.config().getExitBlocks()
+                    : entry.config().getProximityBlocks();
+            double  radiusSq  = radius * radius;
+
+            if (distSq <= radiusSq && distSq < bestDistSq) {
+                bestDistSq = distSq;
+                bestEntry  = entry;
             }
         }
 
-        for (BossNPCTracker.Entry entry : BossNPCTracker.entries()) {
-            Ref<EntityStore> npcRef = entry.ref();
-            BossConfig config       = entry.config();
-
-            if (!npcRef.isValid()) {
-                BossNPCTracker.unregister(npcRef);
-                continue;
+        if (bestEntry == null) {
+            if (current instanceof BossHealthHud) {
+                hud.setCustomHud(playerRef, new EmptyHud(playerRef));
             }
-
-            // Player left the instance — hide HUD and skip
-            if (entry.npcWorld() != null && entry.npcWorld() != player.getWorld()) {
-                CustomUIHud current = hud.getCustomHud();
-                if (current instanceof BossHealthHud
-                        && ((BossHealthHud) current).getBossName().equals(config.getDisplayName())) {
-                    hud.setCustomHud(playerRef, new EmptyHud(playerRef));
-                }
-                continue;
-            }
-
-            double healthPct = entry.cachedHealthPct();
-            double dx        = entry.cachedX() - playerPos.x;
-            double dz        = entry.cachedZ() - playerPos.z;
-            double distSq    = dx * dx + dz * dz;
-
-            double entryRadiusSq = config.getProximityBlocks() * config.getProximityBlocks();
-            double exitRadiusSq  = config.getExitBlocks()      * config.getExitBlocks();
-
-            CustomUIHud current = hud.getCustomHud();
-            boolean alreadyShowingThisBoss = current instanceof BossHealthHud
-                    && ((BossHealthHud) current).getBossName().equals(config.getDisplayName());
-
-            double activeRadiusSq = alreadyShowingThisBoss ? exitRadiusSq : entryRadiusSq;
-            boolean inRange = healthPct > 0.0 && distSq <= activeRadiusSq;
-
-            if (inRange) {
-                if (alreadyShowingThisBoss) {
-                    BossHealthHud currentBossHud = (BossHealthHud) current;
-                    currentBossHud.updateHealth(playerRef, healthPct, hud);
-                    currentBossHud.currentDistanceSq = distSq;
-                } else if (current instanceof BossHealthHud) {
-                    BossHealthHud currentBossHud = (BossHealthHud) current;
-                    if (distSq < currentBossHud.currentDistanceSq) {
-                        setNewBossHud(hud, playerRef, config, healthPct, distSq);
-                    }
-                } else {
-                    setNewBossHud(hud, playerRef, config, healthPct, distSq);
-                }
+        } else {
+            String bestName = bestEntry.config().getDisplayName();
+            if (current instanceof BossHealthHud && bestName.equals(showingName)) {
+                BossHealthHud bossHud = (BossHealthHud) current;
+                bossHud.updateHealth(playerRef, bestEntry.cachedHealthPct(), hud);
+                bossHud.currentDistanceSq = bestDistSq;
             } else {
-                if (alreadyShowingThisBoss) {
-                    hud.setCustomHud(playerRef, new EmptyHud(playerRef));
-                }
+                setNewBossHud(hud, playerRef, bestEntry.config(),
+                        bestEntry.cachedHealthPct(), bestDistSq);
             }
         }
     }
