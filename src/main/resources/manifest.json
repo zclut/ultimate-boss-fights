@@ -17,7 +17,7 @@
         
     },
     "OptionalDependencies": {
-        
+        "Buuz135:MultipleHUD": "*"
     },
     "DisabledByDefault": false,
     "Main": "com.hytalezx.ultimatebossfights.UltimateBossFight",
