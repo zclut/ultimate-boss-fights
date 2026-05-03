@@ -1,5 +1,7 @@
 package com.hytalezx.ultimatebossfights;
 
+import javax.annotation.Nonnull;
+
 import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.server.core.modules.interaction.interaction.config.Interaction;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
@@ -8,7 +10,6 @@ import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hytalezx.ultimatebossfights.Command.UltimateBossFightCommand;
 import com.hytalezx.ultimatebossfights.Config.BossConfig;
 import com.hytalezx.ultimatebossfights.Config.BossRegistry;
-
 import com.hytalezx.ultimatebossfights.Interactions.FallingProjectileInteraction;
 import com.hytalezx.ultimatebossfights.Interactions.ResetRegenTimerInteraction;
 import com.hytalezx.ultimatebossfights.Systems.BossTickingSystem;
@@ -16,13 +17,14 @@ import com.hytalezx.ultimatebossfights.Systems.DeathParticleTickSystem;
 import com.hytalezx.ultimatebossfights.Systems.FallingProjectileTickSystem;
 import com.hytalezx.ultimatebossfights.Systems.NpcDeathRespawnSystem;
 import com.hytalezx.ultimatebossfights.Systems.PlayerBossHudSystem;
-
-import javax.annotation.Nonnull;
+import com.hytalezx.ultimatebossfights.Utils.HStats;
 
 
 public class UltimateBossFight extends JavaPlugin {
 
     private static final HytaleLogger LOGGER = HytaleLogger.forEnclosingClass();
+
+    private HStats hStats;
 
     private static final BossConfig[] BOSS_CONFIGS = {
         new BossConfig("Mikaela", "MIKAELA WARDERER",  55.0, "Pages/HUD/Mikaela/mikaela.ui"),
@@ -44,6 +46,11 @@ public class UltimateBossFight extends JavaPlugin {
     @Override
     protected void setup() {
         super.setup();
+
+        // HSTATS
+        String hstatsUUID = HStats.loadUUID();
+        if (hstatsUUID != null) new HStats(hstatsUUID, this.getManifest().getVersion().toString());
+
 
         // COMMAND REGISTRY
         LOGGER.atInfo().log("Setting up plugin " + this.getName());
