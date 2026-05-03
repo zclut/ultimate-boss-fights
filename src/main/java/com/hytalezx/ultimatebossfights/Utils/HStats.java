@@ -4,7 +4,6 @@ import com.hypixel.hytale.server.core.HytaleServer;
 import com.hypixel.hytale.server.core.universe.Universe;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URI;
@@ -14,7 +13,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 import java.util.StringJoiner;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -22,19 +20,6 @@ import java.util.concurrent.TimeUnit;
 public class HStats {
 
     private static final String URL_BASE = "https://api.hstats.dev/api/";
-
-    /** Reads hstats_uuid from plugin.properties injected at build time. */
-    public static String loadUUID() {
-        try (InputStream in = HStats.class.getClassLoader().getResourceAsStream("plugin.properties")) {
-            if (in == null) return null;
-            Properties props = new Properties();
-            props.load(in);
-            String uuid = props.getProperty("hstats_uuid", "").trim();
-            return uuid.isEmpty() || uuid.startsWith("MISSING") ? null : uuid;
-        } catch (IOException e) {
-            return null;
-        }
-    }
 
     private final String modUUID;
     private final String modVersion;

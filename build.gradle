@@ -6,13 +6,6 @@ plugins {
 
 import org.gradle.internal.os.OperatingSystem
 
-// Load secrets.properties if present (gitignored — never commit this file)
-def secretsFile = file('secrets.properties')
-def secrets = new Properties()
-if (secretsFile.exists()) {
-    secretsFile.withInputStream { secrets.load(it) }
-}
-
 ext {
     if (project.hasProperty('hytale_home')) {
         hytaleHome = project.findProperty('hytale_home')
@@ -95,10 +88,6 @@ tasks.register('updatePluginManifest') {
 // Makes sure the plugin manifest is up to date.
 tasks.named('processResources') {
     dependsOn 'updatePluginManifest'
-    // Inject secrets into plugin.properties at build time
-    filesMatching('plugin.properties') {
-        expand(['hstats_uuid': secrets.getProperty('hstats_uuid', 'MISSING_HSTATS_UUID')])
-    }
 }
 
 tasks.named('shadowJar') {

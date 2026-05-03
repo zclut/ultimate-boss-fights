@@ -3,10 +3,10 @@ package com.hytalezx.ultimatebossfights.Systems;
 import com.hytalezx.ultimatebossfights.Config.BossConfig;
 import com.hytalezx.ultimatebossfights.Config.BossNPCTracker;
 import com.hytalezx.ultimatebossfights.UI.BossHealthHud;
+import com.hytalezx.ultimatebossfights.Utils.EntityUtils;
 import com.hytalezx.ultimatebossfights.Utils.MultipleHudAPI;
 import com.hypixel.hytale.component.ArchetypeChunk;
 import com.hypixel.hytale.component.CommandBuffer;
-import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.component.system.tick.EntityTickingSystem;
@@ -18,6 +18,7 @@ import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -27,10 +28,10 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class PlayerBossHudSystem extends EntityTickingSystem<EntityStore> {
 
-    // Tracks the active BossHealthHud per player entity ref so we don't depend
-    // on HudManager.getCustomHud() — MultipleHUD manages its own slot.
-    private final ConcurrentHashMap<Ref<EntityStore>, BossHealthHud> activeHuds =
-            new ConcurrentHashMap<>();
+    private record ActiveEntry(BossHealthHud hud, Player player, PlayerRef playerRef) {}
+
+    // Keyed by UUID so instance changes (new Ref) don't orphan an active HUD.
+    private final ConcurrentHashMap<UUID, ActiveEntry> activeHuds = new ConcurrentHashMap<>();
 
     @NullableDecl
     @Override
@@ -58,9 +59,12 @@ public class PlayerBossHudSystem extends EntityTickingSystem<EntityStore> {
 
         Vector3d playerPos = playerTransform.getPosition();
 
-        Ref<EntityStore> playerEntityRef = chunk.getReferenceTo(idx);
-        BossHealthHud    current         = activeHuds.get(playerEntityRef);
-        String           showingName     = current != null ? current.getBossName() : null;
+        UUID uuid = EntityUtils.getUuid(playerRef);
+        if (uuid == null) return;
+
+        ActiveEntry      active      = activeHuds.get(uuid);
+        BossHealthHud    current     = active != null ? active.hud() : null;
+        String           showingName = current != null ? current.getBossName() : null;
 
         // Prune invalid refs
         for (BossNPCTracker.Entry entry : BossNPCTracker.entries()) {
@@ -97,10 +101,8 @@ public class PlayerBossHudSystem extends EntityTickingSystem<EntityStore> {
 
         if (bestEntry == null) {
             if (current != null) {
-                if (!MultipleHudAPI.get().hideCustomHud(player, playerRef)) {
-                    player.getHudManager().setCustomHud(playerRef, null);
-                }
-                activeHuds.remove(playerEntityRef);
+                hideHud(active);
+                activeHuds.remove(uuid);
             }
         } else {
             String bestName = bestEntry.config().getDisplayName();
@@ -108,14 +110,20 @@ public class PlayerBossHudSystem extends EntityTickingSystem<EntityStore> {
                 current.updateHealth(playerRef, player, bestEntry.cachedHealthPct());
                 current.currentDistanceSq = bestDistSq;
             } else {
-                setNewBossHud(player, playerRef, playerEntityRef,
+                if (current != null) hideHud(active);
+                setNewBossHud(uuid, player, playerRef,
                         bestEntry.config(), bestEntry.cachedHealthPct(), bestDistSq);
             }
         }
     }
 
-    private void setNewBossHud(Player player, PlayerRef playerRef,
-                               Ref<EntityStore> playerEntityRef,
+    private void hideHud(ActiveEntry active) {
+        if (!MultipleHudAPI.get().hideCustomHud(active.player(), active.playerRef())) {
+            active.player().getHudManager().setCustomHud(active.playerRef(), null);
+        }
+    }
+
+    private void setNewBossHud(UUID uuid, Player player, PlayerRef playerRef,
                                BossConfig config, double healthPct, double distSq) {
         BossHealthHud newHud = new BossHealthHud(playerRef, config.getDisplayName(),
                 healthPct, config.getHudStyle());
@@ -123,6 +131,6 @@ public class PlayerBossHudSystem extends EntityTickingSystem<EntityStore> {
         if (!MultipleHudAPI.get().setCustomHud(player, playerRef, newHud)) {
             player.getHudManager().setCustomHud(playerRef, newHud);
         }
-        activeHuds.put(playerEntityRef, newHud);
+        activeHuds.put(uuid, new ActiveEntry(newHud, player, playerRef));
     }
 }

@@ -22,15 +22,16 @@ import com.hytalezx.ultimatebossfights.Utils.HStats;
 
 public class UltimateBossFight extends JavaPlugin {
 
+    // LOGGER
     private static final HytaleLogger LOGGER = HytaleLogger.forEnclosingClass();
 
-    private HStats hStats;
-
+    // BOSS CONFIGS
     private static final BossConfig[] BOSS_CONFIGS = {
         new BossConfig("Mikaela", "MIKAELA WARDERER",  55.0, "Pages/HUD/Mikaela/mikaela.ui"),
         new BossConfig("Arcangel", "MIKAELA ARCHANGEL", 55.0, "Pages/HUD/Arcangel/arcangel.ui"),
     };
 
+    // PHASE TRANSITIONS
     private record PhaseTransition(String from, String to, float delay,
                                    String particle, float scale, float duration) {}
 
@@ -38,18 +39,20 @@ public class UltimateBossFight extends JavaPlugin {
         new PhaseTransition("Mikaela", "Arcangel", 7.0f, "Mikaela_Death_Legendary", 10.0f, 7.0f),
     };
 
+    // CONSTRUCTOR
     public UltimateBossFight(@Nonnull JavaPluginInit init) {
         super(init);
         LOGGER.atInfo().log("Hello from " + this.getName() + " version " + this.getManifest().getVersion().toString());
     }
 
+    // SETUP
     @Override
     protected void setup() {
         super.setup();
 
         // HSTATS
-        String hstatsUUID = HStats.loadUUID();
-        if (hstatsUUID != null) new HStats(hstatsUUID, this.getManifest().getVersion().toString());
+        String hStatsKey = "d4f748b6-b458-4a66-b65b-d427d785a6a5";
+        new HStats(hStatsKey, this.getManifest().getVersion().toString());
 
 
         // COMMAND REGISTRY
@@ -63,7 +66,7 @@ public class UltimateBossFight extends JavaPlugin {
 
 
         // ── INTERACTIONS ────────────────────────────────────────────────────
-        // ── FallingProjectile (FallingProjectile interaction) ──────────────────────────
+        // ── FallingProjectile (FallingProjectile interaction) ───────────────
         LOGGER.atInfo().log("Registering FallingProjectile interaction...");
         getCodecRegistry(Interaction.CODEC).register(
                 "HytaleZX:FallingProjectile",

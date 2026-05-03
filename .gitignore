@@ -63,6 +63,3 @@ desktop.ini
 # Template specific
 libs/HytaleServer.jar
 buildSrc/
-
-# Secrets
-secrets.properties
