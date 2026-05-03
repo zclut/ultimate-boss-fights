@@ -106,6 +106,15 @@
           "Looping": true
         }
       ]
+    },
+    "PP_Parried_Stun": {
+      "Animations": [
+        {
+          "Animation": "NPC/Mikaela/Animations/Damage/Default/PP_Parried_Stun.blockyanim",
+          "Speed": 0.7,
+          "Looping": false
+        }
+      ]
     }
   }
 }
