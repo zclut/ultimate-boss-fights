@@ -3,7 +3,8 @@ package com.hytalezx.ultimatebossfights.Systems;
 import com.hytalezx.ultimatebossfights.Config.BossConfig;
 import com.hytalezx.ultimatebossfights.Config.BossNPCTracker;
 import com.hytalezx.ultimatebossfights.UI.BossHealthHud;
-import com.hytalezx.ultimatebossfights.UI.EmptyHud;
+import com.hytalezx.ultimatebossfights.Utils.EntityUtils;
+import com.hytalezx.ultimatebossfights.Utils.MultipleHudAPI;
 import com.hypixel.hytale.component.ArchetypeChunk;
 import com.hypixel.hytale.component.CommandBuffer;
 import com.hypixel.hytale.component.Store;
@@ -11,13 +12,14 @@ import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.component.system.tick.EntityTickingSystem;
 import com.hypixel.hytale.math.vector.Vector3d;
 import com.hypixel.hytale.server.core.entity.entities.Player;
-import com.hypixel.hytale.server.core.entity.entities.player.hud.CustomUIHud;
-import com.hypixel.hytale.server.core.entity.entities.player.hud.HudManager;
 import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
+
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Player-based system — always ticks regardless of NPC view frustum.
@@ -25,6 +27,11 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * on the NPC's thread) — no cross-thread store access.
  */
 public class PlayerBossHudSystem extends EntityTickingSystem<EntityStore> {
+
+    private record ActiveEntry(BossHealthHud hud, Player player, PlayerRef playerRef) {}
+
+    // Keyed by UUID so instance changes (new Ref) don't orphan an active HUD.
+    private final ConcurrentHashMap<UUID, ActiveEntry> activeHuds = new ConcurrentHashMap<>();
 
     @NullableDecl
     @Override
@@ -50,12 +57,14 @@ public class PlayerBossHudSystem extends EntityTickingSystem<EntityStore> {
         PlayerRef playerRef = (PlayerRef) chunk.getComponent(idx, PlayerRef.getComponentType());
         if (playerRef == null) return;
 
-        HudManager hud     = player.getHudManager();
         Vector3d playerPos = playerTransform.getPosition();
 
-        CustomUIHud current   = hud.getCustomHud();
-        String showingName    = (current instanceof BossHealthHud)
-                ? ((BossHealthHud) current).getBossName() : null;
+        UUID uuid = EntityUtils.getUuid(playerRef);
+        if (uuid == null) return;
+
+        ActiveEntry      active      = activeHuds.get(uuid);
+        BossHealthHud    current     = active != null ? active.hud() : null;
+        String           showingName = current != null ? current.getBossName() : null;
 
         // Prune invalid refs
         for (BossNPCTracker.Entry entry : BossNPCTracker.entries()) {
@@ -91,27 +100,37 @@ public class PlayerBossHudSystem extends EntityTickingSystem<EntityStore> {
         }
 
         if (bestEntry == null) {
-            if (current instanceof BossHealthHud) {
-                hud.setCustomHud(playerRef, new EmptyHud(playerRef));
+            if (current != null) {
+                hideHud(active);
+                activeHuds.remove(uuid);
             }
         } else {
             String bestName = bestEntry.config().getDisplayName();
-            if (current instanceof BossHealthHud && bestName.equals(showingName)) {
-                BossHealthHud bossHud = (BossHealthHud) current;
-                bossHud.updateHealth(playerRef, bestEntry.cachedHealthPct(), hud);
-                bossHud.currentDistanceSq = bestDistSq;
+            if (current != null && bestName.equals(showingName)) {
+                current.updateHealth(playerRef, player, bestEntry.cachedHealthPct());
+                current.currentDistanceSq = bestDistSq;
             } else {
-                setNewBossHud(hud, playerRef, bestEntry.config(),
-                        bestEntry.cachedHealthPct(), bestDistSq);
+                if (current != null) hideHud(active);
+                setNewBossHud(uuid, player, playerRef,
+                        bestEntry.config(), bestEntry.cachedHealthPct(), bestDistSq);
             }
         }
     }
 
-    private void setNewBossHud(HudManager hud, PlayerRef playerRef,
+    private void hideHud(ActiveEntry active) {
+        if (!MultipleHudAPI.get().hideCustomHud(active.player(), active.playerRef())) {
+            active.player().getHudManager().setCustomHud(active.playerRef(), null);
+        }
+    }
+
+    private void setNewBossHud(UUID uuid, Player player, PlayerRef playerRef,
                                BossConfig config, double healthPct, double distSq) {
         BossHealthHud newHud = new BossHealthHud(playerRef, config.getDisplayName(),
                 healthPct, config.getHudStyle());
         newHud.currentDistanceSq = distSq;
-        hud.setCustomHud(playerRef, newHud);
+        if (!MultipleHudAPI.get().setCustomHud(player, playerRef, newHud)) {
+            player.getHudManager().setCustomHud(playerRef, newHud);
+        }
+        activeHuds.put(uuid, new ActiveEntry(newHud, player, playerRef));
     }
 }

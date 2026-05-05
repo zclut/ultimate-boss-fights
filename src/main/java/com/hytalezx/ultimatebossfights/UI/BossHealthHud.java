@@ -1,7 +1,8 @@
 package com.hytalezx.ultimatebossfights.UI;
 
+import com.hytalezx.ultimatebossfights.Utils.MultipleHudAPI;
+import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.entity.entities.player.hud.CustomUIHud;
-import com.hypixel.hytale.server.core.entity.entities.player.hud.HudManager;
 import com.hypixel.hytale.server.core.ui.builder.UICommandBuilder;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import javax.annotation.Nonnull;
@@ -31,13 +32,15 @@ public class BossHealthHud extends CustomUIHud {
         applyTier(builder, this.currentTier, this.percentagePv);
     }
 
-    public void updateHealth(@Nonnull PlayerRef playerRef, double newPercentage,
-                             HudManager hudManager) {
+    public void updateHealth(@Nonnull PlayerRef playerRef, @Nonnull Player player,
+                             double newPercentage) {
         String newTier = getTier(newPercentage);
 
         if (!newTier.equals(this.currentTier)) {
-            hudManager.setCustomHud(playerRef,
-                    new BossHealthHud(playerRef, bossName, newPercentage, hudStyle));
+            BossHealthHud rebuilt = new BossHealthHud(playerRef, bossName, newPercentage, hudStyle);
+            if (!MultipleHudAPI.get().setCustomHud(player, playerRef, rebuilt)) {
+                player.getHudManager().setCustomHud(playerRef, rebuilt);
+            }
         } else {
             this.percentagePv = newPercentage;
             UICommandBuilder builder = new UICommandBuilder();
