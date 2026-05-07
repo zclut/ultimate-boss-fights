@@ -3,25 +3,25 @@
   "DamageResistance": {
     "Projectile": [
       {
-        "CalculationType": "Multiplicative",
+        "CalculationType": "Percent",
         "Amount": 0.95
       }
     ],
     "Fire": [
       {
-        "CalculationType": "Multiplicative",
+        "CalculationType": "Percent",
         "Amount": 0.5
       }
     ],
     "Ice": [
       {
-        "CalculationType": "Multiplicative",
+        "CalculationType": "Percent",
         "Amount": 0.5
       }
     ],
     "Physical": [
       {
-        "CalculationType": "Multiplicative",
+        "CalculationType": "Percent",
         "Amount": 0.7
       }
     ]

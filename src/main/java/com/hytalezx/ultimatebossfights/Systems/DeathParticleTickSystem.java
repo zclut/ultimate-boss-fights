@@ -7,7 +7,7 @@ import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.component.system.tick.EntityTickingSystem;
 import com.hypixel.hytale.logger.HytaleLogger;
-import com.hypixel.hytale.math.vector.Vector3d;
+import org.joml.Vector3d;
 import com.hypixel.hytale.server.core.asset.type.particle.config.WorldParticle;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.ParticleUtil;
@@ -48,7 +48,7 @@ public class DeathParticleTickSystem extends EntityTickingSystem<EntityStore> {
                 particleId,
                 null,
                 scale,
-                new com.hypixel.hytale.protocol.Vector3f(),
+                new org.joml.Vector3f(),
                 new com.hypixel.hytale.protocol.Direction()
         );
         EFFECTS.add(new Effect(

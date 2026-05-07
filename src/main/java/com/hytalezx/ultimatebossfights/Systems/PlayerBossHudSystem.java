@@ -10,7 +10,8 @@ import com.hypixel.hytale.component.CommandBuffer;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.component.system.tick.EntityTickingSystem;
-import com.hypixel.hytale.math.vector.Vector3d;
+import com.hypixel.hytale.server.core.entity.entities.player.hud.CustomUIHud;
+import org.joml.Vector3d;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
@@ -119,7 +120,7 @@ public class PlayerBossHudSystem extends EntityTickingSystem<EntityStore> {
 
     private void hideHud(ActiveEntry active) {
         if (!MultipleHudAPI.get().hideCustomHud(active.player(), active.playerRef())) {
-            active.player().getHudManager().setCustomHud(active.playerRef(), null);
+            active.player().getHudManager().removeCustomHud(active.playerRef(), CustomUIHud.DEFAULT_KEY);
         }
     }
 
@@ -129,7 +130,7 @@ public class PlayerBossHudSystem extends EntityTickingSystem<EntityStore> {
                 healthPct, config.getHudStyle());
         newHud.currentDistanceSq = distSq;
         if (!MultipleHudAPI.get().setCustomHud(player, playerRef, newHud)) {
-            player.getHudManager().setCustomHud(playerRef, newHud);
+            player.getHudManager().addCustomHud(playerRef, newHud);
         }
         activeHuds.put(uuid, new ActiveEntry(newHud, player, playerRef));
     }

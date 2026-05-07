@@ -1,6 +1,5 @@
 package com.hytalezx.ultimatebossfights.Command;
 
-import com.hypixel.hytale.protocol.GameMode;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.command.system.CommandContext;
 import com.hypixel.hytale.server.core.command.system.basecommands.CommandBase;
@@ -17,7 +16,7 @@ public class UltimateBossFightCommand extends CommandBase {
 
     public UltimateBossFightCommand(String pluginName, String pluginVersion) {
         super("ultimatebossfights", "Show a " + pluginName + " mod version.");
-        this.setPermissionGroup(GameMode.Adventure); // Allows the command to be used by anyone, not just OP
+        this.setPermissionGroups("hytale:Adventurer");
         this.pluginName = pluginName;
         this.pluginVersion = pluginVersion;
     }

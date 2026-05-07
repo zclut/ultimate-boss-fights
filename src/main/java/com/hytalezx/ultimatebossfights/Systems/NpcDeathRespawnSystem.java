@@ -7,8 +7,8 @@ import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.component.system.tick.EntityTickingSystem;
 import com.hypixel.hytale.logger.HytaleLogger;
-import com.hypixel.hytale.math.vector.Vector3d;
-import com.hypixel.hytale.math.vector.Vector3f;
+import com.hypixel.hytale.math.vector.Rotation3f;
+import org.joml.Vector3d;
 import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
 import com.hypixel.hytale.server.core.modules.entitystats.EntityStatMap;
 import com.hypixel.hytale.server.core.modules.entitystats.asset.DefaultEntityStatTypes;
@@ -125,11 +125,11 @@ public class NpcDeathRespawnSystem extends EntityTickingSystem<EntityStore> {
         // Capture spawn position
         TransformComponent transform = chunk.getComponent(idx, TransformComponent.getComponentType());
         Vector3d spawnPos = new Vector3d(0, 64, 0);
-        Vector3f spawnRot = new Vector3f(0, 0, 0);
+        Rotation3f spawnRot = new Rotation3f(0, 0, 0);
 
         if (transform != null) {
             Vector3d p = transform.getPosition();
-            Vector3f r = transform.getRotation();
+            Rotation3f r = transform.getRotation();
             spawnPos.x = p.x; spawnPos.y = p.y; spawnPos.z = p.z;
             spawnRot.x = r.x; spawnRot.y = r.y; spawnRot.z = r.z;
         }

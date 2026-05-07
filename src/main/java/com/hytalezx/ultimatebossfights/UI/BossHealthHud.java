@@ -39,7 +39,7 @@ public class BossHealthHud extends CustomUIHud {
         if (!newTier.equals(this.currentTier)) {
             BossHealthHud rebuilt = new BossHealthHud(playerRef, bossName, newPercentage, hudStyle);
             if (!MultipleHudAPI.get().setCustomHud(player, playerRef, rebuilt)) {
-                player.getHudManager().setCustomHud(playerRef, rebuilt);
+                player.getHudManager().addCustomHud(playerRef, rebuilt);
             }
         } else {
             this.percentagePv = newPercentage;

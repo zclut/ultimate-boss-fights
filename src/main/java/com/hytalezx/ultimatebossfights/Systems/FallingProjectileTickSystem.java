@@ -8,8 +8,8 @@ import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.component.system.tick.EntityTickingSystem;
 import com.hypixel.hytale.logger.HytaleLogger;
-import com.hypixel.hytale.math.vector.Vector3d;
-import com.hypixel.hytale.math.vector.Vector3f;
+import com.hypixel.hytale.math.vector.Rotation3f;
+import org.joml.Vector3d;
 import com.hypixel.hytale.server.core.entity.UUIDComponent;
 import com.hypixel.hytale.server.core.entity.entities.ProjectileComponent;
 import com.hypixel.hytale.server.core.modules.entity.component.Intangible;
@@ -145,7 +145,7 @@ public class FallingProjectileTickSystem extends EntityTickingSystem<EntityStore
         double landY = task.centerY;
 
         Vector3d spawnPos = new Vector3d(landX, landY + task.height, landZ);
-        Vector3f spawnRot = new Vector3f(0, -90, 0);
+        Rotation3f spawnRot = new Rotation3f(0, -90, 0);
 
         Holder<EntityStore> holder = ProjectileComponent.assembleDefaultProjectile(
                 timeResource, task.projectileId, spawnPos, spawnRot);
