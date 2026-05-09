@@ -108,19 +108,16 @@ public class NpcDeathRespawnSystem extends EntityTickingSystem<EntityStore> {
         NPCEntity npcEntity = chunk.getComponent(idx, NPCEntity.getComponentType());
         if (npcEntity == null) return;
 
+        String roleName = NPCPlugin.get().getName(npcEntity.getRoleIndex());
+
+        RespawnConfig config = CONFIGS.get(roleName);
+        if (config == null) return;
+
+        LOGGER.atInfo().log("[NpcDeathRespawnSystem] NPC dead: roleName='%s'", roleName);
+
         // Push health=0 to cache so HUD drains before entry is removed
         BossNPCTracker.markDead(ref);
         BossNPCTracker.unregister(ref);
-
-        String roleName = NPCPlugin.get().getName(npcEntity.getRoleIndex());
-        LOGGER.atInfo().log("[NpcDeathRespawnSystem] NPC dead: roleName='%s'", roleName);
-
-        RespawnConfig config = CONFIGS.get(roleName);
-        if (config == null) {
-            LOGGER.atInfo().log("[NpcDeathRespawnSystem] no config for '%s', keys=%s",
-                    roleName, CONFIGS.keySet());
-            return;
-        }
 
         // Capture spawn position
         TransformComponent transform = chunk.getComponent(idx, TransformComponent.getComponentType());
